@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<title>
+    Compliment Generator
+</title>
+<style>
+html {
+    min-height: 100%;
+}
+ 
+body {
+    -webkit-animation: colorchange 60s infinite; 
+    animation: colorchange 60s infinite;
+}
+@-webkit-keyframes colorchange {
+     0%  {background: #33FFF3;}
+    25%  {background: #78281F;}
+    50%  {background: #117A65;}
+    75%  {background: #DC7633;}
+    100% {background: #33FFF3;}
+}
+@keyframes colorchange {
+     0%  {background: #33FFF3;}
+    25%  {background: #78281F;}
+    50%  {background: #117A65;}
+    75%  {background: #DC7633;}
+    100% {background: #33FFF3;}
+}
+
+            h1{
+                color:blue;
+                font-size:40px;
+            }
+            h2{
+                color:red;
+                background-color:yellow;
+                font-size:30px;
+            }
+            h3{
+                font-size:20px;
+            }
+            a{
+                background-color:white;
+            }
+
+.rainbow{
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);   -webkit-background-clip: text;
+  color: transparent;
+}
+
+
+        </style>
+<body>
+
+<marquee behavior = "scroll" direction = "left" style = "font-size:40px" scrollamount = "10"> <h1 class = "rainbow">
+    Compliment Generator: Generate some awesome compliments to make yourself feel good! Yay! :)
+</h1></marquee>
+
+<h1 class = "rainbow">
+    Cool Stuff! Yeah! Woohoo!
+</h1>
+
+<button onclick="myFunction()" style = "background-color: yellow">Want a compliment? Click Here! :D</button>
+
+
+<p id="demo"></p>
+
+
+
+
+
+<script>
+            function myFunction()
+            {
+                
+                var bodys = ['eyes', 'hair', 'lips', 'soul'];
+                var body = bodys[Math.floor(Math.random()*bodys.length)];
+                
+                var verbs = ['glow', 'shine', 'sing', 'dance'];
+                var verb = verbs[Math.floor(Math.random()*verbs.length)];
+                
+                var randomAdjectives = ["Beautiful", "Handsome","Nice", "Lovely",];
+                var adjective = randomAdjectives[Math.floor(Math.random()*randomAdjectives.length)];
+                
+                var randomAdjectives2 = ["Beautiful", "Handsome","Nice", "Lovely",];
+                var adjective2 = randomAdjectives2[Math.floor(Math.random()*randomAdjectives2.length)];
+                
+                var nouns = ['diamond', 'star', 'a ray of sunshine', 'sunrise', "Sunshine", "Rainbow", "Unicorn", "Poem", "Painting"];
+                var noun = nouns[Math.floor(Math.random()*nouns.length)];
+                
+                var phrases = ['You are a ray of sunshine!', "You're such a sweetheart!", "You're a lifesaver!", 'I hope tommorrow is never your last!', "You are the greatest of all time!", "You have a nice smile!", "You look nice today!"];
+                var phrase = phrases[Math.floor(Math.random()*phrases.length)];
+                alert("Oh boy, do I have something special for you! ;)");
+                
+                var person = prompt("Please enter your name", "");
+  if (person != null) {
+    document.getElementById("demo").innerHTML =
+    "Hello " + person + "! How are you today? " +
+    "Your " + adjective + " " + body + " " + verb + "s like a " + adjective2 + " " + noun + "! " +
+    phrase;
+  }
+            }
+        </script>
+        <!--
+        Second Function below!
+        -->
+        <p></p>
+        <button onclick="myFunction22()" style = "background-color: lightblue">More Compliments? Click Here! :D</button>
+        
+        <script>
+            function myFunction22(){
+                alert("Hey!");
+            }
+        </script>
+
+         <!--
+        Sonic says stuff!
+        Nothing in particular, just some random stuff.
+        -->
+<p></p>
+<button onclick="myFunction3()">Need some advice? Click Here! :D</button>
+
+<p id="demo"></p>
+<script>
+            function myFunction3()
+            {
+                var heroes = ['Sonic'];
+                var hero = heroes[Math.floor(Math.random()*heroes.length)];
+                
+                var things2 = ['The only person that can change who you are is you!', "Don't be a fool, smoking isn't cool!", 'I dunno' ,"If you have the big suck, consider using a leaf blower.", "ACE is the place for the wonderful hardware folks!", "New phone. Who dis?", "I'm out of ideas. I'm outta here! Adios!", "Lightning McQueen is a big phony. He's too slow.", "You're gonna milk me dry, are you?"];
+                var thing2 = things2[Math.floor(Math.random()*things2.length)];
+                alert(hero + ' says: ' + thing2);
+            }
+        </script>
+        
+         <img src = https://i.imgflip.com/2345or.jpg width = "500px">
+        <p>Here's where I got the code:</p>
+<a href = https://stackoverflow.com/questions/13237421/how-to-generate-random-words-in-javascript>
+            <font color = "yellowgreen">How to generate random words in JavaScript? [duplicate]</font>
+        </a>
+        <br>
+        <a href = https://codepen.io/sirjessthebrave/pen/WbrzGp>
+            <font color = "green">Compliment Generator
+A PEN BY Jessica Bell</font>
+        </a>
+        <br>
+        <a href = https://codepen.io/enmckinn/pen/jmMwPQ>
+            <font color = "green">Compliment Generator
+A PEN BY Erin McKinney</font>
+        </a>
+        <br>
+        <a href = https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_prompt>
+            <font color = "green">Imput name</font>
+        </a>
+        <br>
+        <a href = https://knowyourmeme.com/memes/sonic-says-adventures-of-sonic-the-hedgehog><font color = "blue">Sonic Says Meme</font></a>
+        <br>
+        <a href = https://aosth.fandom.com/wiki/Sonic_Sez><font color = "blue">Sonic Sez</font></a>
+        <br>
+        <a href = https://www.wikihow.com/Set-Background-Color-in-HTML><font color = "red">Color-changing background!</font></a>
+        <br>
+        <a href = https://w3bits.com/rainbow-text/ class = "rainbow">Rainbow text!</a>
+        
+</body>
+</html>
