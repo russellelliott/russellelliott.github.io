@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Solstice Calendar</title>
+		<style>
+        
+        body {
+          background-image: url('https://i.pinimg.com/originals/58/bd/82/58bd827dc0715589a5a86872feb66eae.jpg');
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+        }
+        
+        
+        
+        table, th, td {
+          border: 1px solid black;
+          vertical-align: top;
+        }
+        input[type=number]{
+            width: 60px;
+        }
+        </style>
+        <link rel="icon" 
+        type="image/png" 
+        href="https://www.pngkey.com/png/detail/256-2560866_events-calander-png-orange-calendar-png-icon.png" />
+	
+	</head>
+
+	<body>
+	    <h1 style = "background-color:white">Convert date between Gregorian Calendar and <a href = "http://www.solsticecalendar.com/2009-solstice-calendar/">Solstice Calendar</a></h1>
+        <a href = "https://www.pinterest.ca/pin/11610911509491989/">Clock Background</a>
+        
+        <table style = "background-color:white">
+            <tr>
+                <th>Gregorian</th>
+                <th>Day Number</th>
+                <th>Solstice</th>
+            </tr>
+            <tr>
+                <td>
+                    <table style = "background-color:tomato">
+                        <tr>
+                            <th>Month</th>
+                            <th>Day</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form>
+                                  <select id="mySelect" oninput = "ifc()">
+                                    <option value="0">January</option>
+                                    <option value="1">Feburary</option>
+                                    <option value="2">March</option>
+                                    <option value="3">April</option>
+                                    <option value="4">May</option>
+                                    <option value="5">June</option>
+                                    <option value="6">July</option>
+                                    <option value="7">August</option>
+                                    <option value="8">September</option>
+                                    <option value="9">October</option>
+                                    <option value="10">November</option>
+                                    <option value="11">December</option>
+                                  </select>
+                                </form>
+                            </td>
+                            <td><input type = "number" id = "day" oninput = "ifc()"></td>
+                            <!--<td><input type = "number" id = "year" oninput = "ifc()"></td>-->
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <p id = "dayNum">&nbsp;</p>
+                    <!--<input type="checkbox" id="leapYear" oninput = "leapYear()">
+                    <button onclick="check()">Check Checkbox</button>
+<button onclick="uncheck()">Uncheck Checkbox</button>-->
+                </td>
+                <td>
+                    <table style = "background-color:powderblue">
+                        <tr>
+                            <th>Month</th>
+                            <th>Day</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form>
+                                  <select id="mySelect2" oninput = "toGreg()">
+                                    <option value="0">Solstice</option>
+                                    <option value="1">Mercury</option>
+                                    <option value="2">Venus</option>
+                                    <option value="3">Gaia</option>
+                                    <option value="4">Luna</option>
+                                    <option value="5">Martian</option>
+                                    <option value="6">Asteroid</option>
+                                    <option value="7">Jupiter</option>
+                                    <option value="8">Saturn</option>
+                                    <option value="9">Uranus</option>
+                                    <option value="10">Neptune</option>
+                                    <option value="11">Pluto</option>
+                                    <option value="12">Comet</option>
+                                  </select>
+                                </form>
+                            </td>
+                            <td><input type = "number" id = "day2" oninput = "toGreg()"></td>
+                            <!--<td><input type = "number" id = "year2" oninput = "ifc()"></td>-->
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan = "3"><p id="demo">&nbsp;</p></td>
+            </tr>
+        </table>
+        
+        <script>
+        var leap = 0;
+        var ifcDay;
+        var ifcMonth;
+        var day;
+        var month;
+        var calendar;
+        //If the checkboxc is checked, it's a leap year.
+        function check() {
+          document.getElementById("leapYear").checked = true;
+          leap == 1;
+        }
+        
+        function uncheck() {
+          document.getElementById("leapYear").checked = false;
+          leap == 0;
+        }
+        
+        function toGreg2(){
+            calendar = "IFC";
+            toGreg();
+        }
+        function toGreg(){
+            //This function converts from IFC to Gregorian
+            ifcDay = document.getElementById("day2").value;
+            ifcDay = Number(ifcDay);
+            ifcMonth = document.getElementById("mySelect2").value;
+            ifcMonth = Number(ifcMonth);
+            
+            if(ifcMonth==12){
+                //13th month has 29 days
+                dayLimit = 29;
+            }else{
+                dayLimit = 28;
+            }
+            if(ifcDay>dayLimit){
+                document.getElementById("day2").value = dayLimit;
+                ifcDay = document.getElementById("day2").value;
+                ifcDay = Number(ifcDay);
+            }
+            /*if(ifcDay<=0){
+                document.getElementById("day2").value = "";
+                ifcDay = document.getElementById("day2").value;
+                ifcDay = Number(ifcDay);
+            }*/
+            
+            var gregDay = ifcMonth*28+ifcDay
+            
+            gregDay-=10; //The Solstice calendar New Year is 10 days before the gregorian New Year
+            if(gregDay<=0){
+                gregDay+=365;
+            }
+            document.getElementById("dayNum").innerHTML = gregDay;
+            
+            var newYear = new Date(2001, 0, 1);
+            newYear.setDate(newYear.getDate()+gregDay-1);
+            document.getElementById("demo").innerHTML = newYear;
+
+            var day = newYear.getDate();
+            var month = newYear.getMonth();
+            document.getElementById("day").value = day;
+            document.getElementById("mySelect").value = month;
+
+            
+            
+        }
+        function ifc(){
+            //function converts from Gregorian to IFC
+            var month = document.getElementById("mySelect").value;
+              month = Number(month);
+              //document.getElementById("demo3").innerHTML = month;
+              
+              day = document.getElementById("day").value;
+              day = Number(day);
+              
+              //Months that have 31 days are: January, March, May, July, August, October, December.
+              
+                if(month == 0 || month == 2 || month == 4 || month == 6 || month == 7 || month == 9 || month == 11){
+                    dayLimit = 31;
+                }else if(month == 1){
+                    dayLimit = 28;
+                }else{
+                    dayLimit = 30;
+                }
+                if(day>dayLimit){
+                    day = dayLimit;
+                    document.getElementById("day").value = dayLimit;
+                    day = document.getElementById("day").value;
+                    day = Number(day);
+                }
+                /*if(day<=0){
+                    document.getElementById("day").value = 1;
+                    day = document.getElementById("day").value;
+                    day = Number(day);
+                }*/
+                
+              date2 = new Date(Date.UTC(2001, month, day+1));
+              
+              document.getElementById("demo").innerHTML = date2;
+              
+              //Get number of days
+                if(month == 0){
+                    day+=0;
+                }if(month == 1){
+                    day+=31;
+                }if(month == 2){
+                    day+=59;
+                }if(month == 3){
+                    day+=90;
+                }if(month == 4){
+                    day+=120;
+                }if(month == 5){
+                    day+=151;
+                }if(month == 6){
+                    day+=181;
+                }if(month == 7){
+                    day+=212;
+                }if(month == 8){
+                    day+=243;
+                }if (month == 9){
+                    day+=273;
+                }if(month == 10){
+                    day+=304;
+                }if(month == 11){
+                    day+=334;
+                }
+                
+                //Convert to IFC
+                document.getElementById("dayNum").innerHTML = day;
+                
+                day+=10; //The previous method subtracted days while this method adds them.
+                if(day<=0){
+                    day+=365;
+                }
+                if(day>365){
+                    day-=365;
+                }
+            
+                ifcMonth = Math.floor(day/28);
+                ifcDay = day%28;
+                /*if(ifcDay<=0){//An error occured in which the final day of the year was the "0th day" of the first month. This solves this issue, decreasing the month by 1 and adding 28 to the day number in the event the day of the month is at or below zero.
+                    ifcMonth--;
+                    ifcDay+=28;
+                }*/
+                if (ifcMonth==13){
+                    ifcMonth--;
+                    ifcDay+=28;
+                }
+                
+                document.getElementById("day2").value = ifcDay;
+                document.getElementById("mySelect2").value = ifcMonth;
+                
+                
+                /*if(calendar == "IFC"){
+                    toIFC(day);
+                }*/
+        }
+        
+        </script>
+        
+        <h1>Dates of the&nbsp;<a href="https://en.wikipedia.org/wiki/Season">Seasons</a></h1>
+        <table style = "background-color:white">
+        <tbody>
+        <tr>
+        <th>Northern Hemisphere&nbsp;<a href="https://en.wikipedia.org/wiki/Equinox">Equinox</a>&nbsp;and&nbsp;<a href="https://en.wikipedia.org/wiki/Solstice">Solstice</a>&nbsp;Dates</th>
+        <th>Gregorian</th>
+        <th>13 Moon*</th>
+        </tr>
+        <tr>
+        <td><a href="https://www.almanac.com/content/first-day-spring-vernal-equinox">Spring</a></td>
+        <td><a href="https://www.space.com/881-date-changed-start-spring.html">March 20</a></td>
+        <td>Gaia 5</td>
+        </tr>
+        <tr>
+        <td><a href="https://www.almanac.com/content/first-day-summer-summer-solstice">Summer</a></td>
+        <td>June 21</td>
+        <td>Asteriod 14</td>
+        </tr>
+        <tr>
+        <td><a href="https://www.almanac.com/content/first-day-fall-autumnal-equinox">Fall</a></td>
+        <td><a href="https://www.calendarpedia.com/when-is/autumn.html">September 22</a></td>
+        <td>Uranus 23</td>
+        </tr>
+        <tr>
+        <td><a href="https://www.almanac.com/content/first-day-winter-winter-solstice">Winter</a></td>
+        <td>December 21</td>
+        <td>Comet 29</td>
+        </tr>
+        </tbody>
+        </table>
+        *Dates of the Seasons don't vary, as the calendar starts the day after the Winter Solstice (Although the date ranges from the December 20-23, December 21, the day it usually falls on, is used in this calculator. The Solstice is always Comet 29 on the Solstice Calendar)
+        <h1>Information About the Calendar</h1>
+        <p><a href="http://www.solsticecalendar.com/2009-solstice-calendar/">Solstice Calendar</a>&nbsp;(Ends the year on the Winter Solstice, Starts year December 22)</p>
+        <p><a href="http://www.inrete.ch/cal13/en/">CAL13 FIXED CALENDAR</a>&nbsp;The calendar has 13 months of 28 days. It has two varieties:</p>
+        <p>Starts the year on the Winter Solstice, December 21:&nbsp;<a href="http://www.inrete.ch/cal13/en/dec21/cal13-gregorian-dec21-en.htm">Common Years</a>,&nbsp;<a href="http://www.inrete.ch/cal13/en/dec21/cal13-gregorian-dec21-leap-en.htm">Leap Years</a></p>
+        <p>Start the year on January 1:&nbsp;<a href="http://www.inrete.ch/cal13/en/cal13-gregorian-en.html">Common Years</a>,&nbsp;<a href="http://www.inrete.ch/cal13/en/cal13-gregorian-leap-en.html">Leap Years</a></p>	</body>
+        </html>
+	</body>
+</html>
