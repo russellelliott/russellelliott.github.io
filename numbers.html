@@ -1,0 +1,190 @@
+<html>
+<head>
+<title>Random Number Guesser</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://static.codehs.com/gulp/6f9fa7aac1773c93e18bb40d2d280ec1720c671a/chs-js-lib/chs.js"></script>
+
+
+<!--<style>
+canvas {
+    border: 1px solid black;
+    display: inline-block;
+    vertical-align: top;
+}
+
+pre {
+border: 1px solid black;
+display: inline-block;
+width: 1000px;
+height: 400px;
+background-color: #F5F5F5;
+}
+
+</style>
+-->
+
+<style>
+
+body {
+  background-image: url('https://image.freepik.com/free-photo/dice-yellow-background_127657-13646.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+    table, th, td {
+  border: 1px solid black;
+}
+
+button{
+    font-size: 36px;
+    text-align: center;
+}
+    
+
+</style>
+</head>
+
+<body>
+<h1>Random Number Guesser</h1>
+
+
+
+<canvas
+width="0"
+height="0"
+class="codehs-editor-canvas"></canvas>
+<br>
+<button onclick="start()" style = "background-color: yellow">Guess a number between ___ and ___. You choose the numbers!</button>
+<br>
+<button onclick = "CPU()" style = "background-color: yellowgreen">Have the computer choose two numbers for me.</button>
+<br>
+<pre id="console"></pre>
+<p>This program has several difficulties. They are as follows:</p>
+<table>
+    <tr>
+        <th>Difficulty</th>
+        <th>Range of Numbers</th>
+    </tr>
+    <tr>
+        <td>Easy</td>
+        <td>-100<=x<=100</td>
+    </tr>
+    <tr>
+        <td>Custom</td>
+        <td>Any maximum a user so chooses</td>
+    </tr>
+    <tr>
+        <td>EXTREME</td>
+        <td>-2147483647<=x<=2147483647</td>
+    </tr>
+</table>
+
+<script>
+var start;
+var end;
+var guess;
+var answer;
+function start(){
+	
+	start= readInt("I am thinking of a number between ___ and ___. What is the lower number? ");
+	end = readInt("I am thinking of a number between " + start + " and ___. What is the upper number? ");
+	guessMe();
+}
+function guessMe(){
+    guess = readInt("I am thinking of a number between " + start + " and " + end + ". What number is it? ");
+	/*if(end<start){
+	    answer = Randomizer.nextInt(end, start);
+	}else{
+	    answer = Randomizer.nextInt(start, end);
+	}*/
+	numberTest();
+}
+
+function numberTest(){
+    println("You guessed: " + guess);
+	println("My number: " + answer);
+	var difference = answer-guess;
+	if(difference<=0){
+	    difference*=-1;
+	}
+	println("Difference: " + difference);
+	if(guess == answer){
+	    println("You got it!");
+	}else{
+	    println("Sorry, that's not my number.");
+	    var hint = readBoolean("Would you like a hint? Yes or no?");
+	    if(hint == true){
+	        again();
+	    }
+	}
+}
+
+//For debugging purposes to ensure the code works as intended by displaying which two numbers the answer is in between. To test test(), put in the again() function.
+function test(){
+    alert("The answer is " + answer);
+}
+
+function again(){
+    if(guess<=answer){
+        start = guess;
+        guess = readInt("I am thinking of a number between " + start + " and " + end + ". What number is it? ");
+        numberTest();
+
+        
+    }else if(answer<=guess){
+        end = guess;
+        guess = readInt("I am thinking of a number between " + start + " and " + end + ". What number is it? ");
+        numberTest();
+    }
+}
+var place
+function CPU(){
+    //var range = readInt("I will decide two numbers for you. My numbers will be in a specific range. How large is that range? ");
+    var game = readLine("What difficulty do you want? Type 'ez' for easy mode. Type 'custom' for custom. Type 'x' for EXTREME MODE. ");
+    if(game == "ez"){
+        alert("You chose easy mode. The numbers the computer will pick range from -100 to 100.");
+        var limit = 100;
+    }else if(game == "custom"){
+        alert("You chose custom mode. You choose how far the numbers go from zero. For example, if you type '5000', the computer will select two numbers between -5000 and 5000 and choose a number between the two for you to guess.");
+        var limit = readLine("How far from zero do you want the numbers to go? ");
+    }else if(game == "x"){
+        alert("You chose EXTREME MODE. The computer chooses a number in between -2147483647 and 2147483647. 2147483647 is the 32 bit integer limit in computing.")
+        limit = 2147483647;
+    }
+    start = Randomizer.nextInt(-limit,limit);
+    end = Randomizer.nextInt(-limit,limit);
+    if(start>end){
+        //alert("Value of X=" + start + " and value of Y=" + end);
+        
+        //https://www.devcurry.com/2011/07/swap-variables-in-javascript-different.html
+        
+        //var x = start;
+        //var y = end;
+        //var tmp = x;
+        var tmp = start
+        start = end;
+        end = tmp;
+        //alert("Value of X=" + start + " and value of Y=" + end);
+    }
+    answer = Randomizer.nextInt(start, end);
+
+    guessMe();
+    
+}
+
+</script>
+<br>
+<A HREF="javascript:history.go(0)">Click to refresh the page</A>
+<br>
+<a href = "https://www.htmlgoodies.com/tutorials/getting_started/article.php/3479551/Reloading-The-Page.htm#itself">How to refresh a page</a>
+<br>
+<a href = "https://en.wikipedia.org/wiki/2,147,483,647">32-Bit integer limit.</a>
+<br>
+<a href = "https://image.freepik.com/free-photo/dice-yellow-background_127657-13646.jpg">Background photo image jpg</a>
+<a href = "https://www.freepik.com/premium-photo/dice-yellow-background_6235939.htm">Background photo</a>
+
+</body>
+</html>
