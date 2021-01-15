@@ -1,0 +1,181 @@
+<html>
+<head>
+<title>Metropolis Time to ABT and ABT to Metropolis</title>
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://static.codehs.com/gulp/e0ca42a1ffe3827e1f4e87d672f73133399f9f95/chs-js-lib/chs.js"></script>
+-->
+
+<style>
+
+body {
+  background-image: url('https://i.pinimg.com/originals/58/bd/82/58bd827dc0715589a5a86872feb66eae.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+canvas {
+    border: 1px solid black;
+    display: inline-block;
+    vertical-align: top;
+    background-color: #FFFFFF;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+
+</head>
+
+<h1><i>Metropolis</i> (1927)</h1>
+Metric Time in some form has been included in our media. On example can be seen in the move <i>Metropolis</i> (1927).
+<br>
+<a href = "https://en.wikipedia.org/wiki/Metropolis_(1927_film)"><i>Metropolis</i> Wikipedia Page</a>
+<br>
+<a href = "https://oscilloclock.com/archives/3414"><i>Metropolis</i> Metric Time</a>
+<br>
+<a href = "https://public.wsu.edu/~delahoyd/sf/metropolis.html">Washington State University article on <i>Metropolis</i>.</a>
+<br>
+
+<p>The clock has 20 hours in a day, and the seconds are unchanged. Thus, each hour must be 1.2 times its length. Each hour can either consist of:</p>
+<ul>
+    <li>72-minute hours, and 60-second minutes.</li>
+    <li>60-minute hours, and 72-second minutes.</li>
+</ul>
+<p>These clocks moved at the same speed as 12-hour clocks and were used to make the workforce unknowingly work 12 hours when they think they only work 10.</p>
+<p>Either way, this generates a day that is 20 hours long, as opposed to 24 hours. This system was used to make the workforce unknowingly work 12 hours when they think they only work 10.</p>
+<p>The program uses 60-minute hours and 72-second minutes. Either way, each hour is 4320 minutes (1 hour, 12 minutes)</p>
+<p>Unlike Metric Time, Metropolis Time doesn't change the length of the fundamental unit of time; the second. Metric Time shortens the second as to enable 100 seconds in an minute, 100 minutes in an hour and 10 hours in a day. Metropolis keeps the length of the second the same, but simple adds more seconds to the length of the minute as to make the hours longer so there are only 20 hours in a day. This also aids in the deception the clock utilizes against workers, as the hours are still 60 "minutes", albeit each minute is 12 seconds longer, enabling the workers to be unknowingly deceived into working longer than they already are.</p>
+<p>1 Metric Hour = 2 Metropolis Hours = 2 Aussie Metric Hours = 2 ABT hours, 23 ABT minutes.</p>
+
+
+
+<a href = "https://www.pinterest.ca/pin/11610911509491989/">Clock Background</a>
+
+
+<table>
+    <tr>
+        <th>Metric Time</th>
+        <th>ABT Time</th>
+    </tr>
+    <tr>
+        <td>1 Metropolis Second</td>
+        <td>1 ABT Seconds</td>
+    </tr>
+    <tr>
+        <td>1 Metropolis Minute</td>
+        <td>1.2 ABT Minutes</td>
+    </tr>
+    <tr>
+        <td>1 Metropolis Hour</td>
+        <td>1.2 ABT Hours</td>
+    </tr>
+</table>
+
+
+<!--<canvas
+width="400"
+height="200"
+class="codehs-editor-canvas"
+></canvas>-->
+
+
+<input type="number" id="hours" min="0" oninput = "" placeholder = "Hours">
+<input type="number" id="minutes" min="0" oninput = "" placeholder = "Minutes">
+<p style = "background-color: DodgerBlue" id = "clock1"><span>Metropolis Time Time 0:00</span></p>
+<p style = "background-color: tomato" id = "clock2">Anglo-Babylonian Time 0:00</p>
+
+<button style = "background-color: DodgerBlue" onclick = "metricToABT()">Metro to ABT</button>
+<button style = "background-color: tomato" onclick = "ABTtoMetric()">ABT to Metro</button>
+
+<br>
+
+<script>
+function metricToABT(){
+    //var hoursM = readInt("Metric Hour (0-10): ");
+    var hoursM = document.getElementById("hours").value;
+    hoursM = Number(hoursM);
+    //var minutesM = readInt("Minute (0-100): ");
+    var minutesM = document.getElementById("minutes").value;
+    minutesM = Number(minutesM);
+    //alert(hoursM);
+
+    //var secondsM = readInt("Seconds (0-100): ");
+    var secondsM = 0;
+    if(minutesM>99){
+        var factor = Math.floor(minutesM/100);
+        minutesM-=100*factor;
+        hoursM+=factor;
+    }
+    if(minutesM<10){
+        minutesM = "0" + minutesM;
+    }
+    //convert time to metric seconds, then convert to abt seconds, then to hours and minutes
+    document.getElementById("clock1").innerHTML = "Metropolis Time " + hoursM + ":" + minutesM;
+    
+    hoursM*=4320;
+    minutesM*=60;
+    secondsM = secondsM + minutesM + hoursM;
+    var hoursABT = Math.floor(secondsM/3600);
+    var minutesABT = secondsM/3600 - Math.floor(secondsM/3600);
+    minutesABT = Math.floor(minutesABT*72);
+    if(minutesABT>=60){
+        hoursABT++;
+        minutesABT-=60;
+    }
+    if(minutesABT<10){
+        minutesABT = "0" + minutesABT;
+    }
+
+    document.getElementById("clock2").innerHTML = "Anglo-Babylonian Time " + hoursABT + ":" + minutesABT;
+    //alert(ABThour + ":" + ABTmin + " Anglo-Babylonian Time");
+}
+function ABTtoMetric(){
+    //var hoursABT = readInt("ABT Hour (0-24): ");
+    var hoursABT = document.getElementById("hours").value;
+    hoursABT = Number(hoursABT);
+    //var minutesABT = readInt("Minute (0-60): ");
+    var minutesABT = document.getElementById("minutes").value;
+    minutesABT = Number(minutesABT);
+    var secondsABT = 0;
+    if(minutesABT>59){
+        var factor = Math.floor(minutesABT/60);
+        minutesABT-=60*factor;
+        hoursABT+=factor;
+    }
+    if(minutesABT<10){
+        minutesABT = "0" + minutesABT;
+    }
+    document.getElementById("clock2").innerHTML = "Anglo-Babylonian Time " + hoursABT + ":" + minutesABT;
+
+    hoursABT*=3600;
+    minutesABT*=60;
+    secondsABT = secondsABT+minutesABT+hoursABT;
+    //Each minute is 72 seconds, each hour is 60 minutes
+    //72 seconds/min * 60 minutes = 4320 minutes/hour
+    var metroHour = Math.floor(secondsABT/4320);
+    var metroMin = secondsABT/4320 - Math.floor(secondsABT/4320);
+    metroMin = Math.floor(metroMin*60);
+
+    if(metroMin >=60){
+        metroHour++;
+        metroMin-=60;
+    }
+    if(metroMin<10){
+        metroMin = "0" + metroMin;
+    }
+    document.getElementById("clock1").innerHTML = "Metropolis Time " + metroHour + ":" + metroMin;
+
+}
+</script>
+<p>This timekeeping system isn't as radical of a change as Metric Time. While the length of the minute is altered, and the day is subdivided into only 20 hours, the second, the fundamental unit of time, stays the same length.</p>
+<p><a href = "https://www.youtube.com/watch?v=AvtWDIZtrAE"><i>Metropolis</i> (1927) full movie</a></p>
+<iframe
+src="https://www.youtube.com/watch?v=AvtWDIZtrAE">
+</iframe>
+
+</body>
+</html>
