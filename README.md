@@ -5,4 +5,12 @@ russellelliott.github.io
 
 This is my first try at github!
 
-Something goes here, I guess...
+My Github user page is at: 
+https://github.com/russellelliott/
+
+My Github Pages repo can be found at:  
+https://github.com/russellelliott/russellelliott.github.io/
+
+And, soon, you can see my customized homepage at:
+
+http://russellelliott.github.io/
