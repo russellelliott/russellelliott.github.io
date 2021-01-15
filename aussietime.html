@@ -1,0 +1,165 @@
+<html>
+<head>
+<title>Aussie Metric Time to ABT and ABT to Aussie Metric</title>
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://static.codehs.com/gulp/e0ca42a1ffe3827e1f4e87d672f73133399f9f95/chs-js-lib/chs.js"></script>
+-->
+
+<style>
+
+body {
+  background-image: url('https://i.pinimg.com/originals/58/bd/82/58bd827dc0715589a5a86872feb66eae.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+canvas {
+    border: 1px solid black;
+    display: inline-block;
+    vertical-align: top;
+    background-color: #FFFFFF;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+
+</head>
+
+<h1>Aussie Metric to ABT and ABT to Aussie Metric</h1>
+<p>ABT (Anglo-Babylonian Time) is the time system we are all accustomed to: One day is 24 hours, each hour is 60 minutes, and each minute is 60 seconds. The Babylonians had a <a href = "https://en.wikipedia.org/wiki/Sexagesimal">base 60 system</a>, leading modern civilization to have 60-second minutes and 60-minute hours. There are 86,400 seconds in a day.
+</p>
+<p>Aussie Metric Time is a new time system which divides time into simpler metric units. Each day is 20 hours, each hour is 100 minutes and each minute is 100 seconds. There are 200,000 seconds in a day.</p>
+<p>0:00 is midnight, 5:00 is 6AM, 10:00 is noon, 15:00 is 6PM.</p>
+<p>This program converts ABT to Aussie Metric Time and vice versa in hours and minutes.</p>
+<a href = "https://www.pinterest.ca/pin/11610911509491989/">Clock Background</a>
+<table>
+    <tr>
+        <th>Metric Time</th>
+        <th>ABT Time</th>
+    </tr>
+    <tr>
+        <td>1 Aussie Metric Second</td>
+        <td>0.432 ABT Seconds</td>
+    </tr>
+    <tr>
+        <td>1 Aussie Metric Minute</td>
+        <td>0.72 ABT Minutes</td>
+    </tr>
+    <tr>
+        <td>1 Aussie Metric Hour</td>
+        <td>1.2 ABT Hours</td>
+    </tr>
+</table>
+
+
+<!--<canvas
+width="400"
+height="200"
+class="codehs-editor-canvas"
+></canvas>-->
+
+
+<input type="number" id="hours" min="0" oninput = "" placeholder = "Hours">
+<input type="number" id="minutes" min="0" oninput = "" placeholder = "Minutes">
+<p style = "background-color: DodgerBlue" id = "clock1"><span>Aussie Metric Time Time 0:00</span></p>
+<p style = "background-color: tomato" id = "clock2">Anglo-Babylonian Time 0:00</p>
+
+<button style = "background-color: DodgerBlue" onclick = "metricToABT()">Aussie Metric to ABT</button>
+<button style = "background-color: tomato" onclick = "ABTtoMetric()">ABT to Aussie Metric</button>
+
+<br>
+
+<script>
+function metricToABT(){
+    //var hoursM = readInt("Metric Hour (0-10): ");
+    var hoursM = document.getElementById("hours").value;
+    hoursM = Number(hoursM);
+    //var minutesM = readInt("Minute (0-100): ");
+    var minutesM = document.getElementById("minutes").value;
+    minutesM = Number(minutesM);
+    //alert(hoursM);
+
+    //var secondsM = readInt("Seconds (0-100): ");
+    var secondsM = 0;
+    if(minutesM>99){
+        var factor = Math.floor(minutesM/100);
+        minutesM-=100*factor;
+        hoursM+=factor;
+    }
+    if(minutesM<10){
+        minutesM = "0" + minutesM;
+    }
+    //convert time to metric seconds, then convert to abt seconds, then to hours and minutes
+    document.getElementById("clock1").innerHTML = "Aussie Metric Time " + hoursM + ":" + minutesM;
+    
+    hoursM *= 10000;
+    minutesM *=100;
+    secondsM = secondsM+minutesM+hoursM;
+    secondsM*=0.864;
+    secondsM/=2;
+    
+    //println(secondsM);
+    var ABThour = Math.floor(secondsM/3600);
+    var ABTmin = secondsM/3600 - Math.floor(secondsM/3600);
+    ABTmin = Math.floor(ABTmin*60);
+    if(ABTmin >=60){
+        ABThour++;
+        ABTmin-=60;
+    }
+    if(ABTmin<10){
+        ABTmin = "0" + ABTmin;
+    }
+    document.getElementById("clock2").innerHTML = "Anglo-Babylonian Time " + ABThour + ":" + ABTmin;
+    //alert(ABThour + ":" + ABTmin + " Anglo-Babylonian Time");
+}
+function ABTtoMetric(){
+    //var hoursABT = readInt("ABT Hour (0-24): ");
+    var hoursABT = document.getElementById("hours").value;
+    hoursABT = Number(hoursABT);
+    //var minutesABT = readInt("Minute (0-60): ");
+    var minutesABT = document.getElementById("minutes").value;
+    minutesABT = Number(minutesABT);
+    var secondsABT = 0;
+    if(minutesABT>59){
+        var factor = Math.floor(minutesABT/60);
+        minutesABT-=60*factor;
+        hoursABT+=factor;
+    }
+    if(minutesABT<10){
+        minutesABT = "0" + minutesABT;
+    }
+    document.getElementById("clock2").innerHTML = "Anglo-Babylonian Time " + hoursABT + ":" + minutesABT;
+
+    hoursABT*=3600;
+    minutesABT*=60;
+    secondsABT = secondsABT+minutesABT+hoursABT;
+    secondsABT/=0.864;
+    secondsABT*=2;
+    var mSecDay = 100*100;
+    var Mhour = Math.floor(secondsABT/mSecDay);
+    var Mmin = secondsABT/mSecDay - Math.floor(secondsABT/mSecDay);
+    Mmin = Math.floor(Mmin*100);
+    if(Mmin >=100){
+        Mhour++;
+        Mmin-=100;
+    }
+    if(Mmin<10){
+        Mmin = "0" + Mmin;
+    }
+    document.getElementById("clock1").innerHTML = "Aussie Metric Time " + Mhour + ":" + Mmin;
+
+}
+</script>
+<a href = "http://hoaxes.org/af_database/permalink/metric_time">Metric Time (April Fool's Day - 1975)</a>
+<p>This timekeeping system was conjured in an April Fools prank published in an Australian newspaper in 1975 proposed there would be 100 seconds to the minute, 100 minutes to the hour, and 20-hour days. To make the days have 100-minute hours and 100-second minutes for 20 hours per day, the seconds would have to be half as long as the 100-100-10 metric time (100 seconds/minute, 100 minutes/hour, 10 hours/day).</p>
+<blockquote>Australia's <i>This Day Tonight</i> revealed that the country would soon be converting to "metric time." Under the new system there would be 100 seconds to the minute, 100 minutes to the hour, and 20-hour days. Furthermore, seconds would become millidays, minutes become centidays, and hours become decidays.</blockquote>
+<p>Aussie Metric Time is an interesting, coincidental compromise between Metric Time and Metropolis Time. While the timekeeping system has 100 second minutes and 100 minute hours like Metric Time, it has 20 hours in a day like Metropolis Time.</p>
+<a href = "https://commons.wikimedia.org/wiki/File:Flag_of_Australia.svg">Austrialian Flag Blue Color RGB</a>
+
+</body>
+</html>
