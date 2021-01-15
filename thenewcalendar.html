@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Solstice Calendar</title>
+		<style>
+        
+        body {
+          background-image: url('https://i.pinimg.com/originals/58/bd/82/58bd827dc0715589a5a86872feb66eae.jpg');
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+        }
+        
+        
+        
+        table, th, td {
+          border: 1px solid black;
+          vertical-align: top;
+        }
+        input[type=number]{
+            width: 60px;
+        }
+        </style>
+        <link rel="icon" 
+        type="image/png" 
+        href="https://www.pngkey.com/png/detail/256-2560866_events-calander-png-orange-calendar-png-icon.png" />
+	
+	</head>
+
+	<body>
+	    <h1 style = "background-color:white">Convert date between Gregorian Calendar and <a href = "https://thenewcalendar.com">The New Calendar</a></h1>
+        <a href = "https://www.pinterest.ca/pin/11610911509491989/">Clock Background</a>
+        
+        <table style = "background-color:white">
+            <tr>
+                <th>Gregorian</th>
+                <th>Day Number</th>
+                <th>The New Calendar</th>
+            </tr>
+            <tr>
+                <td>
+                    <table style = "background-color:tomato">
+                        <tr>
+                            <th>Month</th>
+                            <th>Day</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form>
+                                  <select id="mySelect" oninput = "ifc()">
+                                    <option value="0">January</option>
+                                    <option value="1">Feburary</option>
+                                    <option value="2">March</option>
+                                    <option value="3">April</option>
+                                    <option value="4">May</option>
+                                    <option value="5">June</option>
+                                    <option value="6">July</option>
+                                    <option value="7">August</option>
+                                    <option value="8">September</option>
+                                    <option value="9">October</option>
+                                    <option value="10">November</option>
+                                    <option value="11">December</option>
+                                  </select>
+                                </form>
+                            </td>
+                            <td><input type = "number" id = "day" oninput = "ifc()"></td>
+                            <!--<td><input type = "number" id = "year" oninput = "ifc()"></td>-->
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <p id = "dayNum">&nbsp;</p>
+                    <!--<input type="checkbox" id="leapYear" oninput = "leapYear()">
+                    <button onclick="check()">Check Checkbox</button>
+<button onclick="uncheck()">Uncheck Checkbox</button>-->
+                </td>
+                <td>
+                    <table style = "background-color:powderblue">
+                        <tr>
+                            <th>Month</th>
+                            <th>Day</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form>
+                                  <select id="mySelect2" oninput = "toGreg()">
+                                    <option value="0">Winter</option>
+                                    <option value="1">Spring</option>
+                                    <option value="2">Summer</option>
+                                    <option value="3">Autumn</option>
+                                    <option value="4">Fall</option>
+                                  </select>
+                                </form>
+                            </td>
+                            <td><input type = "number" id = "day2" oninput = "toGreg()"></td>
+                            <!--<td><input type = "number" id = "year2" oninput = "ifc()"></td>-->
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan = "3"><p id="demo">&nbsp;</p></td>
+            </tr>
+        </table>
+        
+        <script>
+        var leap = 0;
+        var ifcDay;
+        var ifcMonth;
+        var day;
+        var month;
+        var calendar;
+        //If the checkboxc is checked, it's a leap year.
+        function check() {
+          document.getElementById("leapYear").checked = true;
+          leap == 1;
+        }
+        
+        function uncheck() {
+          document.getElementById("leapYear").checked = false;
+          leap == 0;
+        }
+        
+        function toGreg2(){
+            calendar = "IFC";
+            toGreg();
+        }
+        function toGreg(){
+            //This function converts from IFC to Gregorian
+            ifcDay = document.getElementById("day2").value;
+            ifcDay = Number(ifcDay);
+            ifcMonth = document.getElementById("mySelect2").value;
+            ifcMonth = Number(ifcMonth);
+            
+            /*if(ifcMonth==12){
+                //13th month has 29 days
+                dayLimit = 29;
+            }else{
+                dayLimit = 28;
+            }*/
+            //Each of the 5 months is 73 days long
+            dayLimit = 73;
+            if(ifcDay>dayLimit){
+                document.getElementById("day2").value = dayLimit;
+                ifcDay = document.getElementById("day2").value;
+                ifcDay = Number(ifcDay);
+            }
+            /*if(ifcDay<=0){
+                document.getElementById("day2").value = "";
+                ifcDay = document.getElementById("day2").value;
+                ifcDay = Number(ifcDay);
+            }*/
+            
+            var gregDay = ifcMonth*73+ifcDay
+            
+            gregDay-=11; //The New calendar New Year is 11 days before the gregorian New Year
+            if(gregDay<=0){
+                gregDay+=365;
+            }
+            document.getElementById("dayNum").innerHTML = gregDay;
+            
+            var newYear = new Date(2001, 0, 1);
+            newYear.setDate(newYear.getDate()+gregDay-1);
+            document.getElementById("demo").innerHTML = newYear;
+
+            var day = newYear.getDate();
+            var month = newYear.getMonth();
+            document.getElementById("day").value = day;
+            document.getElementById("mySelect").value = month;
+
+            
+            
+        }
+        function ifc(){
+            //function converts from Gregorian to IFC
+            var month = document.getElementById("mySelect").value;
+              month = Number(month);
+              //document.getElementById("demo3").innerHTML = month;
+              
+              day = document.getElementById("day").value;
+              day = Number(day);
+              
+              //Months that have 31 days are: January, March, May, July, August, October, December.
+              
+                if(month == 0 || month == 2 || month == 4 || month == 6 || month == 7 || month == 9 || month == 11){
+                    dayLimit = 31;
+                }else if(month == 1){
+                    dayLimit = 28;
+                }else{
+                    dayLimit = 30;
+                }
+                if(day>dayLimit){
+                    day = dayLimit;
+                    document.getElementById("day").value = dayLimit;
+                    day = document.getElementById("day").value;
+                    day = Number(day);
+                }
+                /*if(day<=0){
+                    document.getElementById("day").value = 1;
+                    day = document.getElementById("day").value;
+                    day = Number(day);
+                }*/
+                
+              date2 = new Date(Date.UTC(2001, month, day+1));
+              
+              document.getElementById("demo").innerHTML = date2;
+              
+              //Get number of days
+                if(month == 0){
+                    day+=0;
+                }if(month == 1){
+                    day+=31;
+                }if(month == 2){
+                    day+=59;
+                }if(month == 3){
+                    day+=90;
+                }if(month == 4){
+                    day+=120;
+                }if(month == 5){
+                    day+=151;
+                }if(month == 6){
+                    day+=181;
+                }if(month == 7){
+                    day+=212;
+                }if(month == 8){
+                    day+=243;
+                }if (month == 9){
+                    day+=273;
+                }if(month == 10){
+                    day+=304;
+                }if(month == 11){
+                    day+=334;
+                }
+                
+                //Convert to IFC
+                document.getElementById("dayNum").innerHTML = day;
+                
+                day+=11; //The previous method subtracted days while this method adds them.
+                if(day<=0){
+                    day+=365;
+                }
+                if(day>365){
+                    day-=365;
+                }
+            
+                ifcMonth = Math.floor(day/73);
+                ifcDay = day%73;
+                if(ifcDay<=0){//An error occured in which the final day of the year was the "0th day" of the first month. This solves this issue, decreasing the month by 1 and adding 28 to the day number in the event the day of the month is at or below zero.
+                    ifcMonth--;
+                    ifcDay+=73;
+                }
+                /*if (ifcMonth==13){
+                    ifcMonth--;
+                    ifcDay+=28;
+                }*/
+                
+                document.getElementById("day2").value = ifcDay;
+                document.getElementById("mySelect2").value = ifcMonth;
+                
+                
+                /*if(calendar == "IFC"){
+                    toIFC(day);
+                }*/
+        }
+        
+        </script>
+        
+        <h1>Dates of the&nbsp;<a href="https://en.wikipedia.org/wiki/Season">Seasons</a></h1>
+        <table style = "background-color:white">
+        <tbody>
+        <tr>
+        <th>Northern Hemisphere&nbsp;<a href="https://en.wikipedia.org/wiki/Equinox">Equinox</a>&nbsp;and&nbsp;<a href="https://en.wikipedia.org/wiki/Solstice">Solstice</a>&nbsp;Dates</th>
+        <th>Gregorian</th>
+        <th>The New Calendar*</th>
+        </tr>
+        <tr>
+        <td><a href="https://www.almanac.com/content/first-day-spring-vernal-equinox">Spring</a></td>
+        <td><a href="https://www.space.com/881-date-changed-start-spring.html">March 20</a></td>
+        <td>Spring 17</td>
+        </tr>
+        <tr>
+        <td><a href="https://www.almanac.com/content/first-day-summer-summer-solstice">Summer</a></td>
+        <td>June 21</td>
+        <td>Summer 37</td>
+        </tr>
+        <tr>
+        <td><a href="https://www.almanac.com/content/first-day-fall-autumnal-equinox">Fall</a></td>
+        <td><a href="https://www.calendarpedia.com/when-is/autumn.html">September 22</a></td>
+        <td>Autumn 57</td>
+        </tr>
+        <tr>
+        <td><a href="https://www.almanac.com/content/first-day-winter-winter-solstice">Winter</a></td>
+        <td>December 21</td>
+        <td>Winter 1</td>
+        </tr>
+        </tbody>
+        </table>
+        *Dates of the Seasons don't vary, as the calendar starts the day of the Winter Solstice (Although the date ranges from the December 20-23, December 21, the day it usually falls on, is used in this calculator. The Solstice is always Comet 29 on the Solstice Calendar)
+        
+        <h1>Information About the Calendar</h1>
+<a href = "https://thenewcalendar.com">The New Calendar Website</a>
+<br>
+<a href="https://whyy.org/segments/time-to-rip-up-the-calendar-how-about-5-seasons-9-days-in-a-week/">News Article about the Calendar</a>
+<br>
+<a href = "https://www.htmlcsscolor.com/hex/F5F3CE">Moon Glow HEX color</a>
+<p>The year begins on the Winter Solstice. The year is divided into 5 seasons of 73 days. There are 9 days in a week, named after the nine planets in our Solar System (Pluto is included)</p>
+
+<table style="width: 100%; background-color:white">
+    <thead>
+        <tr>
+            <th colspan="9">Early (Season)</th>
+        </tr>
+        <tr>
+            <th>Mercury</th>
+            <th>Venus</th>
+            <th>Earth</th>
+            <th>Mars</th>
+            <th>Jupiter</th>
+            <th>Saturn</th>
+            <th>Uranus</th>
+            <th>Neptune</th>
+            <th>Pluto</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="width: 11.1111%;">1</td>
+            <td style="width: 11.1111%;">2</td>
+            <td style="width: 11.1111%;">3</td>
+            <td style="width: 11.1111%;">4</td>
+            <td style="width: 11.1111%;">5</td>
+            <td style="width: 11.1111%;">6</td>
+            <td style="width: 11.1111%;">7</td>
+            <td style="width: 11.1111%;">8</td>
+            <td style="width: 11.1111%;">9</td>
+        </tr>
+        <tr>
+            <td style="width: 11.1111%;">10</td>
+            <td style="width: 11.1111%;">11</td>
+            <td style="width: 11.1111%;">12</td>
+            <td style="width: 11.1111%;">13</td>
+            <td style="width: 11.1111%;">14</td>
+            <td style="width: 11.1111%;">15</td>
+            <td style="width: 11.1111%;">16</td>
+            <td style="width: 11.1111%;">17</td>
+            <td style="width: 11.1111%;">18</td>
+        </tr>
+        <tr>
+            <td style="width: 11.1111%;">19</td>
+            <td style="width: 11.1111%;">20</td>
+            <td style="width: 11.1111%;">21</td>
+            <td style="width: 11.1111%;">22</td>
+            <td style="width: 11.1111%;">23</td>
+            <td style="width: 11.1111%;">24</td>
+            <td style="width: 11.1111%;">25</td>
+            <td style="width: 11.1111%;">26</td>
+            <td style="width: 11.1111%;">27</td>
+        </tr>
+        <tr>
+            <td style="width: 11.1111%;">28</td>
+            <td style="width: 11.1111%;">29</td>
+            <td style="width: 11.1111%;">30</td>
+            <td style="width: 11.1111%;">31</td>
+            <td style="width: 11.1111%;">32</td>
+            <td style="width: 11.1111%;">33</td>
+            <td style="width: 11.1111%;">34</td>
+            <td style="width: 11.1111%;">35</td>
+            <td style="width: 11.1111%;">36</td>
+        </tr>
+    </tbody>
+</table>
+<p>The 37th day of each of the 5 seasons is an intercalendary day, not aligned to any day of the week marking the middle between the Early and Late halves of the seasons.</p>
+<table style="width: 100%; background-color:white">
+    <thead>
+        <tr>
+            <th colspan="9">Late (Season)</th>
+        </tr>
+        <tr>
+            <th>Mercury</th>
+            <th>Venus</th>
+            <th>Earth</th>
+            <th>Mars</th>
+            <th>Jupiter</th>
+            <th>Saturn</th>
+            <th>Uranus</th>
+            <th>Neptune</th>
+            <th>Pluto</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="width: 11.1111%;">38</td>
+            <td style="width: 11.1111%;">39</td>
+            <td style="width: 11.1111%;">40</td>
+            <td style="width: 11.1111%;">41</td>
+            <td style="width: 11.1111%;">42</td>
+            <td style="width: 11.1111%;">43</td>
+            <td style="width: 11.1111%;">44</td>
+            <td style="width: 11.1111%;">45</td>
+            <td style="width: 11.1111%;">46</td>
+        </tr>
+        <tr>
+            <td style="width: 11.1111%;">47</td>
+            <td style="width: 11.1111%;">48</td>
+            <td style="width: 11.1111%;">49</td>
+            <td style="width: 11.1111%;">50</td>
+            <td style="width: 11.1111%;">51</td>
+            <td style="width: 11.1111%;">52</td>
+            <td style="width: 11.1111%;">53</td>
+            <td style="width: 11.1111%;">54</td>
+            <td style="width: 11.1111%;">55</td>
+        </tr>
+        <tr>
+            <td style="width: 11.1111%;">56</td>
+            <td style="width: 11.1111%;">57</td>
+            <td style="width: 11.1111%;">58</td>
+            <td style="width: 11.1111%;">59</td>
+            <td style="width: 11.1111%;">60</td>
+            <td style="width: 11.1111%;">62</td>
+            <td style="width: 11.1111%;">62</td>
+            <td style="width: 11.1111%;">63</td>
+            <td style="width: 11.1111%;">64</td>
+        </tr>
+        <tr>
+            <td style="width: 11.1111%;">65</td>
+            <td style="width: 11.1111%;">66</td>
+            <td style="width: 11.1111%;">67</td>
+            <td style="width: 11.1111%;">68</td>
+            <td style="width: 11.1111%;">69</td>
+            <td style="width: 11.1111%;">70</td>
+            <td style="width: 11.1111%;">71</td>
+            <td style="width: 11.1111%;">72</td>
+            <td style="width: 11.1111%;">73</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<p>Benefits of the calendar, as highlighted by the website:</p>
+<ul>
+    <li>The calendar divides time evenly, as 73*5 is 365 days.</li>
+    <li>"Alligns intuitively with nature"</li>
+</ul>
+The Seasons
+<ol>
+<li>Winter (December 21 - March 3)</li>
+<li>Spring (March 4 - May 15)</li>
+<li>Summer (May 16 - July 27)</li>
+<li>Autumn (July 28 - October 8)</li>
+<li>Fall  (October 9 - December 20)</li>
+</ol>
+
+<a href = "https://thenewcalendar.com/how-does-the-new-calendar-work/">The Science of The New Calendar</a>
+<p>The day number each of the equinoxes and solstices lands on the calendar in relation to the length of the month is similar to the percentage of the year completed up to that point.</p>
+<p>For instance, the Summer Solstice, marking the middle of the year, is also in the middle of the month Summer.</p>
+<table style = "background-color:white">
+<tbody>
+<tr>
+<td>Season</td>
+<td>% of year complete</td>
+<td>% of month complete</td>
+</tr>
+<tr>
+<td>Spring</td>
+<td>25%</td>
+<td>17/73 = 23.2%</td>
+</tr>
+<tr>
+<td>Summer</td>
+<td>50%</td>
+<td>37/73 = 50.06%</td>
+</tr>
+<tr>
+<td>Autumn</td>
+<td>75%</td>
+<td>57/73 = 78.1%</td>
+</tr>
+<tr>
+<td>Winter</td>
+<td>100%</td>
+<td>73/73 = 100%</td>
+</tr>
+</tbody>
+</table>
+        </body>
+        </html>
