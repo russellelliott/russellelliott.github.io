@@ -1,0 +1,290 @@
+<html>
+<head>
+<title>Chasers</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://static.codehs.com/gulp/637442a749bb6c76f7369cd694e596792d8b9ffd/chs-js-lib/chs.js"></script>
+
+
+<style>
+/*canvas {
+    border: 1px solid black;
+    display: inline-block;
+    vertical-align: top;
+}*/
+
+canvas{
+    padding: 0;
+    border: 1px solid black;
+    margin: auto;
+    display: block;
+    /*width: 800px;*/
+}
+button{
+    /*display: block; margin: 0 auto;*/
+    font-size : 30px;
+}
+table{
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>
+
+</head>
+
+<body>
+<h1>Chasers</h1>
+
+<h2>Instructions</h2>
+<ul>
+    <li>You control the <span style = "color:dodgerblue">blue circle.</span>
+    Use your mouse to move the <span style = "color:dodgerblue">blue circle</span> to touch the 
+    <span style = "color:tomato">red square.</span></li>
+    <li>Touching the <span style = "color:tomato">red square</span> earns you points.</li>
+    <li>Touch the <span style = "color:tomato">red square</span> as many times as you can before the time runs out!</li>
+</ul>
+<table>
+    <tr>
+        <td><button style = "background-color:mediumseagreen;" onclick = startGame()>Start</button>
+<button style = "background-color:orangered" onclick="window.location.href = 'javascript:history.go(0)';">Reset</button></td>
+    </tr>
+</table>
+
+<br>
+<canvas
+width="500"
+height="500"
+class="codehs-editor-canvas"></canvas>
+
+<script>
+function startGame(){
+    var startTime = 100;
+var time = startTime;
+var timer = new Text(time);
+timer.setPosition(getWidth()/2-timer.getWidth()/2, getHeight()/2-timer.getHeight());
+add(timer);
+
+var score = 0;
+var scoreboard = new Text("Score: " + score);
+scoreboard.setPosition(getWidth()/2-scoreboard.getWidth()/2, getHeight()/2);
+add(scoreboard);
+
+var playerRadius = 10;
+var rivalSide = 20;
+var player = new Circle(playerRadius);
+player.setPosition(getWidth()/2, getHeight()/2);
+player.setColor(Color.blue);
+add(player);
+
+var randomX;
+var randomY;
+var rival = new Rectangle (rivalSide, rivalSide);
+randomX = Randomizer.nextInt(rivalSide*2, getWidth()-rivalSide*2);
+randomY = Randomizer.nextInt(rivalSide*2, getHeight()-rivalSide*2);
+rival.setPosition(randomX, randomY);
+rival.setColor(Color.red);
+add(rival);
+
+var dx;
+var dy;
+function setRival(){
+    randomX = Randomizer.nextInt(rivalSide*2, getWidth()-rivalSide*2);
+    randomY = Randomizer.nextInt(rivalSide*2, getHeight()-rivalSide*2);
+    rival.setPosition(randomX, randomY);
+    rival.setColor(Color.red);
+    add(rival);
+}
+function rivalMove(){
+    dx = rival.getX()-playerRadius - player.getX();
+    dy = rival.getY()-playerRadius - player.getY();
+
+    if(rival.getX()<rivalSide){
+        dx*=-1;
+    }
+    if(rival.getY()<rivalSide){
+        dy*=-1;
+    }
+    if(rival.getX()>getWidth()-rivalSide){
+        dx*=-1;
+    }
+    if(rival.getY()>getWidth()-rivalSide){
+        dy*=-1;
+    }
+    rival.move(dx/10, dy/10);
+    
+    var absX = dx;
+    if(absX<0){
+        absX*=-1;
+    }
+    var absY = dy;
+    if(absY<0){
+        absY*=-1;
+    }
+    if(absX<30){
+        if(absY<30){
+            setRival();
+            score++;
+            scoreboard.setText("Score: " + score);
+            scoreboard.setPosition(getWidth()/2-scoreboard.getWidth()/2, getHeight()/2);
+            remove(scoreboard);
+            add(scoreboard);
+            time = startTime;
+            if(score%5 == 0){
+                startTime-=20;
+                startTime = Math.max(40, startTime);
+            }
+        }
+    }
+}
+mouseMoveMethod(moveX);
+function start(){
+    //rivalMove();
+    setTimer(rivalMove, 100);
+    setTimer(tick, 50);
+}
+function tick(){
+    time--;
+    timer.setText(time);
+    timer.setPosition(getWidth()/2-timer.getWidth()/2, getHeight()/2-timer.getHeight());
+    remove(timer);
+    add(timer);
+    
+    if(time == 0){
+        stopTimer(tick);
+        stopTimer(rivalMove);
+        remove(rival);
+        remove(player);
+        timer.setText("GAME OVER");
+        timer.setPosition(getWidth()/2-timer.getWidth()/2, getHeight()/2-timer.getHeight());
+        remove(timer);
+        add(timer);
+    }
+}
+
+function moveX(e){
+    player.setPosition(e.getX(), e.getY());
+}
+
+if (typeof start === 'function') {
+        start();
+    }
+}
+/*window.onload = function() {
+
+    var startTime = 100;
+var time = startTime;
+var timer = new Text(time);
+timer.setPosition(getWidth()/2-timer.getWidth()/2, getHeight()/2-timer.getHeight());
+add(timer);
+
+var score = 0;
+var scoreboard = new Text("Score: " + score);
+scoreboard.setPosition(getWidth()/2-scoreboard.getWidth()/2, getHeight()/2);
+add(scoreboard);
+
+var playerRadius = 10;
+var rivalSide = 20;
+var player = new Circle(playerRadius);
+player.setPosition(getWidth()/2, getHeight()/2);
+player.setColor(Color.blue);
+add(player);
+
+var randomX;
+var randomY;
+var rival = new Rectangle (rivalSide, rivalSide);
+randomX = Randomizer.nextInt(rivalSide*2, getWidth()-rivalSide*2);
+randomY = Randomizer.nextInt(rivalSide*2, getHeight()-rivalSide*2);
+rival.setPosition(randomX, randomY);
+rival.setColor(Color.red);
+add(rival);
+
+var dx;
+var dy;
+function setRival(){
+    randomX = Randomizer.nextInt(rivalSide*2, getWidth()-rivalSide*2);
+    randomY = Randomizer.nextInt(rivalSide*2, getHeight()-rivalSide*2);
+    rival.setPosition(randomX, randomY);
+    rival.setColor(Color.red);
+    add(rival);
+}
+function rivalMove(){
+    dx = rival.getX()-playerRadius - player.getX();
+    dy = rival.getY()-playerRadius - player.getY();
+
+    if(rival.getX()<rivalSide){
+        dx*=-1;
+    }
+    if(rival.getY()<rivalSide){
+        dy*=-1;
+    }
+    if(rival.getX()>getWidth()-rivalSide){
+        dx*=-1;
+    }
+    if(rival.getY()>getWidth()-rivalSide){
+        dy*=-1;
+    }
+    rival.move(dx/10, dy/10);
+    
+    var absX = dx;
+    if(absX<0){
+        absX*=-1;
+    }
+    var absY = dy;
+    if(absY<0){
+        absY*=-1;
+    }
+    if(absX<30){
+        if(absY<30){
+            setRival();
+            score++;
+            scoreboard.setText("Score: " + score);
+            scoreboard.setPosition(getWidth()/2-scoreboard.getWidth()/2, getHeight()/2);
+            remove(scoreboard);
+            add(scoreboard);
+            time = startTime;
+            if(score%5 == 0){
+                startTime-=20;
+                startTime = Math.max(40, startTime);
+            }
+        }
+    }
+}
+mouseMoveMethod(moveX);
+function start(){
+    //rivalMove();
+    setTimer(rivalMove, 100);
+    setTimer(tick, 50);
+}
+function tick(){
+    time--;
+    timer.setText(time);
+    timer.setPosition(getWidth()/2-timer.getWidth()/2, getHeight()/2-timer.getHeight());
+    remove(timer);
+    add(timer);
+    
+    if(time == 0){
+        stopTimer(tick);
+        stopTimer(rivalMove);
+        remove(rival);
+        remove(player);
+        timer.setText("GAME OVER");
+        timer.setPosition(getWidth()/2-timer.getWidth()/2, getHeight()/2-timer.getHeight());
+        remove(timer);
+        add(timer);
+    }
+}
+
+function moveX(e){
+    player.setPosition(e.getX(), e.getY());
+}
+
+
+    if (typeof start === 'function') {
+        start();
+    }
+};*/
+</script>
+
+</body>
+</html>
