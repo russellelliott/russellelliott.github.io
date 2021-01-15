@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<meta charset="utf-8">
+<title>Rock Paper Scissors Shoot!</title>
+<style>
+body {
+    font-family: Roboto, Arial; 
+}
+
+.choose img {
+height: 150px;
+margin: 20px;   
+}
+#result {color:red}
+</style>
+</head>
+
+<body>
+
+<div class="choose" align="center">
+<h1 id="question">Let's play rock paper scissors! Choose a move</h1>
+<h2 id="result"></h2>
+<h2>[Player One] <span id="playerScore">0</span> - <span id="computerScore">0</span> [Computer]</h2>
+<img alt="Dwayne THE ROCK Johnson" src="https://cdn-ami-drupal.heartyhosting.com/sites/muscleandfitness.com/files/styles/full_node_image_1090x614/public/media/the-rock-scream-1109.jpg?itok=uHzEabtw" id="rock">
+<img alt="Lined paper" src="http://images.clipartpanda.com/writing-on-paper-clipart-black-and-white-1206556249326967385nexxuz_Loose_Leaf_Paper.svg" id="paper">
+<img alt="Scissors" src="https://i.pinimg.com/originals/23/6b/24/236b24209a5856d9d14d222a52d97995.png" id="scissors">
+</div>
+
+<script>
+$(function(){
+
+var computerScore=0,
+  playerScore=0;
+
+function setText(txt){
+$("#playerScore").text(playerScore);
+$("#computerScore").text(computerScore);
+$("#result").text(txt);
+}
+
+function makeComputerChoice(){
+  var computerChoice = "";
+  var r = Math.random();
+  if (r < .33) {
+    computerChoice = "rock";
+  } else if (r < .66) {
+    computerChoice = "paper";
+  } else {
+    computerChoice = "scissors";   
+  };
+  return computerChoice;
+ }
+
+
+function makeUserChoice(userChoice){
+  var computerChoice = makeComputerChoice();
+  var outcome = "";
+if (userChoice == computerChoice) {
+    outcome="Tie!";
+} else if (userChoice == "rock") {
+    if (computerChoice == "scissors") {
+        outcome="You win!"; playerScore=playerScore+1;
+    } else {
+        outcome="You lose."; computerScore=computerScore+1;
+    };
+} else if (userChoice == "paper") {
+    if (computerChoice == "rock") {
+        outcome="You win!"; playerScore=playerScore+1;
+    } else {
+        outcome="You lose."; computerScore=computerScore+1;
+    };
+} else if (userChoice == "scissors") {
+    if (computerChoice == "paper") {
+        outcome="You win!"; playerScore=playerScore+1;
+    } else {
+        outcome="You lose"; computerScore=computerScore+1;
+    };
+};
+  setText(userChoice+" vs "+computerChoice+" = "+outcome);
+};
+
+ //add event listeners:
+ $('#rock').click(function() {
+        makeUserChoice("rock");
+    });
+    $('#paper').click(function() {
+        makeUserChoice("paper");
+    });
+    $('#scissors').click(function() {
+        makeUserChoice("scissors");
+    });
+});
+</script>
+<a href = "https://stackoverflow.com/questions/33588473/programming-a-rock-paper-scissors-html-game">Source</a>
+</body>
+</html>
