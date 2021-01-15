@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>French Republican Calendar</title>
+		<style>
+        
+        body {
+          background-image: url('https://i.pinimg.com/originals/58/bd/82/58bd827dc0715589a5a86872feb66eae.jpg');
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+        }
+        
+        
+        
+        table, th, td {
+          border: 1px solid black;
+          vertical-align: top;
+        }
+        input[type=number]{
+            width: 60px;
+        }
+        </style>
+        <link rel="icon" 
+        type="image/png" 
+        href="https://www.pngkey.com/png/detail/256-2560866_events-calander-png-orange-calendar-png-icon.png" />
+	
+	</head>
+
+	<body>
+	    <table style = "width:100%; background-color: dodgerblue">
+	       <tr>
+	           <th style = "width: 50%">
+	               <h1>
+	                   <a style = "color:black;" href = "metrictime.html">Metric Time</a>
+	               </h1></th>
+	           <th style = "width: 50%">
+	               <h1>
+	                   <a style = "color:black; background-color:yellow" href = "frenchcalendar.html">French Republican Calendar</a>
+	               </h1>
+	           </th>
+	       </tr> 
+	    </table>
+	    <h1 style = "background-color:white">Convert date between Gregorian Calendar and <a href = "https://en.wikipedia.org/wiki/French_Republican_calendar">French Republican Calendar</a></h1>
+        <a href = "https://www.pinterest.ca/pin/11610911509491989/">Clock Background</a>
+        
+        <table style = "background-color:white">
+            <tr>
+                <th>Gregorian</th>
+                <th>Day Number</th>
+                <th>Solstice</th>
+            </tr>
+            <tr>
+                <td>
+                    <table style = "background-color:tomato">
+                        <tr>
+                            <th>Month</th>
+                            <th>Day</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form>
+                                  <select id="mySelect" oninput = "ifc()">
+                                    <option value="0">January</option>
+                                    <option value="1">Feburary</option>
+                                    <option value="2">March</option>
+                                    <option value="3">April</option>
+                                    <option value="4">May</option>
+                                    <option value="5">June</option>
+                                    <option value="6">July</option>
+                                    <option value="7">August</option>
+                                    <option value="8">September</option>
+                                    <option value="9">October</option>
+                                    <option value="10">November</option>
+                                    <option value="11">December</option>
+                                  </select>
+                                </form>
+                            </td>
+                            <td><input type = "number" id = "day" oninput = "ifc()"></td>
+                            <!--<td><input type = "number" id = "year" oninput = "ifc()"></td>-->
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <p id = "dayNum">&nbsp;</p>
+                    <!--<input type="checkbox" id="leapYear" oninput = "leapYear()">
+                    <button onclick="check()">Check Checkbox</button>
+<button onclick="uncheck()">Uncheck Checkbox</button>-->
+                </td>
+                <td>
+                    <table style = "background-color:powderblue">
+                        <tr>
+                            <th>Month</th>
+                            <th>Day</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form>
+                                  <select id="mySelect2" oninput = "toGreg()">
+                                    <option value="0">Vendémiaire</option>
+                                    <option value="1">Brumaire</option>
+                                    <option value="2">Frimaire</option>
+                                    <option value="3">Nivôse</option>
+                                    <option value="4">Pluviôse</option>
+                                    <option value="5">Ventôse</option>
+                                    <option value="6">Germinal</option>
+                                    <option value="7">Floréal</option>
+                                    <option value="8">Prairial</option>
+                                    <option value="9">Messidor</option>
+                                    <option value="10">Thermidor</option>
+                                    <option value="11">Fructidor</option>
+                                    <option value="12">Sansculottides</option>
+                                  </select>
+                                </form>
+                            </td>
+                            <td><input type = "number" id = "day2" oninput = "toGreg()"></td>
+                            <!--<td><input type = "number" id = "year2" oninput = "ifc()"></td>-->
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan = "3"><p id="demo">&nbsp;</p></td>
+            </tr>
+        </table>
+        
+        <script>
+        var leap = 0;
+        var ifcDay;
+        var ifcMonth;
+        var day;
+        var month;
+        var calendar;
+        //If the checkboxc is checked, it's a leap year.
+        function check() {
+          document.getElementById("leapYear").checked = true;
+          leap == 1;
+        }
+        
+        function uncheck() {
+          document.getElementById("leapYear").checked = false;
+          leap == 0;
+        }
+        
+        function toGreg2(){
+            calendar = "IFC";
+            toGreg();
+        }
+        function toGreg(){
+            //This function converts from IFC to Gregorian
+            ifcDay = document.getElementById("day2").value;
+            ifcDay = Number(ifcDay);
+            ifcMonth = document.getElementById("mySelect2").value;
+            ifcMonth = Number(ifcMonth);
+            
+            if(ifcMonth==12){
+                //13th month has 5 days
+                dayLimit = 5;
+            }else{
+                dayLimit = 30;
+            }
+            if(ifcDay>dayLimit){
+                document.getElementById("day2").value = dayLimit;
+                ifcDay = document.getElementById("day2").value;
+                ifcDay = Number(ifcDay);
+            }
+            /*if(ifcDay<=0){
+                document.getElementById("day2").value = "";
+                ifcDay = document.getElementById("day2").value;
+                ifcDay = Number(ifcDay);
+            }*/
+            
+            var gregDay = ifcMonth*30+ifcDay
+            
+            gregDay-=101; //The French calendar New Year is 101 days before the gregorian New Year
+            if(gregDay<=0){
+                gregDay+=365;
+            }
+            document.getElementById("dayNum").innerHTML = gregDay;
+            
+            var newYear = new Date(2001, 0, 1);
+            newYear.setDate(newYear.getDate()+gregDay-1);
+            document.getElementById("demo").innerHTML = newYear;
+
+            var day = newYear.getDate();
+            var month = newYear.getMonth();
+            document.getElementById("day").value = day;
+            document.getElementById("mySelect").value = month;
+
+            
+            
+        }
+        function ifc(){
+            //function converts from Gregorian to IFC
+            var month = document.getElementById("mySelect").value;
+              month = Number(month);
+              //document.getElementById("demo3").innerHTML = month;
+              
+              day = document.getElementById("day").value;
+              day = Number(day);
+              
+              //Months that have 31 days are: January, March, May, July, August, October, December.
+              
+                if(month == 0 || month == 2 || month == 4 || month == 6 || month == 7 || month == 9 || month == 11){
+                    dayLimit = 31;
+                }else if(month == 1){
+                    dayLimit = 28;
+                }else{
+                    dayLimit = 30;
+                }
+                if(day>dayLimit){
+                    day = dayLimit;
+                    document.getElementById("day").value = dayLimit;
+                    day = document.getElementById("day").value;
+                    day = Number(day);
+                }
+                /*if(day<=0){
+                    document.getElementById("day").value = 1;
+                    day = document.getElementById("day").value;
+                    day = Number(day);
+                }*/
+                
+              date2 = new Date(Date.UTC(2001, month, day+1));
+              
+              document.getElementById("demo").innerHTML = date2;
+              
+              //Get number of days
+                if(month == 0){
+                    day+=0;
+                }if(month == 1){
+                    day+=31;
+                }if(month == 2){
+                    day+=59;
+                }if(month == 3){
+                    day+=90;
+                }if(month == 4){
+                    day+=120;
+                }if(month == 5){
+                    day+=151;
+                }if(month == 6){
+                    day+=181;
+                }if(month == 7){
+                    day+=212;
+                }if(month == 8){
+                    day+=243;
+                }if (month == 9){
+                    day+=273;
+                }if(month == 10){
+                    day+=304;
+                }if(month == 11){
+                    day+=334;
+                }
+                
+                //Convert to IFC
+                document.getElementById("dayNum").innerHTML = day;
+                
+                day+=101; //The previous method subtracted days while this method adds them.
+                if(day<=0){
+                    day+=365;
+                }
+                if(day>365){
+                    day-=365;
+                }
+            
+                ifcMonth = Math.floor(day/30);
+                ifcDay = day%30;
+                if(ifcDay<=0){//An error occured in which the final day of the year was the "0th day" of the first month. This solves this issue, decreasing the month by 1 and adding 30 to the day number in the event the day of the month is at or below zero.
+                    ifcMonth--;
+                    ifcDay+=30;
+                }
+                /*if (ifcMonth==13){
+                    ifcMonth--;
+                    ifcDay+=28;
+                }*/
+                
+                document.getElementById("day2").value = ifcDay;
+                document.getElementById("mySelect2").value = ifcMonth;
+                
+                
+                /*if(calendar == "IFC"){
+                    toIFC(day);
+                }*/
+        }
+        
+        </script>
+        
+        <h1>Dates of the&nbsp;<a href="https://en.wikipedia.org/wiki/Season">Seasons</a></h1>
+        <table style = "background-color:white">
+        <tbody>
+        <tr>
+        <th>Northern Hemisphere&nbsp;<a href="https://en.wikipedia.org/wiki/Equinox">Equinox</a>&nbsp;and&nbsp;<a href="https://en.wikipedia.org/wiki/Solstice">Solstice</a>&nbsp;Dates</th>
+        <th>Gregorian</th>
+        <th>13 Moon*</th>
+        </tr>
+        <tr>
+        <td><a href="https://www.almanac.com/content/first-day-spring-vernal-equinox">Spring</a></td>
+        <td><a href="https://www.space.com/881-date-changed-start-spring.html">March 20</a></td>
+        <td>Ventôse 30</td>
+        </tr>
+        <tr>
+        <td><a href="https://www.almanac.com/content/first-day-summer-summer-solstice">Summer</a></td>
+        <td>June 21</td>
+        <td>Messidor 3</td>
+        </tr>
+        <tr>
+        <td><a href="https://www.almanac.com/content/first-day-fall-autumnal-equinox">Fall</a></td>
+        <td><a href="https://www.calendarpedia.com/when-is/autumn.html">September 22</a></td>
+        <td>Vendémiaire 1</td>
+        </tr>
+        <tr>
+        <td><a href="https://www.almanac.com/content/first-day-winter-winter-solstice">Winter</a></td>
+        <td>December 21</td>
+        <td>Nivôse 1</td>
+        </tr>
+        </tbody>
+        </table>
+        *Dates of the Seasons don't vary, as the calendar starts the day of the Autumnal Equinox (Although the date ranges from the September 22-24, September 22, the day it usually falls on, is used in this calculator. The Equinox is always Vendémiaire 1 on the Solstice Calendar)
+        
+        <h1>Information About the Calendar</h1>
+    <p>The French Republican Calendar year began the day the&nbsp;<a title="September equinox" href="https://en.wikipedia.org/wiki/September_equinox">autumnal equinox</a>&nbsp;occurred in Paris, and had twelve months of 30 days each, which were given new names based on nature, principally having to do with the prevailing weather in and around Paris. The extra five or six days in the year were not given a month designation, but considered&nbsp;<a title="Sansculottides" href="https://en.wikipedia.org/wiki/Sansculottides">Sansculottides</a>&nbsp;or&nbsp;<a href="https://en.wikipedia.org/wiki/French_Republican_calendar#Complementary_days">Complementary Days</a>.</p>
+<ul>
+<li>Autumn:
+<ul>
+<li><a title="Vend&eacute;miaire" href="https://en.wikipedia.org/wiki/Vend%C3%A9miaire">Vend&eacute;miaire</a>&nbsp;(from French&nbsp;<em>vendange</em>, derived from Latin&nbsp;<em>vindemia</em>, "vintage"), starting 22, 23, or 24 September</li>
+<li><a title="Brumaire" href="https://en.wikipedia.org/wiki/Brumaire">Brumaire</a>&nbsp;(from French&nbsp;<em>brume</em>, "mist"), starting 22, 23, or 24 October</li>
+<li><a title="Frimaire" href="https://en.wikipedia.org/wiki/Frimaire">Frimaire</a>&nbsp;(From French&nbsp;<em>frimas</em>, "frost"), starting 21, 22, or 23 November</li>
+</ul>
+</li>
+<li>Winter:
+<ul>
+<li><a title="Niv&ocirc;se" href="https://en.wikipedia.org/wiki/Niv%C3%B4se">Niv&ocirc;se</a>&nbsp;(from Latin&nbsp;<em>nivosus</em>, "snowy"), starting 21, 22, or 23 December</li>
+<li><a title="Pluvi&ocirc;se" href="https://en.wikipedia.org/wiki/Pluvi%C3%B4se">Pluvi&ocirc;se</a>&nbsp;(from French&nbsp;<em>pluvieux</em>, derived from Latin&nbsp;<em>pluvius</em>, "rainy"), starting 20, 21, or 22 January</li>
+<li><a title="Vent&ocirc;se" href="https://en.wikipedia.org/wiki/Vent%C3%B4se">Vent&ocirc;se</a>&nbsp;(from French&nbsp;<em>venteux</em>, derived from Latin&nbsp;<em>ventosus</em>, "windy"), starting 19, 20, or 21 February</li>
+</ul>
+</li>
+<li>Spring:
+<ul>
+<li><a title="Germinal (French Republican Calendar)" href="https://en.wikipedia.org/wiki/Germinal_(French_Republican_Calendar)">Germinal</a>&nbsp;(from French&nbsp;<em>germination</em>), starting 20 or 21 March</li>
+<li><a title="Flor&eacute;al" href="https://en.wikipedia.org/wiki/Flor%C3%A9al">Flor&eacute;al</a>&nbsp;(from French&nbsp;<em>fleur</em>, derived from Latin&nbsp;<em>flos</em>, "flower"), starting 20 or 21 April</li>
+<li><a title="Prairial" href="https://en.wikipedia.org/wiki/Prairial">Prairial</a>&nbsp;(from French&nbsp;<em>prairie</em>, "meadow"), starting 20 or 21 May</li>
+</ul>
+</li>
+<li>Summer:
+<ul>
+<li><a title="Messidor" href="https://en.wikipedia.org/wiki/Messidor">Messidor</a>&nbsp;(from Latin&nbsp;<em>messis</em>, "harvest"), starting 19 or 20 June</li>
+<li><a title="Thermidor" href="https://en.wikipedia.org/wiki/Thermidor">Thermidor</a>&nbsp;(from Greek&nbsp;<em>thermon</em>, "summer heat"), starting 19 or 20 July</li>
+<li><a title="Fructidor" href="https://en.wikipedia.org/wiki/Fructidor">Fructidor</a>&nbsp;(from Latin&nbsp;<em>fructus</em>, "fruit"), starting 18 or 19 August</li>
+</ul>
+</li>
+</ul>
+<h2>Sansculottides (Complmentary Days)</h2>
+<p>Five extra days &ndash; six in&nbsp;<a title="Leap year" href="https://en.wikipedia.org/wiki/Leap_year">leap years</a>&nbsp;&ndash; were national holidays at the end of every year. These were originally known as&nbsp;<em>les sans-culottides</em>&nbsp;(after&nbsp;<em><a title="Sans-culottes" href="https://en.wikipedia.org/wiki/Sans-culottes">sans-culottes</a></em>), but after year III (1795) as&nbsp;<em>les jours compl&eacute;mentaires</em>:</p>
+<ul>
+<li>1st complementary day:&nbsp;<a title="La F&ecirc;te de la Vertu" href="https://en.wikipedia.org/wiki/La_F%C3%AAte_de_la_Vertu">La F&ecirc;te de la Vertu</a>, "Celebration of Virtue", on 17 or 18 September</li>
+<li>2nd complementary day:&nbsp;<a title="La F&ecirc;te du G&eacute;nie" href="https://en.wikipedia.org/wiki/La_F%C3%AAte_du_G%C3%A9nie">La F&ecirc;te du G&eacute;nie</a>, "Celebration of Talent", on 18 or 19 September</li>
+<li>3rd complementary day:&nbsp;<a title="La F&ecirc;te du Travail" href="https://en.wikipedia.org/wiki/La_F%C3%AAte_du_Travail">La F&ecirc;te du Travail</a>, "Celebration of Labour", on 19 or 20 September</li>
+<li>4th complementary day:&nbsp;<a title="La F&ecirc;te de l'Opinion" href="https://en.wikipedia.org/wiki/La_F%C3%AAte_de_l%27Opinion">La F&ecirc;te de l'Opinion</a>, "Celebration of Convictions", on 20 or 21 September</li>
+<li>5th complementary day:&nbsp;<a title="La F&ecirc;te des R&eacute;compenses" href="https://en.wikipedia.org/wiki/La_F%C3%AAte_des_R%C3%A9compenses">La F&ecirc;te des R&eacute;compenses</a>, "Celebration of Honors (Awards)", on 21 or 22 September</li>
+<li>6th complementary day:&nbsp;<a title="La F&ecirc;te de la R&eacute;volution" href="https://en.wikipedia.org/wiki/La_F%C3%AAte_de_la_R%C3%A9volution">La F&ecirc;te de la R&eacute;volution</a>, "Celebration of the Revolution", on 22 or 23 September (on leap years only)</li>
+</ul>
+
+<p>The <a href = "https://en.wikipedia.org/wiki/French_Republican_calendar">French Republican Calendar</a> calendar is a calendar that consists of (in addition to the 100-second minutes, 100-minute hours and 10 hour days) 10-day weeks, 30-day months, and 12-month years.</p>
+<a href = "http://sky-lights.org/2020/01/06/qa-a-brief-history-of-the-metric-calendar/"><img src = "http://sky-lights.org/wp-content/uploads/2020/01/2020-01-06-Q.jpg"></a>
+
+<p>The year consists of 12 30-day months, with an extra 5-6 days left over. These are reserved for celebrational holidays.</p>
+<p>The tenth day,&nbsp;<em>d&eacute;cadi</em>, replaced Sunday as the day of rest and festivity.</p>
+<table style = "background-color:white">
+    <tr>
+        <th>Primidi (First Day)</th>
+        <th>Duodi (Second Day)</th>
+        <th>Tridi (Third Day)</th>
+        <th>Quartidi (Fourth Day)</th>
+        <th>Quintidi (Fifth Day)</th>
+        <th>Sextidi (Sixth Day)</th>
+        <th>Septidi (Seventh Day)</th>
+        <th>Octidi (Eighth Day)</th>
+        <th>Nonidi (Ninth Day)</th>
+        <th style="background-color:yellow;">Décadi (Tenth Day)</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td style="background-color:yellow;">10</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>12</td>
+        <td>13</td>
+        <td>14</td>
+        <td>15</td>
+        <td>16</td>
+        <td>17</td>
+        <td>18</td>
+        <td>19</td>
+        <td style="background-color:yellow;">20</td>
+    </tr>
+    <tr>
+        <td>21</td>
+        <td>22</td>
+        <td>23</td>
+        <td>24</td>
+        <td>25</td>
+        <td>26</td>
+        <td>27</td>
+        <td>28</td>
+        <td>29</td>
+        <td style="background-color:yellow;">30</td>
+    </tr>
+    
+</table>
+
+<br>
+
+<h1>Metric Time</h1>
+<p>This method of date tracking is associated with <a href = "metrictime.html">Metric Time.</a></p>
+<a href = "https://blogs.itron.com/close-up-of-calendar-and-alarm-clock-on-the-green-background-planning-for-business-meeting-or-travel-planning-concept/">Website Background</a>
+
+        
+        
+        </html>
+	</body>
+</html>
