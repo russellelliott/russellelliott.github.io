@@ -1,7 +1,5 @@
 russellelliott.github.io
 ====================
-This is my first try at github!
-
 My Github user page is at: 
 https://github.com/russellelliott/
 
