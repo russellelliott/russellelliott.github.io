@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Base 3 Calendar</title>
+		<style>
+		    table, th, td {
+              border: 1px solid black;
+            }
+            body {
+              background-color:#F5F3CE;
+            }
+		</style>
+		<link rel="icon" 
+        type="image/png" 
+        href="https://www.pngkey.com/png/detail/256-2560866_events-calander-png-orange-calendar-png-icon.png" />
+	</head>
+
+	<body>
+	    <table style = "width:100%; background-color: dodgerblue">
+	       <tr>
+	           <th style = "width: 50%">
+	               <h1>
+	                   <a style = "color:black; background-color:yellow" href = "base3.html">Base 3 Calendar</a>
+	               </h1></th>
+	           <th style = "width: 50%">
+	               <h1>
+	                   <a style = "color:black;" href = "kalentris.html">Kalentris Time System</a>
+	               </h1>
+	           </th>
+	       </tr> 
+	    </table>
+	    <h1>Convert date between Gregorian Calendar and Base 3 Calendar</h1>
+	    <h1>Gregorian Calendar</h1>
+		Gregorian Date:
+		<input type="date" id="myDate" oninput = "getDates()">
+		<!--min="2001-01-01" max="2001-12-31"-->
+		<button onclick = "ifc(diffDays)">Convert</button>
+		<p>Days measured from Janaury 1, 2001</p>
+		<table style = "width: 40%">
+		    <tr>
+		        <th style = "width:50%">Gregorian Date</th>
+		        <th>Day Number (Base 3 Calendar)</th>
+		    </tr>
+		    <tr>
+		        <td><p id = "demo">&nbsp;</p></td>
+		        <td><p id = "diff">&nbsp;</p></td>
+		    </tr>
+		</table>
+		
+		<h1>Base 3 Calendar</h1>
+		<h2></h2>
+		<ul>
+		    <li>A tricycle has 3 years (729 days, ca. 2 Gregorian Years)</li>
+		    <li>A year has 3 tertiades (243 days)</li>
+		    <li>A tertiade/season has 3 months (81 days)</li>
+		    <li>A month has 3 weeks (27 days)</li>
+		</ul>
+		<table>
+		    <tr>
+		        <th>Calendar Date (Month in Tricycle (1-27)/Day)</th>
+		        <th>Calendar Date (Season (1-3)/Month in Year (1-9)/Day)</th>
+		        <th>Calendar Date (Season (1-3)/Month in Season (1-3)/Day)</th>
+		        <th>Day</th>
+		    </tr>
+		    <tr>
+		        <td><p id = "ifc">&nbsp;</p></td>
+		        <td><p id = "ifc2">&nbsp;</p></td>
+		        <td><p id = "ifc3">&nbsp;</p></td>
+		        <td><p id = "ifc4">&nbsp;</p></td>
+		    </tr>
+		</table>
+		Month: <input type="number" id="ifcMonth" min = "1" max = "13" oninput = "monthTest(this.value)">
+		<br>
+	
+	<table>
+            <tr>
+                <th>Year 1</th>
+                <th>Year 2</th>
+                <th>Year 3</th>
+            </tr>
+            <tr>
+                <td>January 1, Y1 - August 31, Y1</td>
+                <td>September 1, Y1 - May 1, Y2</td>
+                <td>May 2, Y2 - December 30, Y2</td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <th>Season 1</th>
+                            <th>Season 2</th>
+                            <th>Season 3</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "jan" value="1">Month 1<br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "feb" value="2">Month 2<br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "mar" value="3">Month 3<br>
+                            </td>
+                            <td>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "apr" value="4">Month 4<br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "may" value="5">Month 5<br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "jun" value="6">Month 6<br>
+                            </td>
+                            <td>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "sol" value="7">Month 7<br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "jul" value="8">Month 8<br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "aug" value="9">Month 9<br>
+                            </td>
+                        </tr>
+                    </table>
+                    
+
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <th>Season 1</th>
+                            <th>Season 2</th>
+                            <th>Season 3</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "jan2" value="10">Month 1<br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "feb2" value="11">Month 2<br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "mar2" value="12">Month 3<br>
+                            </td>
+                            <td>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "apr2" value="13">Month 4<br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "may2" value="14">Month 5<br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "jun2" value="15">Month 6<br>
+                            </td>
+                            <td>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "sol2" value="16">Month 7<br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "jul2" value="17">Month 8<br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "aug2" value="18">Month 9<br>
+                            </td>
+                        </tr>
+                    </table>
+
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <th>Season 1</th>
+                            <th>Season 2</th>
+                            <th>Season 3</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "jan3" value="19">Month 1<br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "feb3" value="20">Month 2<br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "mar3" value="21">Month 3<br>
+                            </td>
+                            <td>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "apr3" value="22">Month 4<br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "may3" value="23">Month 5<br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "jun3" value="24">Month 6<br>
+                            </td>
+                            <td>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "sol3" value="25">Month 7<br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "jul3" value="26">Month 8<br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" id = "aug3" value="27">Month 9<br>
+                            </td>
+                        </tr>
+                    </table>
+
+                </td>
+            </tr>
+        </table>
+	Day: <input type="number" value = "1" min = "1" max = "27" id="result" oninput="dateTest()">
+    <button onclick = "ifcDate()">Convert</button>
+	<script>
+	//oninput="myFunction2(this.value)"
+	var ifcMonth;
+	var ifcDay;
+	function dateTest(){
+	    ifcDay = document.getElementById("result").value;
+        ifcDay = Number(ifcDay);
+	    if(ifcDay>27){
+              ifcDay == 27;
+              document.getElementById("result").value = 27;
+          }
+	}
+	function ifcDate(){
+	    //alert(ifcMonth + ifcDay);
+	    var munf = document.getElementById("ifcMonth").value
+	    myFunction2(munf);
+	    //ifcDay = document.getElementById("result").value;
+        //ifcDay = Number(ifcDay);
+        //ifcMonth = document.getElementById("ifcMonth").value;
+        //myFunction2(ifcMonth);
+        //var franceDay = (ifcMonth-1)*30 + ifcDay;
+	}
+	//https://www.w3schools.com/tags/att_input_type_radio.asp
+        //https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_radio_value3
+        //https://www.w3schools.com/jsref/prop_radio_checked.asp
+        function myFunction2(browser) {
+          document.getElementById("ifcMonth").value = browser;
+          ifcMonth = browser;
+          dateTest();
+          //alert(ifcMonth);
+          
+          //France Day
+          var gregDay = (ifcMonth-1)*27 + ifcDay;
+          
+          //21 days added because the year starts on December 22 Gregorian, 20 days after
+          //ecember 1
+          //gregDay+=21;
+          var gregDate = new Date("January 1, 2001");
+          //gregDate = new Date("December 22, 2001");
+          gregDate.setDate(gregDay);
+          document.getElementById('myDate').valueAsDate = gregDate;
+          
+          getDates();
+          //generate();
+        }
+	
+	
+	var milli = 1000*60*60*24;
+	var diffDays;
+	var d;
+	    function getDates(){
+	        var input = document.getElementById( 'myDate' ).value;
+            d = new Date( input );
+	        if ( !!d.valueOf() ) { // Valid date
+                var n = d.toUTCString(); 
+                    year = d.getUTCFullYear();
+                    month = d.getUTCMonth();
+                    var month2 = month+1;
+                    day = d.getUTCDate();
+                    var day2 = day+1;
+                    //alert(day2 + "/" + month2 + "/" + year);
+                    //alert(day + "/" + month + "/" + year);
+                      document.getElementById("demo").innerHTML = n;
+                      var start = new Date("January 1, 2001");
+                      //start = new Date("December 22, 2001");
+                      diffDays = d.getTime() - start.getTime();
+                      diffDays = Math.floor(diffDays/milli)+2;
+                      if(diffDays<1){
+                          diffDays+=730;
+                      }
+                      //365.24215*2 = 730.4843
+                      //3 Base 3 calendar years is 2 gregorian years.
+                      //document.getElementById("diff").innerHTML = diffDays;
+                      diffDays -= Math.floor(730.4843*(Math.floor(Days/730.4843)))
+                      document.getElementById("diff").innerHTML = diffDays;
+                      ifc(diffDays);
+                      
+                      
+                      //document.getElementById("ifc").innerHTML = 4;
+                      //french();
+                      //alert(diffDays);
+                /*var earthDate = Date.UTC(year, month, day);
+                      document.getElementById("result").innerHTML = earthDate;*/
+                }
+	    }
+	    function ifc(date){
+	        //alert("behold!");
+	        date -= Math.floor(730.4843*(Math.floor(date/730.4843)))
+	        var newMonth = Math.floor(date/27);
+	        newMonth+=1;
+	        var newDay = date%27;
+	        //newDay+=21;
+	        if (newMonth == 28){
+	            newMonth = newMonth-1;
+                newDay = newDay+27;
+	        }
+	        if(newDay == 0){
+	            newMonth-=1;
+	            newDay+=27;
+	        }
+	        document.getElementById("ifc").innerHTML = newMonth + "/" + newDay;
+	        document.getElementById("ifc2").innerHTML = (newMonth-(Math.floor(newMonth/9)*9)) + "/" + newDay;
+	        document.getElementById("ifc3").innerHTML = (newMonth-(Math.floor(newMonth/3)*3)) + "/" + newDay;
+	        document.getElementById("ifc4").innerHTML = newDay;
+	        /*document.getElementById("ifc2").innerHTML = (1+Math.floor(Math.floor(newMonth/3)/3)) + "/" + newMonth%9 + "/" + newDay;
+	        document.getElementById("ifc3").innerHTML = (1+Math.floor(Math.floor(newMonth/3)/3)) + "/" + Math.floor((newMonth%9)%3) + "/" + newDay;
+	        */
+	        document.getElementById("ifcMonth").value = newMonth;
+	        /*if(newMonth<1){
+	            newMonth == 1;
+	            document.getElementById("ifcMonth").value = newMonth;
+	        }
+	        if(newMonth>13){
+	            newMonth == 13;
+	            document.getElementById("ifcMonth").value = newMonth;
+	        }*/
+	        monthTest(newMonth);
+	        document.getElementById("result").value = newDay;
+	    }
+	    function monthTest(month){
+	        if(month == 1){
+	            document.getElementById("jan").checked = true;
+	        }
+	        if(month == 2){
+	            document.getElementById("feb").checked = true;
+	        }
+	        if(month == 3){
+	            document.getElementById("mar").checked = true;
+	        }
+	        if(month == 4){
+	            document.getElementById("apr").checked = true;
+	        }
+	        if(month == 5){
+	            document.getElementById("may").checked = true;
+	        }
+	        if(month == 6){
+	            document.getElementById("jun").checked = true;
+	        }
+	        if(month == 7){
+	            document.getElementById("sol").checked = true;
+	        }
+	        if(month == 8){
+	            document.getElementById("jul").checked = true;
+	        }
+	        if(month == 9){
+	            document.getElementById("aug").checked = true;
+	        }
+
+            if(month == 10){
+	            document.getElementById("jan2").checked = true;
+	        }
+	        if(month == 11){
+	            document.getElementById("feb2").checked = true;
+	        }
+	        if(month == 12){
+	            document.getElementById("mar2").checked = true;
+	        }
+	        if(month == 13){
+	            document.getElementById("apr2").checked = true;
+	        }
+	        if(month == 14){
+	            document.getElementById("may2").checked = true;
+	        }
+	        if(month == 15){
+	            document.getElementById("jun2").checked = true;
+	        }
+	        if(month == 16){
+	            document.getElementById("sol2").checked = true;
+	        }
+	        if(month == 17){
+	            document.getElementById("jul2").checked = true;
+	        }
+	        if(month == 18){
+	            document.getElementById("aug2").checked = true;
+	        }
+
+            if(month == 19){
+	            document.getElementById("jan3").checked = true;
+	        }
+	        if(month == 20){
+	            document.getElementById("feb3").checked = true;
+	        }
+	        if(month == 21){
+	            document.getElementById("mar3").checked = true;
+	        }
+	        if(month == 22){
+	            document.getElementById("apr3").checked = true;
+	        }
+	        if(month == 23){
+	            document.getElementById("may3").checked = true;
+	        }
+	        if(month == 24){
+	            document.getElementById("jun3").checked = true;
+	        }
+	        if(month == 25){
+	            document.getElementById("sol3").checked = true;
+	        }
+	        if(month == 26){
+	            document.getElementById("jul3").checked = true;
+	        }
+	        if(month == 27){
+	            document.getElementById("aug3").checked = true;
+	        }
+	    }
+	</script>
+<h1>Dates of the&nbsp;<a href="https://en.wikipedia.org/wiki/Season">Seasons</a></h1>
+<table>
+<tbody>
+<tr>
+<th>Northern Hemisphere&nbsp;<a href="https://en.wikipedia.org/wiki/Equinox">Equinox</a>&nbsp;and&nbsp;<a href="https://en.wikipedia.org/wiki/Solstice">Solstice</a>&nbsp;Dates</th>
+<th>Gregorian</th>
+<th>Base 3 Calendar</th>
+</tr>
+<tr>
+<td><a href="https://www.almanac.com/content/first-day-spring-vernal-equinox">Spring</a></td>
+<td><a href="https://www.space.com/881-date-changed-start-spring.html">March 20</a></td>
+<td>
+    <ul>
+        <li>Month 3 (Year 1, Month 3), Day 25</li>
+        <li>Month 17 (Year 2, Month 8), Day 12</li>
+    </ul>
+</td>
+</tr>
+<tr>
+<td><a href="https://www.almanac.com/content/first-day-summer-summer-solstice">Summer</a></td>
+<td>June 20</td>
+<td>
+    <ul>
+        <li>Month 7 (Year 1, Month 7), Day 9</li>
+        <li>Month 20 (Year 3, Month 2), Day 23)</li>
+    </ul>
+</td>
+</tr>
+<tr>
+<td><a href="https://www.almanac.com/content/first-day-fall-autumnal-equinox">Fall</a></td>
+<td><a href="https://www.calendarpedia.com/when-is/autumn.html">September 22</a></td>
+<td>
+    <ul>
+        <li>Month 10 (Year 2, Month 1), Day 22</li>
+        <li>Month 24 (Year 3, Month 6), Day 9</li>
+    </ul>
+</td>
+</tr>
+<tr>
+<td><a href="https://www.almanac.com/content/first-day-winter-winter-solstice">Winter</a></td>
+<td>December 21</td>
+<td>
+    <ul>
+        <li>Month 14 (Year 2, Month 5), Day 4</li>
+        <li>Month 27 (Year 3, Month 9), Day 18</li>
+    </ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h1>Information About the Calendar</h1>
+<p>Time between Equinoxes and Solstices</p>
+<ul>
+    <li>The time between two of the same equinoxes (Spring and Fall) is 14 months minus 13 days.</li>
+    <ul>
+        <li>(14*27)-13 = 365</li>
+    </ul>
+    <li>The time between two of the same solstices (Summer and Winter) is 13 months plus 14 days</li>
+    <ul>
+        <li>(13*27)+14 = 365</li>
+    </ul>
+</ul>
+<p><a href = "https://calendars.wikia.org/wiki/Kalentris">Kalentris: </a>To allign with the solar year, leap "tierces" (3 days) are added.</p>
+<ul>
+    <li>Leap tierce every odd tricycle (729 days, ca. 2 Gregorian years)</li>
+    <li>No leap tierce every odd hundredth tricycle (100, 300, 500, etc)</li>
+</ul>
+<p><a href = "https://calendars.wikia.org/wiki/Trical">Trical: </a>Instead of having 243-day years and having 3 years in a tricycle (729 days), Trical maintains the length of the year by splitting the 729 day tricycle into two years.</p>
+<ul>
+    <li>A jear may be subdivided into 2 years, a long year of 122 trips (each trip is 3 days) or 366 days followed by a short year of 121 trips or 363 days. Leap trips turn a short year into a long year.</li>
+    <ul>
+        <li>(13*27)+12 = 363</li>
+        <li>(13*27)+15 = 366</li>
+    </ul>
+</ul>
+<p>Trical maintains the same 3-day leap system as Kalentris.</p>
+</body>
+</html>
