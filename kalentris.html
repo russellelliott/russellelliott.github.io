@@ -1,0 +1,442 @@
+<html>
+	<head>
+		<title>Kalentris Time System</title>
+		<style>
+		    input[type=number]{
+                width: 105px;
+            }
+            
+            table {
+              margin-left: auto;
+              margin-right: auto;
+              text-align:center;
+            }
+            input:read-only {
+              background-color: yellow;
+            }
+            body {
+              background-color:#F5F3CE;
+            }
+            
+		</style>
+		<link rel="icon" 
+        type="image/png" 
+        href="https://www.pngkey.com/png/detail/256-2560866_events-calander-png-orange-calendar-png-icon.png" />
+	</head>
+
+	<body>
+	    <table style = "width:100%; background-color: dodgerblue">
+	       <tr>
+	           <th style = "width: 50%">
+	               <h1>
+	                   <a style = "color:black;" href = "base3.html">Base 3 Calendar</a>
+	               </h1></th>
+	           <th style = "width: 50%">
+	               <h1>
+	                   <a style = "color:black; background-color:yellow" href = "kalentris.html">Kalentris Time System</a>
+	               </h1>
+	           </th>
+	       </tr> 
+	    </table>
+	    <h1>Kalentris Time System</h1>
+	    <p>The Kalentris Time System is a variety of timekeeping whose units of time are in units of three. Several varieties include: </p>
+	    <ul>
+	        <li><a href = "https://calendars.wikia.org/wiki/Kalentris">Kalentris</a></li>
+	        <li><a href = "http://canonical.org/~kragen/sw/dev3/siercal.html">Sierpiński calendar</a>, a calendar based off the <a href = "https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle">Sierpiński triangle</a>.</li>
+	        <li><a href = "https://calendars.wikia.org/wiki/Trical">Trical</a></li>
+	    </ul>
+	    <h1>How to Use the Calculator</h1>
+	    <ol>
+	        <li>Enter the desired amount of time in the input fields of one time system.</li>
+	        <li>Click the respective "Convert to" button to convert from the time system you are entering in to the other time system.</li>
+	        <ul>
+	            <li>Enter the amount of time in the white input fields. The time will be reorganized and displayed in the <span style = "background-color:yellow">yellow</span> fields.</li>
+	        </ul>
+	        <ul>
+	            <li>If you are entering data in the ABT field, click "Convert to Kalentris" to convert your time to Kalentris.</li>
+	            <li>If you are entering data in the Kalentris field, click "Convert to ABT" to convert yout time to ABT.</li>
+	        </ul>
+	    </ol>
+
+	    <table style = "background-color:tomato">
+          <tr>
+            <th>Days</th>
+            <th>Hours</th>
+            <th>Minutes</th>
+            <th>Seconds</th>
+          </tr>
+          <tr>
+            <td><input type="number" id="rdays" value="" min = "0" oninput = "convertx()" placeholder = "Days">
+        </td>
+            <td><input type="number" id="rhour" value="" min = "0" oninput = "convertx()" placeholder = "Hours">
+        </td>
+            <td><input type="number" id="rminute" value="" min = "0" oninput = "convertx()" placeholder = "Minutes">
+        </td>
+            <td><input type="number" id="rsecond" value="" min = "0" oninput = "convertx()" placeholder = "Seconds">
+        </td>
+          </tr>
+          <tr>
+            <td>
+            <input type="number" id="clock" value="" min = "0" oninput = "convertx()" placeholder = "Days" readonly>
+        </td>
+            <td>
+            <input type="number" id="clock2" value="" min = "0" oninput = "convertx()" placeholder = "Hours" readonly>
+        </td>
+            <td>
+            <input type="number" id="clock3" value="" min = "0" oninput = "convertx()" placeholder = "Minutes" readonly>
+        </td>
+            <td>
+            <input type="number" id="clock4" value="" min = "0" oninput = "convertx()" placeholder = "Seconds" readonly>
+        </td>
+          </tr>
+        </table>
+	    <table style = "background-color:tomato">
+	        <tr>
+	            <th>Total Seconds</th>
+	        </tr>
+	        <tr>
+	            <td><input type="number" id="totalSec" value="" min = "0" oninput = "" placeholder = "Total Seconds" readonly></td>
+	        </tr>
+	    </table>
+	    <table>
+            <tr>
+                <td>One SI second is 2.0503125 ticks exactly.</td>
+            </tr>
+            <tr>
+                <td>
+                    <button onclick = "toABT()" style = "background-color:tomato">Convert to ABT</button>
+	                <hr>
+	                <button class = "button" style = "background-color:yellow" onclick="window.location.href = 'javascript:history.go(0)';"><b>Reset/Clear All</b></button>
+	                <hr>
+	                <button onclick = "toKalentris()" style = "background-color:powderblue">Convert to Kalentris</button>
+                </td>
+            </tr>
+        </table>
+	    <table style = "background-color:powderblue">
+            <tr>
+                  <th>Total Ticks</th>
+              </tr>
+              <tr>
+                  <td><input type="number" id="totalTick" value="" min = "0" oninput = "total()" placeholder = "Total Ticks">
+            </td>
+              </tr>
+        </table>
+		<table style = "background-color:powderblue">
+          <tr>
+            <th>Days</th>
+            <th>Shift</th>
+            <th>Watch</th>
+            <th>Hour</th>
+            <th>Tierce</th>
+            <th>Break</th>
+            <th>Boil</th>
+            <th>Come</th>
+            <th>Run</th>
+            <th>Moment</th>
+            <th>Blink</th>
+            <th>Tick</th>
+          </tr>
+          <tr>
+                <td><input type="number" id="day" value="" min = "0" oninput = "convert()" placeholder = "Days">
+            </td>
+                <td><input type="number" id="shift" value="" min = "0" oninput = "convert()" placeholder = "Shift">
+            </td>
+                <td><input type="number" id="watch" value="" min = "0" oninput = "convert()" placeholder = "Watch">
+            </td>
+                <td><input type="number" id="hour" value="" min = "0" oninput = "convert()" placeholder = "Hour">
+            </td>
+            <td><input type="number" id="tierce" value="" min = "0" oninput = "convert()" placeholder = "Tierce">
+            </td>
+                <td><input type="number" id="break" value="" min = "0" oninput = "convert()" placeholder = "Break">
+            </td>
+            <td><input type="number" id="boil" value="" min = "0" oninput = "convert()" placeholder = "Boil">
+            </td>
+                <td><input type="number" id="come" value="" min = "0" oninput = "convert()" placeholder = "Come">
+            </td>
+                <td><input type="number" id="run" value="" min = "0" oninput = "convert()" placeholder = "Run">
+            </td>
+            <td><input type="number" id="moment" value="" min = "0" oninput = "convert()" placeholder = "Moment">
+            </td>
+                <td><input type="number" id="blink" value="" min = "0" oninput = "convert()" placeholder = "Blink">
+            </td>
+                <td><input type="number" id="tick" value="" min = "0" oninput = "convert()" placeholder = "Tick">
+            </td>
+              </tr>
+              <tr>
+                <td><input type="number" id="day2" value="" min = "0" oninput = "convert()" placeholder = "Days" readonly>
+            </td>
+                <td><input type="number" id="shift2" value="" min = "0" oninput = "convert()" placeholder = "Shift" readonly>
+            </td>
+                <td><input type="number" id="watch2" value="" min = "0" oninput = "convert()" placeholder = "Watch" readonly>
+            </td>
+                <td><input type="number" id="hour2" value="" min = "0" oninput = "convert()" placeholder = "Hour" readonly>
+            </td>
+            <td><input type="number" id="tierce2" value="" min = "0" oninput = "convert()" placeholder = "Tierce" readonly>
+            </td>
+                <td><input type="number" id="break2" value="" min = "0" oninput = "convert()" placeholder = "Break" readonly>
+            </td>
+            <td><input type="number" id="boil2" value="" min = "0" oninput = "convert()" placeholder = "Boil" readonly>
+            </td>
+                <td><input type="number" id="come2" value="" min = "0" oninput = "convert()" placeholder = "Come" readonly>
+            </td>
+                <td><input type="number" id="run2" value="" min = "0" oninput = "convert()" placeholder = "Run" readonly>
+            </td>
+            <td><input type="number" id="moment2" value="" min = "0" oninput = "convert()" placeholder = "Moment" readonly>
+            </td>
+                <td><input type="number" id="blink2" value="" min = "0" oninput = "convert()" placeholder = "Blink" readonly>
+            </td>
+                <td><input type="number" id="tick2" value="" min = "0" oninput = "convert()" placeholder = "Tick" readonly>
+            </td>
+              </tr>
+        </table>
+        <script>
+        var converter = 2.0503125;
+        function toABT(){
+            //Convert from Kalentris to ABT
+            var totals = document.getElementById("totalTick").value;
+            totals = Number(totals);
+            document.getElementById("totalSec").value = totals/converter;
+            document.getElementById("rsecond").value = totals/converter;
+            //convert();
+            document.getElementById("rdays").value = "";
+            document.getElementById("rhour").value = "";
+            document.getElementById("rminute").value = "";
+            //document.getElementById("rsecond").value = "";
+            convertx();
+        }
+        function toKalentris(){
+            //Converts from ABT to Kalentris
+            var totals = document.getElementById("totalSec").value;
+            totals = Number(totals);
+            document.getElementById("totalTick").value = totals*converter;
+            document.getElementById("tick").value = totals*converter;
+            
+            document.getElementById("day").value = "";
+            document.getElementById("shift").value = "";
+            document.getElementById("watch").value = "";
+            document.getElementById("hour").value = "";
+            
+            document.getElementById("tierce").value = "";
+            document.getElementById("break").value = "";
+            document.getElementById("boil").value = "";
+            document.getElementById("come").value = "";
+            
+            document.getElementById("run").value = "";
+            document.getElementById("moment").value = "";
+            document.getElementById("blink").value = "";
+            //document.getElementById("tick").value = "";
+            convert();
+            //convert();
+        }
+        /*function total(){
+            var totals = document.getElementById("totalTick").value;
+            totals = Number(totals);
+            document.getElementById("tick").value = totals;
+            convert();
+        }*/
+        function convertx(){
+        var days = document.getElementById("rdays").value;
+          var hour = document.getElementById("rhour").value;
+          var minute = document.getElementById("rminute").value;
+          var second = document.getElementById("rsecond").value;
+          
+          days = Number(days);
+          hour = Number(hour);
+          minute = Number(minute);
+          second = Number(second);
+        
+          var n = minute.toString();
+        
+          if(second>59){
+              //If minute field is above 60, converts to hh:mm
+              var multiple2 = Math.floor(second/60);
+              
+              second-=60*multiple2;
+              minute+=multiple2; 
+          }
+          if(minute>59){
+              //If minute field is above 60, converts to hh:mm
+              var multiple = Math.floor(minute/60);
+              
+              minute-=60*multiple;
+              hour+=multiple; 
+          }
+          if(hour>23){
+              //If minute field is above 60, converts to hh:mm
+              var multiple = Math.floor(hour/24);
+              
+              hour-=24*multiple;
+              days+=multiple; 
+          }
+          
+          
+          //if(minute<10 && n.length<2){
+              //minute = "0" + minute;
+          //}
+          
+          
+          document.getElementById("clock").value = days;
+          document.getElementById("clock2").value = hour;
+          document.getElementById("clock3").value = minute;
+          document.getElementById("clock4").value = second;
+          
+          var spin = 24*60*60*days + 60*60*hour + 60*minute + second;
+          document.getElementById("totalSec").value = spin;
+          //document.getElementById("totalTick").value = spin*converter;
+          //document.getElementById("tick").value = spin*converter;
+
+        }
+
+            function convert(){
+                var day = document.getElementById("day").value;
+                day = Number(day);
+                var shift = document.getElementById("shift").value;
+                shift = Number(shift);
+                var watch = document.getElementById("watch").value;
+                watch = Number(watch);
+                var hour = document.getElementById("hour").value;
+                hour = Number(hour);
+                
+                var tierce = document.getElementById("tierce").value;
+                tierce = Number(tierce);
+                var break1 = document.getElementById("break").value;
+                break1 = Number(break1);
+                var boil = document.getElementById("boil").value;
+                boil = Number(boil);
+                var come = document.getElementById("come").value;
+                come = Number(come);
+                
+                var run = document.getElementById("run").value;
+                run = Number(run);
+                var moment = document.getElementById("moment").value;
+                moment = Number(moment);
+                var blink = document.getElementById("blink").value;
+                blink = Number(blink);
+                var tick = document.getElementById("tick").value;
+                tick = Number(tick);
+                
+                /*var IDs = ["day", "shift", "watch", "hour", "tierce", "break", "boil", "come", "run", "moment", "blink", "tick"];
+                for(var i=0; i<IDs.length(); i++){
+                    var newID = String(IDs[i]+"2");
+                    document.getElementById(newID).value = document.getElementById(IDs[i]).value;
+                }*/
+                
+                
+                if(tick>2){
+                    multiple = Math.floor(tick/3);
+                    tick-=3*multiple;
+                    blink+=multiple;
+                }
+                
+                if(blink>2){
+                    multiple = Math.floor(blink/3);
+                    blink-=3*multiple;
+                    moment+=multiple;
+                }
+                
+                if(moment>2){
+                    multiple = Math.floor(moment/3);
+                    moment-=3*multiple;
+                    run+=multiple;
+                }
+                
+                if(run>2){
+                    multiple = Math.floor(run/3);
+                    run-=3*multiple;
+                    come+=multiple;
+                }
+                
+                /*if(run>2){
+                    multiple = Math.floor(run/3);
+                    run-=3*multiple;
+                    come+=multiple;
+                }*/
+                
+                if(come>2){
+                    multiple = Math.floor(come/3);
+                    come-=3*multiple;
+                    boil+=multiple;
+                }
+                
+                if(boil>2){
+                    multiple = Math.floor(boil/3);
+                    boil-=3*multiple;
+                    break1+=multiple;
+                }
+                
+                if(break1>2){
+                    multiple = Math.floor(break1/3);
+                    break1-=3*multiple;
+                    tierce+=multiple;
+                }
+                
+                if(tierce>2){
+                    multiple = Math.floor(tierce/3);
+                    tierce-=3*multiple;
+                    hour+=multiple;
+                }
+                
+                if(hour>2){
+                    multiple = Math.floor(hour/3);
+                    hour-=3*multiple;
+                    watch+=multiple;
+                }
+                
+                if(watch>2){
+                    multiple = Math.floor(watch/3);
+                    watch-=3*multiple;
+                    shift+=multiple;
+                }
+                
+                if(shift>2){
+                    multiple = Math.floor(shift/3);
+                    shift-=3*multiple;
+                    day+=multiple;
+                }
+                
+                /*organize(tick, blink);
+                organize(blink, moment);
+                organize(moment, run);
+                organize(run, come);
+                organize(come, boil);
+                organize(boil, break1);
+                organize(break1, tierce);
+                organize(tierce, hour);
+                organize(hour, watch);
+                organize(watch, shift);
+                organize(shift, day);*/
+                
+                document.getElementById("day2").value = day;
+                document.getElementById("shift2").value = shift;
+                document.getElementById("watch2").value = watch;
+                document.getElementById("hour2").value = hour;
+                
+                document.getElementById("tierce2").value = tierce;
+                document.getElementById("break2").value = break1;
+                document.getElementById("boil2").value = boil;
+                document.getElementById("come2").value = come;
+                
+                document.getElementById("run2").value = run;
+                document.getElementById("moment2").value = moment;
+                document.getElementById("blink2").value = blink;
+                document.getElementById("tick2").value = tick;
+                
+                var totalTick = tick + 3*blink + Math.pow(3,2)*moment + Math.pow(3,3)*run + Math.pow(3,4)*come + Math.pow(3,5)*boil + Math.pow(3,6)*break1 + Math.pow(3,7)*tierce + Math.pow(3,8)*hour + Math.pow(3,9)*watch + Math.pow(3,10)*shift + Math.pow(3,11)*day;
+                document.getElementById("totalTick").value = totalTick;
+                
+                
+            }
+            function organize(variable, var2){
+                if(variable>2){
+                      //If field is above 3, converts to higher field
+
+                      variable-=3*Math.floor(variable/3);
+                      var2+=Math.floor(variable/3);
+                      //return variable, var2;
+                  }
+            }
+        </script>
+        
+        <p>The calendar also includes measurements in units of three.</p>
+	</body>
+</html>
