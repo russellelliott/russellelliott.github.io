@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Axiom Calendar</title>
+        <style>
+            table, th, td {
+              border: 1px solid black;
+              background-color:white;
+            }
+            input[type=number]{
+                width: 60px;
+            }
+            h1, h2, h3{
+                color:#4a5439;
+            }
+            body {
+              background-image: url('https://2.bp.blogspot.com/-af7h99sy1Wc/UwJGw_6yoaI/AAAAAAAAFBw/Dpra4P5Pgq4/s1600/MAC_Space_Background.jpg');
+              background-repeat: no-repeat;
+              background-attachment: fixed;
+              background-size: cover;
+            }
+            p, blockquote{
+                color:tomato;
+            }
+            /*https://www.w3schools.com/css/css_link.asp*/
+
+            /* unvisited link */
+            a:link {
+              color: lightgrey;
+            }
+            /* visited link */
+            a:visited {
+              color: dodgerblue;
+            }
+            .thrust{
+                transform: rotate(165deg);
+            }
+        </style>
+    </head>
+<body>
+    
+    <table style = "width:100%">
+        <tr>
+            <td>
+                <h1><a style = "color:#4a5439;"href = "axiom.html">Timekeeping on The Axiom</a></h1>
+            </td>
+            <td>
+                <h1><a href = "axiomcalendar.html">Calendar on the Axiom</a></h1>
+            </td>
+        </tr>
+    </table>
+<marquee behavior = "scroll" style="color:tomato"; direction = "left" style = "font-size:20px" scrollamount = "10">
+    Too much garbage in your face? There's plenty of space out in space! BNL starliners leaving each day. We'll clean up the mess while you're away.
+</marquee>
+<a href = "https://www.fatherly.com/news/wall-e-fan-theory-reveals-movie-true-villain-pixar/">‘Wall-E’ Fan Theory Changes the Meaning of the Beloved Pixar Movie</a>
+<br>
+<a href = "https://www.sciencealert.com/9-similarities-between-today-s-society-and-the-one-that-filled-the-planet-with-garbage-in-wall-e">9 Ways Today's Society Is Like The One That Filled Earth With Garbage in WALL-E</a>
+<br>
+<button onclick="typeWriter()">Click me for Axium info!</button>
+
+<p id="type" style = "color: tomato"></p>
+<blockquote>Because, at BNL, space is the final "fun"-tier. - Shelby Forthright, <a href = "https://disney.fandom.com/wiki/Buy_n_Large">BNL</a>
+ CEO</blockquote>
+          <marquee behavior="scroll" direction="right" scrollamount = "10">
+              <img class = "thrust" src="https://www.freepnglogos.com/uploads/fire/fire-misc-clip-art-and-graphics-28.png" width="1000" height="236" alt="Rocket Thrust">
+              <img src="https://fastestships.com/wp-content/uploads/sites/8/2018/05/img41-1024x236.png" width="1000" alt="Axiom">
+</marquee>
+
+<a href = "https://www.quackit.com/html/codes/scrolling_images.cfm">Scrolling</a>
+<a href = "https://www.freepnglogos.com/images/fire-38697.html">Fire</a>
+<a href = "http://fastestships.com/">The Fastest Ships in the Universe!</a>
+<a href = "http://lanseybrothers.blogspot.com/2014/02/mac-space-background-badly-photoshopped.html">Website Background</a>
+<a href = "https://www.w3schools.com/cssref/pr_pos_clip.asp">CSS Clip Property</a>
+<script>
+var i = 0;
+var txt = "The jewel of the BNL fleet: 'The Axiom'. Spend your five year cruise in style. Waited on 24 hours a day by our fully automated crew, while your Captain and Autopilot chart a course for non-stop entertainment, fine dining, and with our all-access hover chairs, even Grandma can join the fun! There's no need to walk! 'The Axiom'. Putting the 'star' in Executive Starliner.";
+var speed = 40;
+
+function typeWriter() {
+  if (i < txt.length) {
+    document.getElementById("type").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+</script>
+
+
+<h3>Enter a Date in this Date field</h3>
+
+<input type="date" id="myDate" value="">
+
+<p>Click the button to get the date of the date field.</p>
+<a href = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Minimum and Maximum Dates</a>
+<blockquote>It should be noted that the maximum Date is not of the same value as the maximum safe integer (Number.MAX_SAFE_INTEGER is 9,007,199,254,740,991). 
+Instead, it is defined in ECMA-262 that a maximum of ±100,000,000 (one hundred million) days relative to January 1, 1970 UTC (that is, April 20, 271821 BCE ~ September 13, 275760 CE) 
+can be represented by the standard Date object (equivalent to ±8,640,000,000,000,000 milliseconds).</blockquote>
+
+<button onclick="axiom()">Axiom -> Earth</button>
+<button onclick="earth()">Earth -> Axiom</button>
+<br>
+<button onclick="axiom25()">Axiom 25hr -> Earth</button>
+<button onclick="earth25()">Earth -> Axiom 25hr</button>
+
+
+<p><strong>Note: </strong>Any date before June 27, 2105 is the same on the Axiom and Earth, as that is when the Axiom is launched. Any time before then is measured on Earth, as at this point, the Axiom hasn't left.</p>
+<p>Enter a date in the date field. then choose whether it is read on the Axiom or on Earth.</p>
+<p id="demo"></p>
+<p id="result"></p>
+
+<script>
+//Length of Axium year with 24 hour days
+var axiomYear = 365.202857143;
+var earthYear = 365.24217;
+var yearFactor;
+var calendar;
+var calendar2;
+function axiom(){
+    calendar2 = "Earth Date: ";
+    calendar = "Axiom Date: ";
+    yearFactor = axiomYear/earthYear;
+    myFunction();
+}
+function earth(){
+    calendar2 = "Axiom Date: ";
+    calendar = "Earth Date: ";
+    yearFactor = earthYear/axiomYear;
+    myFunction();
+}
+function axiom25(){
+    calendar2 = "Earth Date: ";
+    calendar = "Axiom Date (25 hr days): ";
+    yearFactor = 1.04155454683;
+    myFunction();
+}
+function earth25(){
+    calendar2 = "Axiom Date (25 hr days): ";
+    calendar = "Earth Date: ";
+    yearFactor = 1/1.04155454683;
+    myFunction();
+}
+function myFunction(){
+    var input = document.getElementById( 'myDate' ).value;
+var d = new Date( input );
+
+if ( !!d.valueOf() ) { // Valid date
+var n = d.toUTCString(); 
+    year = d.getUTCFullYear();
+    month = d.getUTCMonth();
+    var month2 = month+1;
+    day = d.getUTCDate();
+    var day2 = day+1;
+    //alert(day2 + "/" + month2 + "/" + year);
+    //alert(day + "/" + month + "/" + year);
+      document.getElementById("demo").innerHTML = calendar + n;
+var earthDate = Date.UTC(year, month, day);
+      document.getElementById("result").innerHTML = earthDate;
+
+//Larger than 1 if years are longer, smaller if shorter.
+
+//var yearFactor = 1.04155454683;
+
+/*var yearFactor;
+var yearQuery = readLine("Axiom or Earth?");
+yearQuery = yearQuery.toLowerCase();
+if(yearQuery == "axiom"){
+    yearFactor = 1.04155454683;
+}else if(yearQuery == "earth"){
+    yearFactor = 1/1.04155454683;
+}
+*/
+
+//var yearFactor = readLine("")
+//https://stackoverflow.com/questions/19597361/parse-date-month-and-year-from-javascript-date-form
+
+//axiomLaunch: Get number of miliseconds from 1970 to 2105 (when the axiom launched)
+//June = 6th month, but in 0-11 it is 5
+//27 is day
+
+//Number of milliseconds since 1/1/1970 of the Axiom launch
+var axiomLaunch = Date.UTC(2105, 5, 27);
+//https://www.w3schools.com/jsref/jsref_gettime.asp
+//get number of milliseconds between 1/1/1970 and 6/27/2105
+//If date is before launch, return the date. Do the algorythm otherwise.
+//var d = new Date();
+//var axiomMs = axiomLaunch.getTime();
+var nMS = earthDate;
+nMS-=axiomLaunch;
+if(nMS<0){
+    //alert("This is a date BEFORE the Axiom Launched (June 27, 2105).")
+    var x = new Date();
+    x.setTime(earthDate);
+    var newDate = x.toUTCString(); 
+    //document.getElementById("result").innerHTML = calendar2 + newDate;
+        document.getElementById("result").innerHTML = "This is a date BEFORE the Axiom Launched (June 27, 2105). At this point, the Axiom hasn't launched and its clock hasn't started.";
+
+}else{
+    //Subtract distance from 1970 to 2105. Multiply or divide remaining milliseconds. Add distance back in.
+    nMS*=yearFactor;
+    nMS+=axiomLaunch;
+    //nMS = Math.round(nMS);
+    //https://www.w3schools.com/jsref/jsref_settime.asp
+    var x = new Date();
+    x.setTime(nMS);
+    var newDate = x.toUTCString(); 
+          document.getElementById("result").innerHTML = calendar2 + newDate;
+}
+
+            //document.getElementById("demo").innerHTML = axiomMS;
+//alert(axiomMS);
+
+/*There is no specified date when the Axium launched. All that is know for certain
+is that the ship was launched in the year 2105 and returned to Earth
+700 years later (supposedly).
+
+Footage showing the Axiom (or some other ship like it) shows to be midday.
+*/
+//alert(earthDate);
+} else { /* Invalid date */ }
+}
+
+//var earthDate = new Date(Date.UTC(year, month2, day2);
+//alert(earthDate);
+/*function myFunction() {
+  var x = document.getElementById("myDate").value;
+  document.getElementById("demo").innerHTML = x;
+}*/
+
+
+</script>
+<h2>24-hour and 25-hour clock conversion</h2>
+<h3>Convert a time on one clock to the equivalent time on the other.</h3>
+<table>
+    <tr>
+        <th>Hours</th>
+        <th>Minutes</th>
+    </tr>
+    <tr>
+        <td><input type="number" id="hour" value="" min = "0"></td>
+        <td><input type="number" id="minute" value="" min = "0"></td>
+    </tr>
+</table>
+
+<p>Click a button to convert the time.</p>
+
+<button onclick="to25hour()">24hr -> 25 hour clock</button>
+<button onclick="to24hour()">25 hr -> 24 hour clock</button>
+
+<p><strong>Note:</strong> input elements with type="number" are not supported in IE 9 and earlier versions.</p>
+
+<p id="clock"></p>
+<p id="clock2"></p>
+
+<script>
+//https://www.w3schools.com/jsref/dom_obj_number.asp
+var factor;
+var tick;
+var tick2;
+function to25hour(){
+    tick = "24 hour clock: ";
+    tick2 = "25 hour clock: ";
+    factor = (25/24);
+    convert();
+}
+function to24hour(){
+    tick = "25 hour clock: ";
+    tick2 = "24 hour clock: ";
+    factor = (24/25);
+    convert();
+}
+function convert() {
+  var hour = document.getElementById("hour").value;
+  var minute = document.getElementById("minute").value;
+  var n = minute.toString();
+  if(minute>59){
+      //If minute field is above 60, converts to hh:mm
+      var multiple = Math.floor(minute/60);
+      
+      minute-=60*multiple;
+      hour+=multiple; 
+  }
+  
+  if(minute<10 && n.length<2){
+      minute = "0" + minute;
+  }
+  document.getElementById("clock").innerHTML = tick + hour + ":" + minute;
+  //hour*=60;
+  //minute = minute+hour;
+  minute = Number(hour*60) + Number(minute);
+  //var minute = hour*60 + xminute;
+  //minute+=hour;
+  //alert(minute + " minutes");
+  var result = minute*factor;
+  //alert(result + " minutes");
+  
+  var newMinute = Math.floor(result%60);
+  if(newMinute<10){
+      newMinute = "0" + newMinute;
+  }
+  var newHour = Math.floor(result/60);
+  
+
+  
+  //var 25hour
+  document.getElementById("clock2").innerHTML = tick2 + newHour + ":" + newMinute;
+}
+</script>
+
+<a href = "https://www.imsdb.com/scripts/Wall-E.html">WALL-E Movie Script</a>
+<br>
+<a href = "https://pixar.fandom.com/wiki/Axiom">Axiom Pixar Fandom Page</a>
+<br>
+
+<p><a href = "https://www.youtube.com/watch?v=82zngsgHE2o">WALL-E scene "2805 A.D."</a>
+<a href = "https://youtu.be/82zngsgHE2o?t=119">1:59</a> and <a href = "https://youtu.be/82zngsgHE2o?t=151">2:31</a>
+show the Axiom, and ships like it, being launched in late morning, midday or afternoon. There isn't any specific time indicated when these ships launched, 
+so we'll assume they launched at 12:00 PM. The video says the robot crews tend to guest needs “24 hours a day.” However, according to Youtube video 
+<a href = "https://www.youtube.com/watch?v=SQ6Q_aA_KM0&feature=related">"Captaining the Axiom"</a>, as well as the <a href = "https://pixar.fandom.com/wiki/Axiom">Axiom Pixar Fandom Page</a>, the robot crews are said to tend to guest needs <b>"25 hours a day"</b>.
+</p>
+<br>
+<img style = "width:500px" src= "https://vignette.wikia.nocookie.net/pixar/images/d/d6/337392_170796876353816_100002705143230_217492_370298797_o.jpg/revision/latest?cb=20120106005851">
+<p>Every year there was four quartly reports. In the year 2105, there is only one report.
+The time of year can't be deduced from this.</p>
+
+<p>WALL-E was released <a href = "https://en.m.wikipedia.org/wiki/WALL-E">June 27, 2008</a>. Let's assume the Axium launced on that same date in 2105, June 27, at 12:00 PM.</p>
+<p>The Axiom was in space for 700 years, returning to Earth in 2805. In fact, the Captain himself announces the 700th anniversary. 
+During morning announcements (footage can be found <a href = "https://www.youtube.com/watch?v=NA20zXFALL0&app=desktop">here.</a>), the Captain announces its day 255,642 on the Axiom, which, according to the Captain, is 700 years. 
+He also shifts the clocks back 3 hours from 12:30 PM (when he woke up) to 9:30 AM.</p>
+
+<p>255,642/700 = 365.202857143 days/year</p>
+<h1>24 Hour Day</h1>
+<table style="width: 100%">
+<tbody>
+<tr>
+<td style="width: 50%;"><a href="https://en.m.wikipedia.org/wiki/Gregorian_calendar">Gregorian Calendar (365.2425 days)</a></td>
+<td style="width: 50%;"><a href="https://en.m.wikipedia.org/wiki/Tropical_year">Tropical Year (365.2417 days)</a></td>
+</tr>
+<tr>
+<td style="width: 50%;">365.2425 * 700 = 255669.75<br /> Using the Gregorian calendar, 700 years is 255,669 3/4 days long. <br />Difference = -27.75 days <br /> The Axium is 27 days and 18 hours (3/4 of a day) behind Earth.</td>
+<td style="width: 50%;">
+365.24217 * 700 = 255669.519<br />Using Earth&rsquo;s tropical year, 700 years is 255,669 519/1000 days long.<br />Difference = -27.519&nbsp;days.<br />The Axium is 27 days and 12.456 hours (24 * 519/1000) behind Earth&rsquo;s calendar.<br />0.456 * 60 = 27.36 minutes<br />0.36 * 60 = 21.6 seconds<br />Axium is behind 27 days, 12 hours, 27 minutes and 21.6 seconds.
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+<h1>25 Hour Day</h1>
+<table style="width: 100%;">
+<tbody>
+<tr>
+<td style="width: 50%;"><a href="https://en.m.wikipedia.org/wiki/Gregorian_calendar">Gregorian Calendar (365.2425 days)</a></td>
+<td style="width: 50%;"><a href="https://en.m.wikipedia.org/wiki/Tropical_year">Tropical Year (365.2417 days)</a></td>
+</tr>
+<tr>
+<td style="width: 50%;">24 hours a day * 365.2425 = 8765.82 hours / year <br /> 25 hours a day * 365.202857143 = 9130.07142858 hours per year<br /> 9130.07142858 / 8765.82 = 1.04155360578<br /> 255,642*1.04155360578 = 266264.846889 Earth days (the actual Earth time Axium spent in space, which is more than 700 years.<br /> 266264.846889/365.2425 = 729.008390012 years<br /> 0.008390012 * 356.2425 = 2.98887884991 days<br /> 0.98887884991 * 24 = 23.7330923978 hours<br /> 0.7330923978 * 60 = 43.985543868 minutes<br /> 0.985543868 * 60 = 59.13263208 seconds<br /> The Axium is 29 years, 2 days, 23 hours, 43 minutes and 59.13263208 seconds behind the Gregorian Calendar.</td>
+<td style="width: 50%;">24 hours a day * 365.24217 = 8765.81208 hours / year<br /> 25 hours a day * 365.202857143 = 9130.07142858 hours per year<br /> 9130.07142858 / 8765.81208 = 1.04155454683<br /> 255,642 * 1.04155454683 = 266265.087461 days<br /> 266265.087461/365.24217 = 729.009707343 years<br /> 0.009707343 * 365.24217 = 3.54553102225 days<br /> 0.54553102225 * 24 = 13.092744534 hours<br /> 0.092744534 * 60 = 5.56467204 minutes<br /> 0.56467204 * 60 = 33.8803224 seconds<br /> The Axium is 29 years, 3 days, 13 hours, 5 minutes and 33.8803224 seconds behind Earth&rsquo;s tropical years.</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
