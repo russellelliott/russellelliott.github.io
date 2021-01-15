@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Axiom Calendar</title>
+		<style>
+            table, th, td {
+              border: 1px solid black;
+              /*background-color:white;*/
+            }
+            input[type=number]{
+                width: 60px;
+            }
+            h1, h2, h3{
+                color:#4a5439;
+            }
+            body {
+              background-image: url('https://2.bp.blogspot.com/-af7h99sy1Wc/UwJGw_6yoaI/AAAAAAAAFBw/Dpra4P5Pgq4/s1600/MAC_Space_Background.jpg');
+              background-repeat: no-repeat;
+              background-attachment: fixed;
+              background-size: cover;
+            }
+            /*p, blockquote{
+                color:tomato;
+            }*/
+            /*https://www.w3schools.com/css/css_link.asp*/
+
+            /* unvisited link */
+            a:link {
+              color: lightgrey;
+            }
+            /* visited link */
+            a:visited {
+              color: dodgerblue;
+            }
+            .thrust{
+                transform: rotate(165deg);
+            }
+        </style>
+	</head>
+
+	<body>
+	    <table style = "width:100%; background-color:white;">
+        <tr>
+            <td>
+                <h1><a href = "axiom.html">Timekeeping on The Axiom</a></h1>
+            </td>
+            <td>
+                <h1><a style = "color:#4a5439;" href = "axiomcalendar.html">Calendar on the Axiom</a></h1>
+            </td>
+        </tr>
+    </table>
+	    
+	    
+	    
+	    <table style = "width:100%; background-color:white;">
+	        <tr>
+	            <th style = "width:50%">Axiom Calendar</th>
+	            <th style = "width:50%">Specific Date Tester</th>
+	        </tr>
+	        <tr>
+	            <td>
+	                
+	                <p>Let's follow our assumptions that the Axiom launced on Saturday, June 27, 2105.</p>
+            	    <p>The days skipped repeat in this pattern: Monday, Thursday, Sunday, Wednesday, Saturday, Tuesday, Friday, Monday</p>
+            	    <ul>
+            	        <li>The year 2106 is not a leap year.</li>
+            	        <li>The Gregorian Calendar is used to calculate dates.</li>
+            	    </ul>
+            	    <p><a href = "https://www.youtube.com/watch?v=uOL2W9JQmo8">Another Axiom commercial for your viewing pleasure.</a></p>
+            	    <table>
+            	        <tr>
+            	            <th># of days skipped</th>
+            	            <th>Days after launch</th>
+            	            <th>Day skipped</th>
+            	        </tr>
+            	        <tr>
+            	            <td>1</td>
+            	            <td>24</td>
+            	            <td>Monday, July 20, 2105</td>
+            	        </tr>
+            	        <tr>
+            	            <td>2</td>
+            	            <td>48</td>
+            	            <td>Thursday, August 13, 2105</td>
+            	        </tr>
+            	        <tr>
+            	            <td>3</td>
+            	            <td>72</td>
+            	            <td>Sunday, September 6, 2105</td>
+            	        </tr>
+            	        <tr>
+            	            <td>4</td>
+            	            <td>96</td>
+            	            <td>Wednesday, September 30, 2105</td>
+            	        </tr>
+            	        <tr>
+            	            <td>5</td>
+            	            <td>120</td>
+            	            <td>Saturday, October 24, 2105</td>
+            	        </tr>
+            	        <tr>
+            	            <td>6</td>
+            	            <td>144</td>
+            	            <td>Tuesday, November 17, 2105</td>
+            	        </tr>
+            	        <tr>
+            	            <td>7</td>
+            	            <td>168</td>
+            	            <td>Friday December 11, 2105</td>
+            	        </tr>
+            	        <tr>
+            	            <td>8</td>
+            	            <td>192</td>
+            	            <td>Monday, January 4, 2106</td>
+            	        </tr>
+            	        <tr>
+            	            <td>9</td>
+            	            <td>216</td>
+            	            <td>Thursday, January 28, 2106</td>
+            	        </tr>
+            	        <tr>
+            	            <td>10</td>
+            	            <td>240</td>
+            	            <td>Sunday, Februrary 21, 2106</td>
+            	        </tr>
+            	        <tr>
+            	            <td>11</td>
+            	            <td>264</td>
+            	            <td>Wednesday, March 17, 2106</td>
+            	        </tr>
+            	        <tr>
+            	            <td>12</td>
+            	            <td>288</td>
+            	            <td>Saturday, April 10, 2106</td>
+            	        </tr>
+            	        <tr>
+            	            <td>13</td>
+            	            <td>312</td>
+            	            <td>Tuesday, May 4, 2106</td>
+            	        </tr>
+            	        <tr>
+            	            <td>14</td>
+            	            <td>336</td>
+            	            <td>Friday, May 28, 2106</td>
+            	        </tr>
+            	        <tr>
+            	            <td>15</td>
+            	            <td>360</td>
+            	            <td>Monday, June 21, 2106</td>
+            	        </tr>
+            	        <tr>
+            	            <td>16</td>
+            	            <td>384</td>
+            	            <td>Thursday, July 15, 2106</td>
+            	        </tr>
+            	        <tr>
+            	            <td>...</td>
+            	            <td>...</td>
+            	            <td>...</td>
+            	        </tr>
+            	        <tr>
+            	            <td>38</td>
+            	            <td>912</td>
+            	            <td>Sunday, December 25, 2107</td>
+            	        </tr>
+            	    </table>
+            	    <p>The date removed is 5 days sooner in common years, or 6 days sooner in leap years. This is because the clostest number 24 can evenly multiply to is 360 days, 5-6 days shorter than the year.</p>
+            	    
+	            </td>
+	            <td>
+	                
+	                <h1>Specific Date Tester</h1>
+	    <h3>Enter a Date in this Date field to test if a specific date will be skipped on the Axiom.</h3>
+	    <p><strong>Note: </strong>Any date before June 27, 2105 is the same on the Axiom and Earth, as that is when the Axiom is launched. Any time before then is measured on Earth, as at this point, the Axiom hasn't left.</p>
+	    <a href = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Minimum and Maximum Dates</a>
+<blockquote>It should be noted that the maximum Date is not of the same value as the maximum safe integer (Number.MAX_SAFE_INTEGER is 9,007,199,254,740,991). 
+Instead, it is defined in ECMA-262 that a maximum of ±100,000,000 (one hundred million) days relative to January 1, 1970 UTC (that is, April 20, 271821 BCE ~ September 13, 275760 CE) 
+can be represented by the standard Date object (equivalent to ±8,640,000,000,000,000 milliseconds).</blockquote>
+		<input type="date" id="myDate" oninput = "dates2()" value="">
+		<input type="number" id="moreDays" value="" min = "0" oninput = "change()" placeholder = "Days">
+		
+		
+		<button onclick="dates2()">Test Date</button>
+
+		<p id="demo2">&nbsp;</p>
+<table style = "background-color:tomato">
+    <tr>
+        <th>Days<br>(inclusive)</th>
+        <th>Number of days<br>skipped up to this date</th>
+        <th>Will this day be skipped?</th>
+    </tr>
+    <tr>
+        <td><p id="resultA">&nbsp;</p></td>
+        <td><p id="skips">&nbsp;</p></td>
+        <td><p id="skipped">&nbsp;</p></td>
+    </tr>
+</table>
+<h2>How do I know if a day is/isn't going to be skipped?</h2>
+<p>If the number of days from the Axiom's launch and the date in question (inclusive) is a positive number divisible by 24, then that day will be skipped.</p>
+
+
+<table style = "background-color:mediumseagreen">
+    <tr>
+        <th>Earth Clock</th>
+        <th>Axiom Clock</th>
+        <th>Axiom Clock<br>Better</th>
+    </tr>
+    <tr>
+        <td>Day: <label id="daysA">0</label><br> Hour: <label id="hours">0</label></td>
+        <td>Day: <label id="daysB">0</label><br> Hour: <label id="hours2">0</label></td>
+        <td>Day: <label id="daysC">0</label><br> Hour: <label id="hours3">0</label></td>
+    </tr>
+    <tr>
+        <td colspan = "3"><button style="display: block; margin: 0 auto;" onclick = "start()">Start</button></td>
+    </tr>
+</table>
+		
+		<script>
+		    function start(){
+		        setInterval(setTime, 1000);
+		    }
+		    var totals = 0;
+		    function setTime(){
+    	    totals++;
+    	    document.getElementById("hours").innerHTML = totals%24;
+    	    document.getElementById("daysA").innerHTML = Math.floor(totals/24);
+    	    
+    	    document.getElementById("hours2").innerHTML = totals%25;
+    	    document.getElementById("daysB").innerHTML = Math.floor(totals/25);
+    	    //axiom+=(Math.floor(totals/25));
+    	    
+    	    document.getElementById("hours3").innerHTML = totals%25;
+    	    //var axiom = Math.floor(totals/25);
+    	    //var axiom = Math.round(totals/25);
+    	    var ship = totals/25;
+    	    var earth = totals/24;
+    	    var diff = earth-ship;
+    	    //var diff = earth-axiom;
+    	    //axiom+=diff;
+    	    /*var skip = skip2;
+    	    axiom = (Math.floor(totals/25))+skip;
+    	    //axiom*=(25/24);
+    	    //axiom = Math.floor(axiom);
+    	    if(axiom%24 == 0 && axiom>0){
+    	        //axiom+=1;
+    	        skip+=1;
+    	    }*/
+    	    //document.getElementById("days3").innerHTML = (axiom + diff).toFixed(4);
+    	    document.getElementById("daysC").innerHTML = Math.floor(totals/25) + Math.floor(diff);
+    	}
+		</script>
+
+
+<script>
+//var launch = Date.UTC(2105, 5, 27);
+function change(){
+        var moreDays = document.getElementById("moreDays").value;
+        var axiomLaunch = Date.UTC(2105, 5, 27);
+        //var date = new Date(axiomLaunch.getTime());
+        var mili = 1000*60*60*24;
+        //Dates are counted inclusively, as a calendar does. June 27, 2105 is the first day of the Axiom's voyage.
+        var date = new Date(axiomLaunch+moreDays*(mili-1));
+        //alert(date);
+        document.getElementById('myDate').valueAsDate = date;
+        //document.getElementById('myDate').value = date.toDateInputValue();
+        //https://stackoverflow.com/questions/6982692/how-to-set-input-type-dates-default-value-to-today
+        //alert("ball");
+
+    }
+    function dates2(){
+        var input = document.getElementById( 'myDate' ).value;
+        var d = new Date( input );
+        if ( !!d.valueOf() ) { // Valid date
+        var n = d.toUTCString(); 
+            year = d.getUTCFullYear();
+            month = d.getUTCMonth();
+            var month2 = month+1;
+            day = d.getUTCDate();
+            var day2 = day+1;
+            //alert(day2 + "/" + month2 + "/" + year);
+            //alert(day + "/" + month + "/" + year);
+              document.getElementById("demo2").innerHTML = n;
+        var earthDate = Date.UTC(year, month, day);
+              document.getElementById("resultA").innerHTML = earthDate;
+            
+    }
+	       //axiomLaunch: Get number of miliseconds from 1970 to 2105 (when the axiom launched)
+//June = 6th month, but in 0-11 it is 5
+//27 is day
+
+//Number of milliseconds since 1/1/1970 of the Axiom launch
+var axiomLaunch = Date.UTC(2105, 5, 27);
+//https://www.w3schools.com/jsref/jsref_gettime.asp
+//get number of milliseconds between 1/1/1970 and 6/27/2105
+//If date is before launch, return the date. Do the algorythm otherwise.
+//var d = new Date();
+//var axiomMs = axiomLaunch.getTime();
+var nMS = earthDate;
+nMS-=axiomLaunch;
+//alert(nMS);
+if(nMS<0){
+    //alert("This is a date BEFORE the Axiom Launched (June 27, 2105). At this point, the Axiom hasn't launched and its clock hasn't started.");
+    
+    document.getElementById("resultA").innerHTML = "NaN";
+}else{
+    //https://stackoverflow.com/questions/57986123/create-calendar-by-javascript
+                //var table = document.getElementById("calendar");
+                
+                //Resets table
+                //table.innerHTML = "";
+                //https://stackoverflow.com/questions/7271490/delete-all-rows-in-an-html-table
+
+                //var htmlstring = "";
+                
+    //Subtract distance from 1970 to 2105. Multiply or divide remaining milliseconds. Add distance back in.
+    //var diff = earthDate.getTime()-axiomLaunch.getTime();
+    //dMS = day miliseconds
+    var dMS = 1000*60*60*24;
+    //diff = Math.floor(diff/dMS);
+    //diff/=dMS;
+    var days = nMS/dMS;
+    //Includes June 27, 2105, launch date.
+    days+=1;
+    document.getElementById("resultA").innerHTML = days;
+    document.getElementById("moreDays").value = days;
+    //Axiom days are 25 hours long. 24 axiom days are the same as 25 earth days. On the Axiom calendar, every 25th day is skipped.
+    var skips = Math.floor(days/24);
+    var skipped = Boolean(days%24 == 0);
+    //var skipped = (days)
+    document.getElementById("skips").innerHTML = skips;
+    document.getElementById("skipped").innerHTML = skipped;
+
+    
+     //table.insertAdjacentHTML('beforeend', htmlstring);
+    
+    /*nMS*=yearFactor;
+    nMS+=axiomLaunch;
+    //nMS = Math.round(nMS);
+    //https://www.w3schools.com/jsref/jsref_settime.asp
+    var x = new Date();
+    x.setTime(nMS);
+    var newDate = x.toUTCString(); 
+          document.getElementById("resultA").innerHTML = newDate;*/
+}
+	        
+	    }
+</script>
+	                
+	                
+	                
+	                
+	                
+	            </td>
+	        </tr>
+	    </table>
+	    <h1>Axiom Calendar</h1>
+	    <table style = "background-color:dodgerblue">
+	        <tr>
+	            <th>Number of Days<br>After Axiom Launch</th>
+	            <th>Show/Hide Dates</th>
+	            <th>Start Date</th>
+	        </tr>
+	        <tr>
+	            <td>
+	                <input type="number" id="days" min="0" oninput = "daysX()" placeholder = "Days">
+	                <table style = "background-color:mediumseagreen">
+	                    <tr>
+	                        <th>Days</th>
+	                        <th>Years</th>
+	                    </tr>
+	                    <tr>
+	                        <td><input type="number" id="days2" min="0" oninput = "toDays()" placeholder = "Days"></td>
+	                        <td><input type="number" id="years" min="0" oninput = "toYear()" placeholder = "Years"></td>
+	                    </tr>
+	                </table>
+	           </td>
+	            <td>
+	                <button onclick = "show()">Show Dates</button>
+	                <button onclick = "hide()">Hide Dates</button>
+	                <br>
+	                <button onclick = "onlySkip()">Show Only Skipped dates</button>
+	            </td>
+	            <td><input type="date" id="birthday"></td>
+	        </tr>
+	        <tr>
+	            <td colspan = "3"><button style="display: block; margin: 0 auto;" onclick = "generate()">Generate</button></td>
+	        </tr>
+	    </table>
+        
+        <table>
+            <tr>
+                <th colspan = "2" style = "background-color:yellow">Width of Calendar</th>
+            </tr>
+            <tr>
+                <th style = "background-color: darkorange">Multiples of 7</th>
+                <th style = "background-color: darksalmon">Multiples of 24</th>
+            </tr>
+            <tr>
+                <td style = "background-color: darkorange">
+                    <input type="radio" name="browser" onclick="myFunction2(this.value)" value="7" checked>7 Days<br>
+                    <input type="radio" name="browser" onclick="myFunction2(this.value)" value="14">14 Days<br>
+                    <input type="radio" name="browser" onclick="myFunction2(this.value)" value="28">28 Days<br>
+                    <input type="radio" name="browser" onclick="myFunction2(this.value)" value="364">364 Days<br>
+                </td>
+                <td style = "background-color: darksalmon">
+                    <input type="radio" name="browser" onclick="myFunction2(this.value)" value="24">24 Days<br>
+                    <input type="radio" name="browser" onclick="myFunction2(this.value)" value="48">48 Days<br>
+                    <input type="radio" name="browser" onclick="myFunction2(this.value)" value="96">96 Days<br>
+                    <input type="radio" name="browser" onclick="myFunction2(this.value)" value="360">360 Days<br>
+                </td>
+            </tr>
+        </table>
+          
+          <input type="radio" name="browser" onclick="myFunction2(this.value)" value="period">Length of Period (School Days + Break Days)<br>
+
+          Width of Calendar: <input type="text" value = "7" id="result2" readonly>
+        
+        
+        <script>
+        //https://www.w3schools.com/tags/att_input_type_radio.asp
+        //https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_radio_value3
+        function myFunction2(browser) {
+          document.getElementById("result2").value = browser;
+          if(browser == "7"){
+              week = 7;
+          }
+          if(browser == "14"){
+              week = 14;
+          }
+          if(browser == "24"){
+              week = 24;
+          }
+          if(browser == "28"){
+              week = 28;
+          }
+          if(browser == "48"){
+              week = 48;
+          }
+          if(browser == "96"){
+              week = 96;
+          }
+          if(browser == "period"){
+              week = period;
+              document.getElementById("result2").value = period;
+          }
+          if(browser == "360"){
+              week = 360;
+          }
+          if(browser == "364"){
+              week = 364;
+          }
+          generate();
+        }
+        </script>
+        <ul>
+            <li>Weekends are highlighted <span style = 'background-color:orange;'>orange.</span></li>
+            <li>Days skipped are highlighted <span style = 'background-color:tomato;'>red.</span></li>
+            <li>Weekdays aren't colored.</li>
+        </ul>
+        <p>If the Axiom's days are 25 hours long, 24 Axiom days are the same as 25 Earth days. 
+        Every 24th day is skipped as to keep the calendar in sync with the Earth's calendar.</p>
+        <div>
+          <table id="calendar" style = "background-color:white;">
+            <tr>
+              <th>S</th>
+              <th>M</th>
+              <th>T</th>
+              <th>W</th>
+              <th>T</th>
+              <th>F</th>
+              <th>S</th>
+            </tr>
+          </table>
+        </div>
+                
+        <script>
+        var week = 7;
+        
+        //var hider = false;
+        /*function hide(){
+            hider == 1;
+            days();
+        }
+        function show(){
+            hider == 0;
+            days();
+        }
+        */
+        var factor;
+        var count;
+        var start;
+        var stylus = "";
+        var loop;
+        var begin;
+        //begin = new Date();
+        var display = 0;
+        function hide(){
+            display = 1;
+            generate();
+        }
+        function show(){
+            display = 2;
+            generate();
+        }
+        function onlySkip(){
+            display = 3;
+            generate();
+        }
+        var input;
+        var daysz;
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        var dates = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+        function displayTest(){
+            if(display==3){
+                input = document.getElementById( 'birthday' ).value;
+                //begin = new Date( input );
+                begin = new Date("June 26, 2105");
+                begin.setDate(begin.getDate()+(start)*24);
+                daysz = "<td " + stylus + ">" + dates[begin.getDay()] + " " + months[begin.getMonth()] + " " + begin.getDate() + " " + begin.getFullYear() + "<br>" + 
+                "Day: " + start + "</td>";
+            }
+            else if(display == 2){
+                    input = document.getElementById( 'birthday' ).value;
+                    //begin = new Date( input );
+                    begin = new Date("June 26, 2105");
+                    begin.setDate(begin.getDate()+start);
+                    daysz = "<td " + stylus + ">" + dates[begin.getDay()] + " " + months[begin.getMonth()] + " " + begin.getDate() + " " + begin.getFullYear() + "<br>" + 
+                    "Day: " + start + "</td>";
+                    //begin.getDate()
+                }else{
+                    daysz = "<td " + stylus + ">" + count + "</td>";
+                }
+        }
+        function generate(){
+            //if(week == 0){
+                //week == 7;
+            //}
+            //https://stackoverflow.com/questions/57986123/create-calendar-by-javascript
+                var table = document.getElementById("calendar");
+                
+                //Resets table
+                table.innerHTML = "";
+                //https://stackoverflow.com/questions/7271490/delete-all-rows-in-an-html-table
+
+                var htmlstring = "";
+                
+                //number of weeks
+                //for (var i = 1; i <= 5; i++) {
+                  //open tr tag
+                  htmlstring += "<tr>";
+                  //number of days
+                  
+                  //var count;
+                  start = 1;
+                  
+                  //Number of periods (year/periods);
+                  //if(cycles>0){
+                      //loop = cycles;
+                  //}else{
+                      //loop = 1;
+                  //}
+                  
+                  //If the period and cycle fields aren't filled, they are made to equal 1.
+                  if(period == 0){
+                      cycles = 1;
+                  }
+                  if(cycles == 0){
+                      cycles = 1;
+                  }
+                  //This determines total length of the year
+                  for(var k=1; k<=cycles; k++){
+                      //htmlstring+= "<td colspan = '7'>" + "Period " + k + "</td>";
+
+                      //htmlstring += "</tr>";
+                      htmlstring += "<tr>";
+                      //htmlstring += "<td colspan='7'>" + "Month "+ k + "</td>";
+                      //htmlstring += "<tr>";
+                  //}
+                  //Length of a period (schooling+break)
+                  for (var i = 1; i <= period; i++) {
+                    count = start;
+                    //count*=24;
+                    //daysz*=24;
+                    if(count>28){
+                        dateCount();
+                        
+                        
+                        //htmlstring += "</tr>";
+                        //htmlstring += "<tr>";
+                        //for(var j=0; j<1; j++){
+                            //htmlstring += "<td>" + "end" + "</td>";
+                        //}
+                        //htmlstring += "</tr>";
+                        //htmlstring += "<tr>";
+                    }
+                    //if(count>28){
+                        
+                    //}
+                    
+                    //Sundays and Saturdays = weekend
+                    if(i%7==2||i%7==1){
+                        //count = 0;
+                        
+                        //https://www.javascript.com/learn/strings
+                        
+                        //var style = "color:green;";
+                        //style = \"please\";
+                        //style = 'background-color:green;'
+                        stylus = "style = 'background-color:orange;'";
+                        if(i%24==0){
+                            stylus = "style = 'background-color:tomato;'";
+                        }
+                    }else if(i%24==0){
+                        stylus = "style = 'background-color:tomato;'";
+                    }else{
+                        stylus = "";
+                    }
+                    //style = ""\"please\""";
+                    //alert(style);
+                    //var daysz = "<td " + stylus + ">" + count + "</td>";
+                    displayTest();
+                    
+                    //print 1 to 28 with td tag
+                    htmlstring += daysz;
+                    
+                    //if i divide by 7 and remainder is 0
+                    //This ends the current week and makes a new one.
+                    if (i % week == 0) {
+                        //Doing it here makes "end" appear after every week.
+                        //htmlstring += "<td>" + "end" + "</td>";
+                      htmlstring += "</tr>";
+                        if(count%28==0){
+                            htmlstring += "<td>" + "&nbsp" + "</td>";
+                        }
+                      htmlstring += "<tr>";
+                      //Doint it here makes it appear on sunday
+                      //htmlstring += "<td>" + "end" + "</td>";
+                    }
+                    start++;
+                  };
+                  //
+                //htmlstring+= "<td colspan = '7'>" + "The end of the period" + "</td>";
+                  htmlstring += "</tr>";
+                //};
+                //console.log(htmlstring);
+                  }
+                  
+                  
+                  //https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML
+                table.insertAdjacentHTML('beforeend', htmlstring);
+        }
+        var period;
+        var weekschool;
+        var cycles;
+        var days;
+        function dateCount(){
+            factor = Math.floor(count/28);
+            //count = count-(28*factor);
+        }
+        var tropical = 365.24217;
+        var years;
+        function toYear(){
+            years = document.getElementById("years").value;
+            years = Number(years);
+            document.getElementById("days2").value = years*tropical;
+        }
+        function toDays(){
+            days = document.getElementById("days2").value;
+            days = Number(days);
+            document.getElementById("years").value = days/tropical;
+        }
+            function daysX(){
+                //var space = "";
+                
+                //Number of days in a year
+                
+                days = document.getElementById("days").value;
+                days = Number(days);
+
+
+                period = days;
+                //Number of periods
+                cycles = Math.floor(days/period);
+                cycledays = cycles*period;
+                
+                }
+                
+    document.getElementById("calendar").innerHTML = calendar;
+
+            //}
+        </script>
+	</body>
+</html>
