@@ -1,0 +1,205 @@
+<html>
+<head>
+<title>Metric to ABT and ABT to Metric</title>
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://static.codehs.com/gulp/e0ca42a1ffe3827e1f4e87d672f73133399f9f95/chs-js-lib/chs.js"></script>
+-->
+
+<style>
+
+body {
+  background-image: url('https://i.pinimg.com/originals/58/bd/82/58bd827dc0715589a5a86872feb66eae.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+
+</head>
+
+<body>
+    <table style = "width:100%; background-color: dodgerblue">
+	       <tr>
+	           <th style = "width: 50%">
+	               <h1>
+	                   <a style = "color:black; background-color:yellow" href = "metrictime.html">Metric Time</a>
+	               </h1></th>
+	           <th style = "width: 50%">
+	               <h1>
+	                   <a style = "color:black;" href = "frenchcalendar.html">French Republican Calendar</a>
+	               </h1>
+	           </th>
+	       </tr> 
+	    </table>
+<h1>Metric to ABT and ABT to Metric</h1>
+<p>ABT (Anglo-Babylonian Time) is the time system we are all accustomed to: One day is 24 hours, each hour is 60 minutes, and each minute is 60 seconds. The Babylonians had a <a href = "https://en.wikipedia.org/wiki/Sexagesimal">base 60 system</a>, leading modern civilization to have 60-second minutes and 60-minute hours. There are 86,400 seconds in a day.
+</p>
+<p>Metric Time is a new time system which divides time into simpler metric units. Each day is 10 hours, each hour is 100 minutes and each minute is 100 seconds. There are 100,000 seconds in a day.</p>
+<p>0:00 is midnight, 2:50 is 6AM, 5:00 is noon, 7:50 is 6PM.</p>
+<p>This program converts ABT to Metric Time and vice versa in hours and minutes.</p>
+<a href = "https://www.pinterest.ca/pin/11610911509491989/">Clock Background</a>
+<table>
+    <tr>
+        <th>Metric Time</th>
+        <th>ABT Time</th>
+    </tr>
+    <tr>
+        <td>1 Metric Second</td>
+        <td>0.864 ABT Seconds</td>
+    </tr>
+    <tr>
+        <td>1 Metric Minute</td>
+        <td>1.44 ABT Minutes</td>
+    </tr>
+    <tr>
+        <td>1 Metric Hour</td>
+        <td>2.4 ABT Hours</td>
+    </tr>
+</table>
+
+
+<!--<canvas
+width="400"
+height="200"
+class="codehs-editor-canvas"
+></canvas>-->
+
+
+<input type="number" id="hours" min="0" oninput = "" placeholder = "Hours">
+<input type="number" id="minutes" min="0" oninput = "" placeholder = "Minutes">
+<p style = "background-color: DodgerBlue" id = "clock1"><span>Metric Time 0:00</span></p>
+<p style = "background-color: tomato" id = "clock2">Anglo-Babylonian Time 0:00</p>
+
+<button style = "background-color: DodgerBlue" onclick = "metricToABT()">Metric to ABT</button>
+<button style = "background-color: tomato" onclick = "ABTtoMetric()">ABT to Metric</button>
+
+<br>
+
+<script>
+function metricToABT(){
+    //var hoursM = readInt("Metric Hour (0-10): ");
+    var hoursM = document.getElementById("hours").value;
+    hoursM = Number(hoursM);
+    //var minutesM = readInt("Minute (0-100): ");
+    var minutesM = document.getElementById("minutes").value;
+    minutesM = Number(minutesM);
+    //alert(hoursM);
+
+    //var secondsM = readInt("Seconds (0-100): ");
+    var secondsM = 0;
+    if(minutesM>99){
+        var factor = Math.floor(minutesM/100);
+        minutesM-=100*factor;
+        hoursM+=factor;
+    }
+    if(minutesM<10){
+        minutesM = "0" + minutesM;
+    }
+    //convert time to metric seconds, then convert to abt seconds, then to hours and minutes
+    document.getElementById("clock1").innerHTML = "Metric Time " + hoursM + ":" + minutesM;
+    
+    hoursM *= 10000;
+    minutesM *=100;
+    secondsM = secondsM+minutesM+hoursM;
+    secondsM*=0.864;
+    
+    //println(secondsM);
+    var ABThour = Math.floor(secondsM/3600);
+    var ABTmin = secondsM/3600 - Math.floor(secondsM/3600);
+    ABTmin = Math.floor(ABTmin*60);
+    if(ABTmin >=60){
+        ABThour++;
+        ABTmin-=60;
+    }
+    if(ABTmin<10){
+        ABTmin = "0" + ABTmin;
+    }
+    document.getElementById("clock2").innerHTML = "Anglo-Babylonian Time " + ABThour + ":" + ABTmin;
+    //alert(ABThour + ":" + ABTmin + " Anglo-Babylonian Time");
+}
+function ABTtoMetric(){
+    //var hoursABT = readInt("ABT Hour (0-24): ");
+    var hoursABT = document.getElementById("hours").value;
+    hoursABT = Number(hoursABT);
+    //var minutesABT = readInt("Minute (0-60): ");
+    var minutesABT = document.getElementById("minutes").value;
+    minutesABT = Number(minutesABT);
+    var secondsABT = 0;
+    if(minutesABT>59){
+        var factor = Math.floor(minutesABT/60);
+        minutesABT-=60*factor;
+        hoursABT+=factor;
+    }
+    if(minutesABT<10){
+        minutesABT = "0" + minutesABT;
+    }
+    document.getElementById("clock2").innerHTML = "Anglo-Babylonian Time " + hoursABT + ":" + minutesABT;
+
+    hoursABT*=3600;
+    minutesABT*=60;
+    secondsABT = secondsABT+minutesABT+hoursABT;
+    secondsABT/=0.864;
+    var mSecDay = 100*100;
+    var Mhour = Math.floor(secondsABT/mSecDay);
+    var Mmin = secondsABT/mSecDay - Math.floor(secondsABT/mSecDay);
+    Mmin = Math.floor(Mmin*100);
+    if(Mmin >=100){
+        Mhour++;
+        Mmin-=100;
+    }
+    if(Mmin<10){
+        Mmin = "0" + Mmin;
+    }
+    document.getElementById("clock1").innerHTML = "Metric Time " + Mhour + ":" + Mmin;
+
+}
+</script>
+
+<br>
+<a href = "https://zapatopi.net/metrictime/#converse">Metric time and Anglo-Babylonian Time</a>
+<br>
+<a href = "https://en.wikipedia.org/wiki/Decimal_time">Decimal time - Wikipedia</a>
+<br>
+<a href = "https://minkukel.com/clocks/metric-clock/">Minkukel Metric Clock</a>
+<br>
+<a href = "http://www.jonknoll.com/projects/metricclock.html">Jonknoll Metric Clock</a>
+<br>
+<a href = "https://mathwithbaddrawings.com/2015/04/16/metric-time/">Math With Bad Drawings Metric Time</a>
+<br>
+<a href = "https://www.youtube.com/watch?v=RJM2FjK1zfw">The Time France Used Metric Time</a>
+<p>This article talks about the conversion of our timekeeping system to Metric Time. The article sugests changing the length of TV programs but keeping them elapses for the same "time". A 30-minute show would run for 30 metric minutes, around 21 minutes. 60 minute shows would run for 60 metric minutes, around 42 minutes. Here's what it reads on this regard. </p>
+<q style="color:brown;">There’s nothing magical about these “half-hour” and “hour” lengths, obviously. They were chosen simply because they were nice round numbers. But under the new system, they aren’t! Since it’d be silly to divide the TV schedule into 21-minute intervals, presumably television networks would tweak the lengths to go more evenly into an hour.
+
+If so, they’d have two choices: 5 blocks per hour (i.e., two dramas, plus a sitcom), or 4 blocks per hour (i.e., two dramas).
+
+If you choose the former, shows will be 4% shorter than today, leading to accelerated storytelling. (It’s the same change that’s unfolded over the last 20 years, as increased ad time has squeezed the shows themselves to be shorter.)</q>
+<p>That in itself isn't a bad idea. We are all accustomed to 30-minute and 60-minute shows. There's even a show called <i><a href = "https://www.cbs.com/shows/60_minutes/">"60 Minutes"</a></i>. Shouldn't we keep it 60 "minutes" long, albeit the elapsed time being shorter? There are a few problems that can arise.</p>
+<ul>
+    <li>Considering shows have operated under the 60-60-24 system since their inception, it would be difficult and time consuming to adjust. A solution would be to keep the shows at their current length. Half an hour is 50 minutes and an hour is 100 minutes. TV providers won't have to worry about readjusting time stamps or altering time divisions for shows. The lengths of time will be the same, albeit the numbers are a little different.</li>
+    <li>Some shows can't simply be shortened. Some shows, like <i><a href = "https://en.wikipedia.org/wiki/60_Minutes">60 minutes</a></i> are very information intensive. The show is 60 minutes long, 42 minutes excluding commericals, which is exactly 60 metric minutes. The show can run as is without commercials to fit into the time slot, and people are willing to skip commercials if given the option. Without revenue, advertisers wouldn't support this, either opting to shorten the show's content to fit commericals, or better yet, leave things unchanged so this conflict won't ensue. After all, the length of the content is 60 "minutes" as opposed to the whole show itself, which is better fitting for the objective of the TV show, providing you X minutes of information, as opposed to being X minutes long and providing you with Y minutes of information. This can also be seen in the show <a href = "https://www.cnn.com/cnn10">CNN 10</a>, which is always exactly 10 minutes long, hence the "10" in its name. It isn't 10 minutes of solid information; the show is 10 minutes long. It's sloan even is "New Explained in 10 Minutes", which implies the news is explained in the span of 10 minutes.</li>
+</ul>
+
+<h1><a href = "https://www.youtube.com/watch?v=rP3nZ13AULs">The Simpsons on Metric Time</a></h1>
+<br>
+<a href = "https://deadhomersociety.com/2011/08/24/quote-of-the-day-889/"><img src = "https://deadhomersociety.files.wordpress.com/2011/08/theysavedlisasbrain3_thumb.png?w=512&h=384"></a>
+<br>
+
+<br>
+“Principal Skinner, how’s your transportation project coming?” – Lisa Simpson
+<br>
+“Oh, excellent.  Not only are the trains now running on time, they’re running on metric time.  Remember this moment, people, eighty past two on April 47th, it’s the dawn of an enlightened Springfield.” – Principal Skinner
+<p>Not only are the hours split into 100 minutes, the months are split into (100?) days, juding that there are at least 47 days in April, aparently. Our year is 365-366 days long, so it can only fit 3 of those 100 day months, and 65-66 days left over.</p>
+<p>Or perhaps each month was 50 days long. In that case, there would be seven 50-day months in a year, with an extra 15-16 days left over.</p>
+<p>Or what if each month was 47 days? There would be seven 47-day months and 36-37 days left over.</p>
+<p>Or maybe the year consits of 12 100-day months. (12,000 days in a year)</p>
+
+<h1>French Republican Calendar</h1>
+<p>This method of time keeping is associated with the <a href = "frenchcalendar">French Republican Calendar.</a></p>
+</body>
+</html>
