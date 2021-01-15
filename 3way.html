@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>3-Way Calendar Converter</title>
+		<style>
+        
+        body {
+          background-image: url('https://i.pinimg.com/originals/58/bd/82/58bd827dc0715589a5a86872feb66eae.jpg');
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+        }
+        
+        
+        
+        table, th, td {
+          border: 1px solid black;
+          vertical-align: top;
+        }
+        input[type=number]{
+            width: 60px;
+        }
+        </style>
+        <link rel="icon" 
+        type="image/png" 
+        href="https://www.pngkey.com/png/detail/256-2560866_events-calander-png-orange-calendar-png-icon.png" />
+	</head>
+
+	<body>
+        <h1 style = "background-color:white">Convert date between <span style = "color:crimson">Gregorian Calendar</span> and <span style = "color:blue">International Fixed Calendar</span> and <span style = "color:sienna">Reddit 8-Day Week Calendar</span></h1>
+        <p><a href = "https://en.wikipedia.org/wiki/Gregorian_calendar">The Gregorian Calendar</a> is the most commonly used calendar in the world. 
+        A solar calendar, it has 365 days i. a common year, or 366 on leap years.</p>
+        <h2>How do I know if this year is a <a href = "https://www.mathsisfun.com/leap-years.html">Leap Year</a>?</h2>
+        <p><span style = "background-color:mediumseagreen">Yes: Leap Years are any year that can be exactly divided by 4 (such as 2016, 2020, 2024, etc)</span>	
+        </p>
+        <p><span style = "background-color:orangered">No: except if it can be exactly divided by 100, then it isn't (such as 2100, 2200, etc)</span>	
+        </p>
+        <p><span style = "background-color:mediumseagreen">Yes: except if it can be exactly divided by 400, then it is (such as 2000, 2400)</span>
+        </p>
+        <a href = "https://docs.microsoft.com/en-us/office/troubleshoot/excel/determine-a-leap-year">Leap</a>
+        <p>While the calendar is renowned for its accuracy, there are some 
+        <a href = "https://www.infoplease.com/curious-history-gregorian-calendar">issues</a> in the organization of the calendar: </p>
+        <ul>
+            <li>It cannot be divided into equal halves or quarters</li>
+            <li>The number of days per month is haphazard.</li>
+            <li>Months and years may begin on any day of the week, making the preceding calendar useless.</li>
+            <li>Holidays pegged to specific dates may also fall on any day of the week.</li>
+        </ul>
+        
+        <a href = "https://www.pinterest.ca/pin/11610911509491989/">Clock Background</a>
+        <a href = "https://www.pngkey.com/detail/u2w7t4o0i1u2q8u2_events-calander-png-orange-calendar-png-icon/">Tab Background</a>
+        
+        <h1>Date Converter</h1>
+        <table style = "background-color:white">
+            <tr>
+                <th>Gregorian</th>
+                <th>IFC</th>
+                <th>Reddit 8-Day Week Calendar</th>
+            </tr>
+            <tr>
+                <td>
+                    <table style = "background-color:tomato">
+                        <tr>
+                            <th>Month</th>
+                            <th>Day</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form>
+                                  <select id="mySelect" oninput = "one()">
+                                    <option value="0">January</option>
+                                    <option value="1">Feburary</option>
+                                    <option value="2">March</option>
+                                    <option value="3">April</option>
+                                    <option value="4">May</option>
+                                    <option value="5">June</option>
+                                    <option value="6">July</option>
+                                    <option value="7">August</option>
+                                    <option value="8">September</option>
+                                    <option value="9">October</option>
+                                    <option value="10">November</option>
+                                    <option value="11">December</option>
+                                  </select>
+                                </form>
+                            </td>
+                            <td><input type = "number" id = "day" oninput = "one()"></td>
+                            <!--<td><input type = "number" id = "year" oninput = "ifc()"></td>-->
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table style = "background-color:powderblue">
+                        <tr>
+                            <th>Month</th>
+                            <th>Day</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form>
+                                  <select id="mySelect2" oninput = "two()">
+                                    <option value="0">January</option>
+                                    <option value="1">Feburary</option>
+                                    <option value="2">March</option>
+                                    <option value="3">April</option>
+                                    <option value="4">May</option>
+                                    <option value="5">June</option>
+                                    <option value="6">Sol</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                  </select>
+                                </form>
+                            </td>
+                            <td><input type = "number" id = "day2" oninput = "two()"></td>
+                            <!--<td><input type = "number" id = "year2" oninput = "ifc()"></td>-->
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table style = "background-color:tan; margin-left: auto; margin-right: auto;">
+                        <tr>
+                            <th>Month</th>
+                            <th>Day</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form>
+                                  <select id="mySelect3" oninput = "three()">
+                                    <option value="0">January</option>
+                                    <option value="1">Feburary</option>
+                                    <option value="2">March</option>
+                                    <option value="3">April</option>
+                                    <option value="4">May</option>
+                                    <option value="5">June</option>
+                                    <option value="6">July</option>
+                                    <option value="7">August</option>
+                                    <option value="8">September</option>
+                                    <option value="9">October</option>
+                                    <option value="10">November</option>
+                                    <option value="11">December</option>
+                                  </select>
+                                </form>
+                            </td>
+                            <td><input type = "number" id = "day3" oninput = "three()"></td>
+                            <!--<td><input type = "number" id = "year" oninput = "ifc()"></td>-->
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <th colspan = "2">Gregorian Date</th>
+                <th colspan = "2">Day Number</th>
+            </tr>
+            <tr>
+                <td colspan = "2">
+                    <p id="demo">&nbsp;</p>
+                    <!--<input type = "text" id = "demo" readonly>-->
+                </td>
+                <td colspan = "2">
+                    <p id = "dayNum">&nbsp;</p>
+                    <!--<input type = "number" id = "dayNum" readonly>-->
+                </td>
+            </tr>
+        </table>
+        
+        <script>
+        var leap = 0;
+        var ifcDay;
+        var ifcMonth;
+        var day;
+        var month;
+        var calendar;
+        //If the checkboxc is checked, it's a leap year.
+        function check() {
+          document.getElementById("leapYear").checked = true;
+          leap == 1;
+        }
+        
+        function uncheck() {
+          document.getElementById("leapYear").checked = false;
+          leap == 0;
+        }
+        
+        function one(){
+            //This function converts from Gregorian to IFC and Reddit
+            var month = document.getElementById("mySelect").value;
+              month = Number(month);
+              //document.getElementById("demo3").innerHTML = month;
+              
+              day = document.getElementById("day").value;
+              day = Number(day);
+              
+              //Months that have 31 days are: January, March, May, July, August, October, December.
+              
+                if(month == 0 || month == 2 || month == 4 || month == 6 || month == 7 || month == 9 || month == 11){
+                    dayLimit = 31;
+                }else if(month == 1){
+                    dayLimit = 28;
+                }else{
+                    dayLimit = 30;
+                }
+                if(day>dayLimit){
+                    day = dayLimit;
+                    document.getElementById("day").value = dayLimit;
+                    day = document.getElementById("day").value;
+                    day = Number(day);
+                }
+                
+              displayDate(month, day);
+              
+              //Get number of days
+                if(month == 0){
+                    day+=0;
+                }if(month == 1){
+                    day+=31;
+                }if(month == 2){
+                    day+=59;
+                }if(month == 3){
+                    day+=90;
+                }if(month == 4){
+                    day+=120;
+                }if(month == 5){
+                    day+=151;
+                }if(month == 6){
+                    day+=181;
+                }if(month == 7){
+                    day+=212;
+                }if(month == 8){
+                    day+=243;
+                }if (month == 9){
+                    day+=273;
+                }if(month == 10){
+                    day+=304;
+                }if(month == 11){
+                    day+=334;
+                }
+                
+                toIFC(day);
+                
+                toReddit(day);
+            
+        }
+        function two(){
+            //This function converts from IFC to Gregorian and Reddit
+            ifcDay = document.getElementById("day2").value;
+            ifcDay = Number(ifcDay);
+            ifcMonth = document.getElementById("mySelect2").value;
+            ifcMonth = Number(ifcMonth);
+            
+            if(ifcMonth==12){
+                //Thirteenth month has 29 days
+                dayLimit = 29;
+            }else{
+                dayLimit = 28;
+            }
+            if(ifcDay>dayLimit){
+                document.getElementById("day2").value = dayLimit;
+                ifcDay = document.getElementById("day2").value;
+                ifcDay = Number(ifcDay);
+            }
+            
+            var gregDay = ifcMonth*28+ifcDay
+            document.getElementById("dayNum").innerHTML = gregDay;
+            gregDate(gregDay);
+            toReddit(gregDay);
+        }
+        function three(){
+            //This function converts Reddit to IFC and Gregorian
+            ifcDay = document.getElementById("day3").value;
+            ifcDay = Number(ifcDay);
+            ifcMonth = document.getElementById("mySelect3").value;
+            ifcMonth = Number(ifcMonth);
+            
+            if(ifcMonth<12){
+                dayLimit = 32;
+            }else{
+                dayLimit = 13;
+            }
+            if(ifcDay>dayLimit){
+                //day = dayLimit;
+                document.getElementById("day3").value = dayLimit;
+                ifcDay = document.getElementById("day3").value;
+                ifcDay = Number(ifcDay);
+            }
+            
+            var gregDay = ifcMonth*32 + ifcDay;
+            document.getElementById("dayNum").innerHTML = gregDay;
+            gregDate(gregDay);
+            toIFC(gregDay);
+        }
+        
+        function toGreg(){
+            //This function converts from IFC to Gregorian
+            ifcDay = document.getElementById("day2").value;
+            ifcDay = Number(ifcDay);
+            ifcMonth = document.getElementById("mySelect2").value;
+            ifcMonth = Number(ifcMonth);
+            
+            if(ifcMonth==12){
+                //Thirteenth month has 29 days
+                dayLimit = 29;
+            }else{
+                dayLimit = 28;
+            }
+            if(ifcDay>dayLimit){
+                document.getElementById("day2").value = dayLimit;
+                ifcDay = document.getElementById("day2").value;
+                ifcDay = Number(ifcDay);
+            }
+            
+            var gregDay = ifcMonth*28+ifcDay
+            document.getElementById("dayNum").innerHTML = gregDay;
+            gregDate(gregDay);
+            toReddit(gregDay);
+        }
+        function gregDate(gregDay){
+            var newYear = new Date(2001, 0, 1);
+            newYear.setDate(newYear.getDate()+gregDay-1);
+            //document.getElementById("demo").innerHTML = newYear;
+
+            var day = newYear.getDate();
+            var month = newYear.getMonth();
+            document.getElementById("day").value = day;
+            document.getElementById("mySelect").value = month;
+            
+            displayDate(month, day);
+
+        }
+        /*function reddit(){
+            //this function converts from Reddit to Gregorian
+            ifcDay = document.getElementById("day3").value;
+            ifcDay = Number(ifcDay);
+            ifcMonth = document.getElementById("mySelect3").value;
+            ifcMonth = Number(ifcMonth);
+            
+            if(ifcMonth<12){
+                dayLimit = 32;
+            }else{
+                dayLimit = 13;
+            }
+            if(ifcDay>dayLimit){
+                //day = dayLimit;
+                document.getElementById("day3").value = dayLimit;
+                ifcDay = document.getElementById("day3").value;
+                ifcDay = Number(ifcDay);
+            }
+            
+            var gregDay = ifcMonth*32 + ifcDay;
+            document.getElementById("dayNum").innerHTML = gregDay;
+            gregDate(gregDay);
+            ifc();
+            
+        }*/
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        function displayDate(month, day){
+            date2 = new Date(Date.UTC(2001, month, day+1));
+            dateString = months[date2.getMonth()]+ " " + date2.getDate();
+            document.getElementById("demo").innerHTML = dateString;
+        }
+        
+        /*function ifc(){
+            //function converts from Gregorian to IFC
+            var month = document.getElementById("mySelect").value;
+              month = Number(month);
+              //document.getElementById("demo3").innerHTML = month;
+              
+              day = document.getElementById("day").value;
+              day = Number(day);
+              
+              //Months that have 31 days are: January, March, May, July, August, October, December.
+              
+                if(month == 0 || month == 2 || month == 4 || month == 6 || month == 7 || month == 9 || month == 11){
+                    dayLimit = 31;
+                }else if(month == 1){
+                    dayLimit = 28;
+                }else{
+                    dayLimit = 30;
+                }
+                if(day>dayLimit){
+                    day = dayLimit;
+                    document.getElementById("day").value = dayLimit;
+                    day = document.getElementById("day").value;
+                    day = Number(day);
+                }
+                
+              displayDate(month, day);
+              
+              //Get number of days
+                if(month == 0){
+                    day+=0;
+                }if(month == 1){
+                    day+=31;
+                }if(month == 2){
+                    day+=59;
+                }if(month == 3){
+                    day+=90;
+                }if(month == 4){
+                    day+=120;
+                }if(month == 5){
+                    day+=151;
+                }if(month == 6){
+                    day+=181;
+                }if(month == 7){
+                    day+=212;
+                }if(month == 8){
+                    day+=243;
+                }if (month == 9){
+                    day+=273;
+                }if(month == 10){
+                    day+=304;
+                }if(month == 11){
+                    day+=334;
+                }
+                
+                toIFC(day);
+                
+                toReddit(day);
+                
+        }*/
+        function toIFC(day){
+            //Convert to IFC
+            document.getElementById("dayNum").innerHTML = day;
+        
+            ifcMonth = Math.floor(day/28);
+            ifcDay = day%28;
+            if (ifcMonth==13){
+                ifcMonth--;
+                ifcDay+=28;
+            }
+            if(ifcDay<=0){//An error occured in which the final day of the year was the "0th day" of the first month. This solves this issue, decreasing the month by 1 and adding 28 to the day number in the event the day of the month is at or below zero.
+                ifcMonth--;
+                ifcDay+=28;
+            }
+            
+            document.getElementById("day2").value = ifcDay;
+            document.getElementById("mySelect2").value = ifcMonth;
+        }
+        function toReddit(day){
+            //Converts to Reddit
+            ifcMonth = Math.floor(day/32);
+            ifcDay = day%32;
+            if(ifcDay<=0){
+                ifcDay+=32;
+                ifcMonth--;
+            }
+            
+            document.getElementById("day3").value = ifcDay;
+            document.getElementById("mySelect3").value = ifcMonth;
+        }
+        
+        </script>
+        <h1>Dates of the&nbsp;<a href="https://en.wikipedia.org/wiki/Season">Seasons</a></h1>
+<table style = "background-color:white">
+<tbody>
+<tr>
+<th>Northern Hemisphere&nbsp;<a href="https://en.wikipedia.org/wiki/Equinox">Equinox</a>&nbsp;and&nbsp;<a href="https://en.wikipedia.org/wiki/Solstice">Solstice</a>&nbsp;Dates</th>
+<th>Gregorian</th>
+<th>IFC</th>
+<th>Reddit</th>
+</tr>
+<tr>
+<td><a href="https://www.almanac.com/content/first-day-spring-vernal-equinox">Spring</a></td>
+<td><a href="https://www.space.com/881-date-changed-start-spring.html">March 20</a></td>
+<td>March 18</td>
+<td>March 15</td>
+</tr>
+<tr>
+<td><a href="https://www.almanac.com/content/first-day-summer-summer-solstice">Summer</a></td>
+<td>June 21</td>
+<td>Sol 4</td>
+<td>June 12</td>
+</tr>
+<tr>
+<td><a href="https://www.almanac.com/content/first-day-fall-autumnal-equinox">Fall</a></td>
+<td><a href="https://www.calendarpedia.com/when-is/autumn.html">September 22</a></td>
+<td>September 13</td>
+<td>September 9</td>
+</tr>
+<tr>
+<td><a href="https://www.almanac.com/content/first-day-winter-winter-solstice">Winter</a></td>
+<td>December 21</td>
+<td>December 19</td>
+<td>December 3</td>
+</tr>
+</tbody>
+</table>
+        <h1>Information about the Calendars</h1>
+        <p>Both of these calendars start on Janaury 1 Gregorian.</p>
+        <table style = "width:100%; background-color:white; align:top">
+            <tr>
+                <th style = "width:50%"><a href = "https://en.wikipedia.org/wiki/International_Fixed_Calendar">International Fixed Calendar</a></th>
+                <th style = "width:50%"><a href = "https://www.reddit.com/r/Lightbulb/comments/cuyle7/we_should_switch_to_an_8_day_week_calendar/">Reddit 8-Day Week Calendar</a></th>
+            </tr>
+            <tr>
+                <td>
+                    <p>The <a href = "https://en.wikipedia.org/wiki/International_Fixed_Calendar">International Fixed Calendar</a>, 
+                    one of the numberous proposed <a href = "https://en.wikipedia.org/wiki/Calendar_reform">calendar reforms, solves many of these issues:</a></p>
+                    <ul>
+                        <li>The first day of every month starts on Sunday. The calendars are the same each year.</li>
+                        <li>Each month is the same length (28 days), other than June and December, which have 29 days.</li>
+                        <ul>
+                            <li>December always has 29 days, while June has 29 days every leap year.</li>
+                        </ul>
+                        <li>The calendar has 13 months, with a new month, Sol, inserted between June and July, representing the Summer Solstice.</li>
+                    </ul>
+                    <p>Unfortunately, the Calendar stopped being used in 1989. Find more information about the life and death of the calendar <a href = "https://www.citylab.com/life/2014/12/the-world-almost-had-a-13-month-calendar/383610/">here.</a></p>
+                    <a href = "https://www.citylab.com/life/2014/12/the-world-almost-had-a-13-month-calendar/383610/"><img style = "height: 500px" src = "https://equanimityfoundation.files.wordpress.com/2016/07/75cff99da.png"></a>
+
+                </td>
+                
+                <td>
+                    
+<br>
+<p>Posted in the r/lightbulb subreddit, this calendar sports 8 day weeks, with each month having 32 days, except December, which only has 13 in common years, or 14 in leap years.</p>
+<p>Bonusday is the 8th day of the week, the day after Saturday. This creates a 3 day weekend between Saturday and Sunday while also maintaining the 5-day work week.</p>
+<p>Because the week is 8 days long, starts on Sunday, and each date of each month is the same day of the week, there are no Friday the 13ths. However, there would be Friday the 13ths if the first day of the week was Monday.</p>
+
+<!--<ol>
+<li>January (January 1-Feburary 1)</li>
+<li>Feburary (Februrary 2-March 5)</li>
+<li>March (March 6-April 6)</li>
+<li>April (April 7-May 8)</li>
+<li>May (May 9-June 9)</li>
+<li>June (June 10-July 11)</li>
+<li>July (July 12-August 12)</li>
+<li>August (August 13-September 13)</li>
+<li>September (September 14-October 15)</li>
+<li>October (Ocotber 16-November 17)</li>
+<li>November (November 17-December 18)</li>
+<li>December (Decmeber 18-December 31)</li>
+</ol>-->
+<a href = "https://www.reddit.com/r/Lightbulb/comments/cuyle7/we_should_switch_to_an_8_day_week_calendar/"><img style = "height: 500px" src = "https://i.imgur.com/jbfFjga.png"></a>
+
+                </td>
+                
+            </tr>
+        </table>
+	</body>
+</html>
