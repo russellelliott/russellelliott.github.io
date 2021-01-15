@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Random Person Selector</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://static.codehs.com/gulp/6f9fa7aac1773c93e18bb40d2d280ec1720c671a/chs-js-lib/chs.js"></script>
+
+
+<!--<style>
+canvas {
+    border: 1px solid black;
+    display: inline-block;
+    vertical-align: top;
+}
+
+pre {
+    border: 1px solid black;
+    display: inline-block;
+    width: 400px;
+    height: 500px;
+    background-color: #F5F5F5;
+}
+</style>
+-->
+
+<style>
+    .button{
+          font-size: 36px;
+          text-align: center;
+    }
+</style>
+</head>
+
+<body>
+<h1>Random Person Selector</h1>
+Click on the buttons on the left to organize the list in a variety of ways.
+<br>
+Click on the buttons on the right to get information on how each of these organization methods work.
+
+<!--<h3>Programmed by Russell Elliott</h3>-->
+
+<!--
+This code below is for printing out the names on the screen. This is sourced from the codeHS console and canvas, the language and printing medium for the code.
+-->
+<canvas
+width="0"
+height="0"
+class="codehs-editor-canvas"></canvas>
+<pre id="console"></pre>
+
+<button onclick="random()" style = "background-color: yellow">Pick One Random Person!</button>
+<button onclick="info()" style = "background-color: yellow">How does this mode work?</button>
+
+<br>
+<br>
+<button onclick="eliminator()" style = "background-color: red">SINGLE Person (no repeats)!</button>
+<button onclick="info2()" style = "background-color: red">How does this mode work?</button>
+
+<br>
+<br>
+<button onclick="eliminatorX()" style = "background-color: red">MULTIPLE People! (no repeats)!</button>
+<button onclick="info3()" style = "background-color: red">How does this mode work?</button>
+
+<br>
+<br>
+<button onclick="howMany()" style = "background-color: yellowgreen">How many people are left on the list? Who are they?</button>
+<button onclick="howManyInfo()" style = "background-color: yellowgreen">How does this mode work?</button>
+<br>
+<br>
+<button onclick="makeGroups()" style = "background-color: yellowgreen">How many per group? (no repeats)!</button>
+<button onclick="info4()" style = "background-color: yellowgreen">How does this mode work?</button>
+
+<br>
+<br>
+<button onclick="redo()" style = "background-color: lightblue">Regenerate the list of names to use again!</button>
+<button onclick="redoInfo()" style = "background-color: lightblue">How does this mode work?</button>
+<script>
+//Informs the user how many people are left and who are they.
+function howMany(){
+    alert("There are " + students.length + " people left on the list.");
+    alert("They are: " + students);
+}
+function howManyInfo(){
+    alert("This mode informs a user how many people are left on the list and who they are.");
+}
+//Info about random() function
+function info(){
+    alert("This mode simply selects a person at random. Note: The person has a chance of being selected again.")
+}
+function redoInfo(){
+    alert("This mode does NOT reset the entire program. No groups will be deleted. All the program does is regenerates the list of names you started with so you can use them again to make new groups if need be.")
+}
+//A list of people
+var students = [
+"Harry Potter",
+"Luke Skywalker",
+"Amelia Earhart",
+"Chewbacca",
+"Michelle Obama",
+"Hannah Montana",
+"Abraham Lincoln",
+"A trash can",
+"Eliss Dee",
+"Tim Horton",
+"Tiger Woods",
+"Princess Leia",
+"A fridge",
+"Hamburger"
+        ];
+//This is for the random() function, a function which selects from the list, with each member staying on the list and having a chance of being selected again. However, all the other methods remove names from the list, requiring this seperate list to preserve the list of names.
+var studentsNoGone = [];
+//I have to create a seperate array for the random selector mode that doesn't remove any students from the list. The other modes remove students upon being randomly selected, but this mode randomly selects a student without them being removed, giving them a chance of being selected again.
+for(var i=0; i<students.length; i++){
+    studentsNoGone.push(students[i]);
+}
+function random(){
+    var chosen = [];
+	var victim = Randomizer.nextInt(0,studentsNoGone.length-1);
+	//alert(students[victim]);
+	println(studentsNoGone[victim]);
+	
+
+}
+
+//resets the lists if need be.
+function redo(){
+//Only resets the list if the list of people is empty.
+//The length of the array for the random() method, which aren't deleted, serve as an archive for the list of names. The list can only be refilled if it isn't already refilled to the length of the archive array.
+    if(students.length==0){
+        for(var i=0; i<studentsNoGone.length; i++){
+            students.push(studentsNoGone[i]);
+        }
+        alert("SUCCESS: The list has been regenerated.")
+    }else{
+        alert("NO REGENERATION NEEDED: The list is already regenerated.");
+    }
+}
+//Info about eliminator() function.
+function info2(){
+    alert("This mode chooses a person, but removes them from the array, so they can't be chosen again. This is practical for making groups, as random people can be put together, without the same person being chosen twice.");
+}
+
+//This function shuffles the names. 
+//Code found on https://www.frankmitchell.org/2015/01/fisher-yates/
+//The webpage also includes a link to that page, as well as to a page including the code needed to reset a webpage.
+function shuffle (array) {
+  var i = 0
+    , j = 0
+    , temp = null
+
+  for (i = array.length - 1; i > 0; i -= 1) {
+    j = Math.floor(Math.random() * (i + 1))
+    temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
+  }
+}
+shuffle(students);
+
+//Takes out the student randomly chosen until the list is empty. from there, the empty() function alerts the user that the list is empty.
+function eliminator(){
+    
+    var victim = students[0];
+    revealVictim();
+    if(students.length==0)
+    {
+        empty();
+    }
+}
+
+//Info about the eliminatorX() function.
+function info3(){
+alert("This mode chooses a number of people a user so chooses, but removes said selected people from the array, so they can't be chosen again. This is practical for making groups quickly, as random people can be put together, without the same person being chosen twice.");
+}
+
+//Takes out the selected number of students (provided there are that many students left) until the list is empty. from there, the empty() function alerts the user that the list is empty.
+    function eliminatorX(){
+        if(students.length>0){
+            var numberGone = readInt("How many people do you want to be chosen? There are " + students.length + " students that haven't been chosen yet. ");
+        }else{
+            empty();
+        }
+    if(numberGone>students.length){
+        alert("There are only " + students.length + " students, but you want to choose " + numberGone + " students, which is too much!");
+    }else{
+        for(var i=0; i<numberGone; i++){
+            revealVictim();
+        }
+    }
+}
+//A level of abstraction, the revealVictim() function prints out the person's name and deletes them if the list is not empty yet. This enables the operation to be easily used in a loop without having to type the whole algorithm again. The revealVictim function is called whenever a person is randomly chosen in random selection.
+function revealVictim(){
+    var victim = students[0];
+        if(students.length!=0){
+            println(victim);
+        }
+        students.remove(victim);
+}
+
+//This function splits the list of people into groups. The user specifies how many people should be in each group. This method divides the list into groups, taking possible remainders into account.
+function makeGroups(){
+    var numPerGroup = readInt("There are " + students.length + " students. How many per group? ");
+    //This ensures the user doesn't divide by zero and crash the program.
+    //This also ensures the number per group doesn't exceed the population itself, to which diving a group into more sections than the individual population generates less than one person for group, which is impossible.
+    if(numPerGroup>0 && numPerGroup<=students.length){
+        var numGroups = students.length/numPerGroup;
+        var numGroups = Math.round(numGroups-0.5);
+        var remainder = students.length%numPerGroup;
+        if(students/numGroups<1){
+            alert("Dividing " + students.length + " students into " + numGroups + " groups is impossible. Please try another number.");
+        }else{
+            alert(students.length + " students split into groups with " + numPerGroup + " people in each = " + numGroups + " groups.");
+            alert("Remainder: " + remainder);
+        }
+        while(students.length>0){
+            for(var j=0; j<numGroups; j++);
+            {
+                for(var k=0; k<numPerGroup; k++){
+                    revealVictim();
+                }
+                println("");
+            }
+        }
+        for(var l=0; l<remainder; l++){
+            revealVictim();
+        }
+    }else if(numPerGroup==0){
+        alert("ERROR: You can't divide a population into zero groups (that is dividing by zero). Please use a positive integer above zero.")
+    }else if(numPerGroup<0){
+        alert("ERROR: There can't be a negative amount of people in a group. Please use a positive integer above zero.")
+    }else if(numPerGroup>students.length){
+        alert("ERROR: You tried splitting the population of people into more groups than individual people. A population can't have less than one individual per group. Please use a number less than the number of people left on the list.")
+    }
+    
+}
+
+//info about the makeGroups() function.
+function info4(){
+    alert("This mode splits the list of people into a number of groups a user so chooses.");
+}
+
+//The empty() function alerts the user the list of people is empty. It is also called in any situation if a user attempts to sort a list of people that is empty because all the people have already been sorted into groups and removed from the inital list to prevent them from being randomly chosen again unless the user resets the program.
+//There is a small delay for when the alert appears as to prevent the alert from appearing before the last person on the lsit appears. This is to prevent confusion, as all the people on the list are present before it is indicated the list is empty.
+function empty() {
+  setTimeout(function(){ alert("The list is empty now."); }, 30);
+}
+    
+</script>
+<br>
+<br>
+<hr>
+<font color = "orangered">Want to clear <b>all</b> the names and reset <b>all</b> the groups? Click the "Reset/Clear All" button below.</font>
+<br>
+<h4>WARNING: This action can NOT be undone.</h4>
+<br>
+<button class = "button" style = "background-color:orangered" onclick="window.location.href = 'javascript:history.go(0)';"><b>Reset/Clear All</b></button>
+<br>
+<hr>
+<!--
+The code for reseting the webpage is sourced from htmlgoodies.com, link sourced in the hyperlink below:
+-->
+<b>Outsourced code used for the program. Hyperlinks are provided to their respective pages and code.</b>
+<br>
+<a href = "https://www.htmlgoodies.com/tutorials/getting_started/article.php/3479551/Reloading-The-Page.htm#itself">How to refresh a page</a>
+<br>
+<a href = "https://www.frankmitchell.org/2015/01/fisher-yates/">How to scramble an array</a>
+</body>
+</html>
