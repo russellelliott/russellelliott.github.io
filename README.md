@@ -6,6 +6,5 @@ https://github.com/russellelliott/
 My Github Pages repo can be found at:  
 https://github.com/russellelliott/russellelliott.github.io/
 
-And, soon, you can see my customized homepage at:
-
+My customized homepage is at:
 http://russellelliott.github.io/
