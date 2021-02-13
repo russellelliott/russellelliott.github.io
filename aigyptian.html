@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Aigyptian Calendar</title>
+		<style>
+		    table, th, td {
+              border: 1px solid black;
+              border-collapse: collapse;
+            }
+		</style>
+	</head>
+
+	<body>
+	    <h1>Aigyptian Calendar</h1>
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+
+
+
+<script>
+function myFunction2() {
+  var month = document.getElementById("mySelect").value;
+  month = Number(month);
+  //document.getElementById("demo3").innerHTML = month;
+  
+  var day = document.getElementById("day").value;
+  day = Number(day);
+  
+  var year = document.getElementById("year").value;
+  year = Number(year);
+  
+  date2 = new Date(Date.UTC(year, month, day+1));
+  //If the year is 1, sets year to 1, not 1901
+  date2.setFullYear(year);
+  var days = Math.floor(year*(365+(365/1507))+day)
+  
+  //document.getElementById("demo2").innerHTML = days;
+  
+  var dateTime = days*mili;
+  document.getElementById("demo").innerHTML = dateTime;
+  
+  //Number of seconds from Jan 1, 0000 to Jan 1, 1970
+  //var gap = 62167219200000
+  //var date = new Date(dateTime - gap + mili);
+  document.getElementById("demo").innerHTML = date2;
+  
+  var daysFrom = date2.getTime() - epochStart.getTime()
+  daysFrom = Math.floor(daysFrom/mili)-1;// - 1;
+  document.getElementById("dayNum").innerHTML = daysFrom;
+  document.getElementById("numDays").value = daysFrom;
+  //alert(daysFrom);
+  
+  repeatTest(daysFrom);
+
+  
+  
+  //document.getElementById("demo").innerHTML = date2;
+  //document.getElementById('myDate').valueAsDate = date2;
+}
+
+function repeatTest(days){
+    if(days%1507 == 0){
+        var verdict = "Yes.";
+    }else{
+        var verdict = "No.";
+    }
+    document.getElementById("repeat").innerHTML = verdict;
+}
+</script>
+
+</body>
+</html>
+
+<table style = "width: 100%">
+    <tr>
+        <th style = "width:33%">Gregorian Date</th>
+        <th style = "width:33%">Number of Days after Epoch</th>
+        <th style = "width:33%">Is this day repeated?</th>
+    </tr>
+    <tr>
+        <td>
+            <table>
+                <tr>
+                    <th>Month</th>
+                    <th>Day</th>
+                    <th>Year</th>
+                </tr>
+                <tr>
+                    <td>
+                        <form>
+                          <select id="mySelect" oninput = "myFunction2()">
+                            <option value="0">January</option>
+                            <option value="1">Feburary</option>
+                            <option value="2">March</option>
+                            <option value="3">April</option>
+                            <option value="4">May</option>
+                            <option value="5">June</option>
+                            <option value="6">July</option>
+                            <option value="7">August</option>
+                            <option value="8">September</option>
+                            <option value="9">October</option>
+                            <option value="10">November</option>
+                            <option value="11">December</option>
+                          </select>
+                        </form>
+                    </td>
+                    <td><input type = "number" id = "day" oninput = "myFunction2()"></td>
+                    <td><input type = "number" id = "year" oninput = "myFunction2()"></td>
+                </tr>
+            </table>
+            <p id="demo">&nbsp;</p>
+        </td>
+        <td>
+            <input type = "number" id = "numDays" step="1507" oninput = "toGreg()"><br>
+            <p id="dayNum">&nbsp;</p>
+        </td>
+        <td><p id="repeat">&nbsp;</p></td>
+    </tr>
+</table>
+
+
+<script>
+//March 6, 2017 is a repeated day on the calendar
+//Janaury = 0, March = 2
+var epochStart = new Date(Date.UTC(2017, 2, 6));
+var mili = 1000*60*60*24;
+
+    
+function toGreg(){
+    //Convert number of days after epoch start to Gregorian Date
+    var days = document.getElementById("numDays").value;
+    days = Number(days);
+    var date = new Date(epochStart.getTime()+mili*(days+1));
+    document.getElementById('demo').innerHTML = date;
+    
+    
+    //document.getElementById('myDate').valueAsDate = date;
+    //myFunction();
+    
+    //var daysFrom = date.getTime() - epochStart.getTime()
+    //daysFrom = Math.floor(daysFrom/mili) - 1;
+    document.getElementById("dayNum").innerHTML = days;
+    //document.getElementById("numDays").value = daysFrom;
+    //alert(daysFrom);
+  
+    repeatTest(days);
+    
+    if ( !!date.valueOf() ) { // Valid date
+        var n = date.toUTCString(); 
+        year = date.getUTCFullYear();
+        month = date.getUTCMonth();
+        var month2 = month+1;
+        day = date.getUTCDate();
+    }
+    //var x = new Date(year, month, day);
+    //var x = Date.UTC(year, month, day);
+    document.getElementById("day").value = day-1;
+    document.getElementById("year").value = year;
+    document.getElementById("mySelect").value = month;
+
+}
+/*function myFunction(){
+    var daysFrom = date.getTime() - epochStart.getTime()
+    daysFrom = Math.floor(daysFrom/mili) - 1;
+    document.getElementById("dayNum").innerHTML = daysFrom;
+    //document.getElementById("numDays").value = daysFrom;
+    //alert(daysFrom);
+  
+    repeatTest(daysFrom);
+}*/
+function myFunctionx() {
+    //Convert Gregorian date to number of days after epoch start.
+    var x = document.getElementById("myDate").value;
+    document.getElementById("demo").innerHTML = x;
+    var d = new Date(x);
+    if ( !!d.valueOf() ) { // Valid date
+        var n = d.toUTCString(); 
+        year = d.getUTCFullYear();
+        month = d.getUTCMonth();
+        var month2 = month+1;
+        day = d.getUTCDate();
+    }
+    //var x = new Date(year, month, day);
+    //var x = Date.UTC(year, month, day);
+    document.getElementById("day").value = day;
+    document.getElementById("year").value = year;
+    document.getElementById("mySelect").value = month;
+    //document.getElementById("demo").innerHTML = n;
+    //var x = new Date(n)
+    document.getElementById("demo").innerHTML = n; //UTC String of user inputted date.
+    //document.getElementById("dayNum").innerHTML = x; ///Gets number of miliseconds
+    
+    var days = document.getElementById("numDays").value;
+    days = Number(days);
+    
+    document.getElementById("dayNum").innerHTML = days
+    if(Math.abs(days)%1507 == 0){
+        var verdict = "Yes.";
+    }else{
+        var verdict = "No.";
+    }
+    document.getElementById("repeat").innerHTML = verdict;
+    //document.getElementById("demo").innerHTML = x.getUTCMilliseconds();
+    
+    
+    /*var d = new Date( x );
+    if ( !!d.valueOf() ) { // Valid date
+        var n = d.toUTCString(); 
+        year = d.getUTCFullYear();
+        month = d.getUTCMonth();
+        var month2 = month+1;
+        day = d.getUTCDate();
+    document.getElementById("demo").innerHTML = d;*/
+}
+</script>
+        <p>The <a href = "https://calendars.wikia.org/wiki/Aigyptian_Calendar">Aigyptian Calendar</a> is a fictional calendar inspired by the books <i>Eon</i> and <i>Eternity</i> by American SF author Greg Bear. The book <i>Eternity</i> deals with an alternate universe in which Alexander the Great didn't die young and his empire didn't fragment upon his death.</p>
+        <p>To allign with the solar year, every 1507th day (4 years, 47 days) is repeated. It would produce 1507-year cycle with average year of 365 +  <sup>365</sup>&frasl;<sub>1507</sub> (365.242203) days.</p>
+        <p>Calendar Wiki user <a href = "https://calendars.wikia.org/wiki/User:Hellerick">Hellerick</a> made the Calendar Wiki article and the calendar's repeated day rule. This program calculates when the repeated days will occur in comparison to the Gregorian Calendar.</p>
+        
+        <h1>Organization of the Calendar</h1>
+        <p>Here are several ways the calendar can be organized, with the 11th day being repeated, for example.</p>
+        <table style = "width:100%">
+            <tr>
+                <th colspan = "2">Non-Perennial</th>
+                <th>Perennial</th>
+            </tr>
+            <tr>
+                <th>Calendar A</th>
+                <th>Calendar B</th>
+                <th>Calendar C</th>
+            </tr>
+            <tr>
+                <td>
+                    <table class = "center">
+                    <tbody>
+                    <tr>
+                    <td>Sunday</td>
+                    <td>Monday</td>
+                    <td>Tuesday</td>
+                    <td>Wednesday</td>
+                    <td>Thursday</td>
+                    <td>Friday</td>
+                    <td>Saturday</td>
+                    </tr>
+                    <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    </tr>
+                    <tr>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td style = "background-color: powderblue">11</td>
+                    <td style = "background-color: powderblue">11</td>
+                    <td>12</td>
+                    <td>13</td>
+                    </tr>
+                    <tr>
+                    <td>14</td>
+                    <td>15</td>
+                    <td>16</td>
+                    <td>17</td>
+                    <td>18</td>
+                    <td>19</td>
+                    <td>20</td>
+                    </tr>
+                    <tr>
+                    <td>21</td>
+                    <td>22</td>
+                    <td>23</td>
+                    <td>24</td>
+                    <td>25</td>
+                    <td>26</td>
+                    <td>27</td>
+                    </tr>
+                    <tr>
+                    <td>28</td>
+                    </tr>
+                    </tbody>
+                    </table>
+                    <p>In this calendar, the repeated day is represented by 2 calendar days encompassing 2 days of the week. Wednesday the 11th is followed by Thursday the 11.</p>
+                </td>
+                <td>
+                    <table class = "center">
+                    <tbody>
+                    <tr>
+                    <td>Sunday</td>
+                    <td>Monday</td>
+                    <td>Tuesday</td>
+                    <td>Wednesday</td>
+                    <td>Thursday</td>
+                    <td>Friday</td>
+                    <td>Saturday</td>
+                    </tr>
+                    <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    </tr>
+                    <tr>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td style = "background-color: powderblue">
+                        <table class = "center" style = "width:100%">
+                            <tr>
+                                <td>11A</td>
+                                <td>11B</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                    </tr>
+                    <tr>
+                    <td>15</td>
+                    <td>16</td>
+                    <td>17</td>
+                    <td>18</td>
+                    <td>19</td>
+                    <td>20</td>
+                    <td>21</td>
+                    </tr>
+                    <tr>
+                    <td>22</td>
+                    <td>23</td>
+                    <td>24</td>
+                    <td>25</td>
+                    <td>26</td>
+                    <td>27</td>
+                    <td>28</td>
+                    </tr>
+                    </tbody>
+                    </table>
+                    <p>In this calendar, the repeated day is represented by two calendar days, but only encompases 1 day of the week. Wednesday 11A is followed by Wednesday 11B.</p>
+                </td>
+                <td>
+                    <table class = "center">
+                    <tbody>
+                    <tr>
+                    <td>Sunday</td>
+                    <td>Monday</td>
+                    <td>Tuesday</td>
+                    <td>Wednesday</td>
+                    <td>Thursday</td>
+                    <td>Friday</td>
+                    <td>Saturday</td>
+                    </tr>
+                    <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    </tr>
+                    <tr>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td style = "background-color: powderblue">11</td>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                    </tr>
+                    <tr>
+                    <td>15</td>
+                    <td>16</td>
+                    <td>17</td>
+                    <td>18</td>
+                    <td>19</td>
+                    <td>20</td>
+                    <td>21</td>
+                    </tr>
+                    <tr>
+                    <td>22</td>
+                    <td>23</td>
+                    <td>24</td>
+                    <td>25</td>
+                    <td>26</td>
+                    <td>27</td>
+                    <td>28</td>
+                    </tr>
+                    </tbody>
+                    </table>
+                    <p>In this calendar, the repeated day is represented by one calendar day, encompassing one day of the week.</p>
+                </td>
+            </tr>
+        </table>
+        <h2>Days Repeated</h2>
+		<p>Year 0 the Aigyptian Calendar is 356 BC, <a href = "https://en.wikipedia.org/wiki/Alexander_the_Great">(Birth of Alexander the Great)</a>. Based on the locations of leap days, the first leap day on the calendar (using 356 BC as the starting year) is:</p>
+		<ul>
+		    <li>Sat, 17 Sep 356 BC Gregorian</li>
+		    <li>Fri, 16 Sep 356 BC Aigyptian Date</li>
+		    <ul>
+		        <li>Since 356 BC is a leap year according to the Gregorian Calendar, the repeated day is shown as one day behind the Gregorian calendar, as the leap day has to be undone from Feburary 29, and redone at its calculated location.</li>
+		    </ul>
+		</ul>
+		<p>20/21 July 356 BC – 10/11 June 323 BC</p>
+		<h2>Differences in Calendar Day</h2>
+		<ul>
+		    <li>If the repeated Gregorian day is in a common year (which it usually is), the Aigyptian Calendar and the Gregorian calendar read the same day. This is because the year the repeated day occured occurs after a Gregorian leap year. This is reflected by not including that date in the second column seen on the page of the list of dates, accessible by clicking the orange "Past Dates" button or the blue "Future Dates" button. This distinguishes the Aigyptian leap days not during Gregorian leap years.</li>
+		    <li>If the repeated Gregorian day is in a leap year and is after Feburary 29, the repeated Aigyptian day is one calendar day before the Gregorian date, as there the leap day on Feburary 29 must be undone, as the Aigyptian calendar has leap days in different locations relative to the calendar each year. After the repeated day on the Aigyptian Calendar, the Gregorian and Aigyptian calendar are on the same day.</li>
+		</ul>
+		<p>Here's an example of this process, with the Gregorian Calendar on top and the Aigyptian Calendar on the bottom with March 3 as the repeated day. The Februrary leap day must be undone in the Aigyptian calendar and the redone onto March 3 to allign with the seasons.</p>
+		<table style="width: 100%;">
+            <thead>
+                <tr>
+                    <th colspan="3" style="width: 37.6412%;">Februrary</th>
+                    <th colspan="5" style="width: 62.2334%;">March</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="width: 12.5000%;">27</td>
+                    <td style="width: 12.5000%;">28</td>
+                    <td style="width: 12.5000%;">29</td>
+                    <td style="width: 12.5000%;">1</td>
+                    <td style="width: 12.5000%;">2</td>
+                    <td style="width: 12.5000%;">3</td>
+                    <td style="width: 12.5000%;">4</td>
+                    <td style="width: 12.5000%;">5</td>
+                </tr>
+                <tr>
+                    <td style="width: 12.5000%;">27</td>
+                    <td style="width: 12.5000%;">28</td>
+                    <td style="width: 12.5000%;">1</td>
+                    <td style="width: 12.5000%;">2</td>
+                    <td style="width: 12.5000%; background-color:powderblue">3</td>
+                    <td style="width: 12.5000%; background-color:powderblue">3</td>
+                    <td style="width: 12.5000%;">4</td>
+                    <td style="width: 12.5000%;">5</td>
+                </tr>
+            </tbody>
+        </table>
+		
+		
+		<table>
+		    <tr>
+		        <th>Calendar</th>
+		        <th>Year Length</th>
+		        <th>Will be a day behind in ___ years</th>
+		    </tr>
+		    <tr>
+		        <th><a href = "https://en.wikipedia.org/wiki/Gregorian_calendar">Gregorian</a></th>
+		        <td>365 + <sup>1</sup>&frasl;<sub>4</sub> - <sup>1</sup>&frasl;<sub>100</sub> + <sup>1</sup>&frasl;<sub>400</sub> (365.2425) days.</td>
+		        <td><sup>1</sup>&frasl;<sub>365.2425-365.24217</sub> = 3030.30303012 years</td>
+		    </tr>
+		    <tr>
+		        <th><a href = "https://calendars.wikia.org/wiki/Aigyptian_Calendar">Aigyptian</a></th>
+		        <td>365 + <sup>365</sup>&frasl;<sub>1507</sub> (365.242203) days.</td>
+		        <td><sup>1</sup>&frasl;<sub>365.242203-365.24217</sub> = 30303.0302751 years</td>
+		    </tr>
+		    <tr>
+		        <th><a href = "https://en.wikipedia.org/wiki/Tropical_year">Tropical Year</a></th>
+		        <td>365.24217 days</td>
+		        <td>&infin; years</td>
+		    </tr>
+		</table>
+		<button style = "background-color: orange" onclick="window.location.href = 'past.html';">View Past Repeated Days (-356 - 2017)</button>
+
+		<button style = "background-color: powderblue" onclick="window.location.href = 'future.html';">View Future Repeated Days (2017 - 275757)</button>
+	    <p>Between 356 BC and 275757 AD (276113 years):</p>
+	    <ul>
+	        <li>The Gregorian Calendar will be behind <sup>276113</sup>&frasl;<sub>3030.30303012</sub> = 91.1172900055 days</li>
+	        <li>The Aigyptian Calendar will be behind <sup>276113</sup>&frasl;<sub>30303.0302751</sub> = 9.1117290084 days</li>
+	    </ul>
+	</body>
+</html>
