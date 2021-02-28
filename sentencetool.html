@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sentence Tool</title>
+		<style>
+		    table, th, td {
+              border: 1px solid black;
+            }
+            th:hover{
+                cursor:pointer;
+                background:#AAA;
+                
+            }
+            textarea { 
+                width:100%; 
+            }
+		</style>
+	</head>
+
+	<body>
+	    <h1>Sentence Tool</h1>
+	    <a href = "https://www.w3schools.com/howto/howto_js_sort_table.asp">Alphabetize a table</a>
+      
+        <p><strong>Click the headers to sort the table.</strong></p>
+        <ul>
+          <li>The first time you click, the sorting direction is ascending (A to Z,  0 to 9).</li>
+          <li>Click again, and the sorting direction will be descending (Z to A, 9 to 0).</li>
+        </ul>
+      
+		<p>This program calculates the lengths of sentences in a given text. Sentences are defined as ending in a period (.), a question mark (?), or an exclamation point (!). Click the table headers to organize the sentences in ascending or descending order of capitalization, length, or sentence number.</p>
+		<p>Add and/or past text to check here:</p>
+		<textarea id="textInput" oninput="findLongest()" onchange="findLongest()"></textarea><br/>
+		<table id = "myTable">
+		    <tr>
+		        <th>Sentence</th>
+		        <th>Length</th>
+		        <th>Index</th>
+		    </tr>
+		</table>
+		<script>
+		
+		//Sorts elements numerically.
+		function sortTable2(n) {
+          var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+          table = document.getElementById("myTable");
+          switching = true;
+          //Set the sorting direction to ascending:
+          dir = "asc"; 
+          /*Make a loop that will continue until
+          no switching has been done:*/
+          while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+              //start by saying there should be no switching:
+              shouldSwitch = false;
+              /*Get the two elements you want to compare,
+              one from current row and one from the next:*/
+              x = rows[i].getElementsByTagName("TD")[n];
+              y = rows[i + 1].getElementsByTagName("TD")[n];
+              /*check if the two rows should switch place,
+              based on the direction, asc or desc:*/
+              if (dir == "asc") {
+                  
+                if (Number(x.innerHTML) > Number(y.innerHTML)) {
+                  //if so, mark as a switch and break the loop:
+                  shouldSwitch= true;
+                  break;
+                }
+              } else if (dir == "desc") {
+                if (Number(x.innerHTML) < Number(y.innerHTML)) {
+                  //if so, mark as a switch and break the loop:
+                  shouldSwitch = true;
+                  break;
+                }
+              }
+            }
+            if (shouldSwitch) {
+              /*If a switch has been marked, make the switch
+              and mark that a switch has been done:*/
+              rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+              switching = true;
+              //Each time a switch is done, increase this count by 1:
+              switchcount ++;      
+            } else {
+              /*If no switching has been done AND the direction is "asc",
+              set the direction to "desc" and run the while loop again.*/
+              if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+              }
+            }
+          }
+        }
+		
+		//Sorts elements alphabetically
+		function sortTable(n) {
+          var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+          table = document.getElementById("myTable");
+          switching = true;
+          //Set the sorting direction to ascending:
+          dir = "asc"; 
+          /*Make a loop that will continue until
+          no switching has been done:*/
+          while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+              //start by saying there should be no switching:
+              shouldSwitch = false;
+              /*Get the two elements you want to compare,
+              one from current row and one from the next:*/
+              x = rows[i].getElementsByTagName("TD")[n];
+              y = rows[i + 1].getElementsByTagName("TD")[n];
+              /*check if the two rows should switch place,
+              based on the direction, asc or desc:*/
+              if (dir == "asc") {
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                  //if so, mark as a switch and break the loop:
+                  shouldSwitch= true;
+                  break;
+                }
+              } else if (dir == "desc") {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                  //if so, mark as a switch and break the loop:
+                  shouldSwitch = true;
+                  break;
+                }
+              }
+            }
+            if (shouldSwitch) {
+              /*If a switch has been marked, make the switch
+              and mark that a switch has been done:*/
+              rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+              switching = true;
+              //Each time a switch is done, increase this count by 1:
+              switchcount ++;      
+            } else {
+              /*If no switching has been done AND the direction is "asc",
+              set the direction to "desc" and run the while loop again.*/
+              if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+              }
+            }
+          }
+        }
+		
+		    function findLongest(){
+		        var inputString = document.getElementById("textInput").value;
+		        var sentences = inputString.split(/[!?.]/);
+		        var table = document.getElementById("myTable");
+		        table.innerHTML = "";
+		        var htmlstring = "";
+		        
+		        htmlstring+="<tr>";
+		            //htmlstring+="<th>";
+		            htmlstring+="<th";
+		            htmlstring+=" onclick = 'sortTable(0)'"
+		            htmlstring+=">";
+		                htmlstring+="Sentence";
+		            htmlstring+="</th>";
+		            //htmlstring+="<th>";
+		            htmlstring+="<th";
+		            htmlstring+=" onclick = 'sortTable2(1)'"
+		            htmlstring+=">";
+		                htmlstring+="Length";
+		            htmlstring+="</th>";
+		            htmlstring+="<th";
+		            htmlstring+=" onclick = 'sortTable2(2)'"
+		            htmlstring+=">";
+		                htmlstring+="Index";
+		            htmlstring+="</th>";
+		        htmlstring+="</tr>";
+		        
+		        
+		        for(var i=0; i<sentences.length; i++){
+		            htmlstring+="<tr>";
+    		            htmlstring+="<td>";
+    		                htmlstring+=sentences[i];
+    		            htmlstring+="</td>";
+    		            htmlstring+="<td>";
+    		                htmlstring+=sentences[i].length;
+    		            htmlstring+="</td>";
+    		            htmlstring+="<td>";
+    		                htmlstring+=i;
+    		            htmlstring+="</td>";
+		            
+		            htmlstring+="</tr>";
+		        }
+		        
+		        table.insertAdjacentHTML('beforeend', htmlstring);
+		        
+		    }
+		</script>
+		
+		<script type="text/javascript">
+            textarea = document.querySelector("#textInput");
+            textarea.addEventListener('input', autoResize, false);
+         
+            function autoResize() {
+                this.style.height = 'auto';
+                this.style.height = this.scrollHeight + 'px';
+            }
+            
+        </script>
+	</body>
+</html>
