@@ -1,235 +1,75 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title>My Computer Programs</title>
-  </head>
-  <style>
-  table {
-      border-spacing: 0;
-      width: 100%;
-      border: 1px solid black;
-    }
-    
-    th {
-      cursor: pointer;
-    }
-    
-    th, td {
-      text-align: left;
-      width:50%;
-      /*padding: 16px;*/
-    }
-    
-    tr:nth-child(even) {
-      /*background-color: #f2f2f2*/
-    }
-    body {
-      background-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-1.2.1&w=1000&q=80');
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-size: cover;
-    }
-    h1{
-        color:slateblue;
-        font-size:40px;
-    }
-    h2{
-        color:black;
-        font-size:30px;
-    }
-
-    button{
-        font-size: 36px;
-        text-align: center;
-    }
-  </style>
-  <body>
-<h1>My Programs</h1>
-<p><a href="https://www.w3schools.com/howto/howto_js_sort_table.asp">Alphabetize a table</a></p>
-<p><strong>Click the headers to sort the table.</strong></p>
-<ul>
-<li>The first time you click, the sorting direction is ascending (A to Z).</li>
-<li>Click again, and the sorting direction will be descending (Z to A).</li>
-</ul>
-<p><a href="https://unsplash.com/backgrounds/colors/gradient">Gradient Backgrounds</a></p>
-
-<h2>Text-Based Generators</h2>
-<p>These programs take a user's text as input and outputs the text in specifically organized manners.</p>
-<table>
-    <tr>
-        <th>Program Name</th>
-        <th>Date Last Modified (mm/dd/yyyy)</th>
-    </tr>
-    <tr>
-        <td>
-            <a href = "selector.html">Random Person Selector</a>
-            <p>Random Person Selector is a program I made as the 2020 Create Task for my AP Computer Science Principles class. This program takes a preset list of people, to which a user can select random people or organize them into groups.</p>
-        </td>
-        <td>
-            <ul>
-                <li>05/18/2020: Original program completed and submitted.</li>
-                <li>02/13/2021: Program redone and new features added.</li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td><a href = "sentencetool.html">Sentence Tool</a></td>
-        <td>
-            <p>02/22/21: Coded function that splits the given text into sentences. From there, the program displays the sentence, length of sentence, and sentence position and sorts them in increasing or decreasing order alphabetically (sentence) or numerically (sentence length or position).</p>
-        </td>
-    </tr>
-    <tr>
-        <td><a href = "https://colab.research.google.com/github/russellelliott/russellelliott.github.io/blob/main/Python_Word_Games.ipynb">Python Word Games</a></td>
-        <td>
-            <li>9/01/20 - 9/15/20 Completed main functionality of Hangman program</li>
-            <li>9/16/20 - 9/24/20 Completed main functionality of Word Riddle program</li>
-            <li>3/1/21: Added a feature to Word Riddle which allows the user to see words that follow the specifications provided in the game.</li>
-            </td>
-    </tr>
-</table>
-<h2>Understanding Category Names</h2>
-<ul>
-<li>Clocks/Time: This program deals with clocks and time, whether that be converting from one time keeping method to another, or calculating dates in the future.</li>
-<li>Calendars: Deal with converting one calendar to another.</li>
-<li>Generators: Generates something from user input.</li>
-<li>Games: Need I say more?</li>
-</ul>
-<h2>Clocks</h2>
-<table>
-<tbody>
-<tr>
-<th>Program Name</th>
-<th>Date Last Modified (mm/dd/yyyy)</th>
-</tr>
-<tr>
-<td><a href="metrictime.html">Metric Time</a><br /><a href="metropolistime.html">Metropolis Time</a><br /><a href="aussietime.html">Australian Metric Time</a></td>
-<td>
-<ul>
-<li>06/16/2020: Initial framework developed via CodeHS Javascript</li>
-<li>08/08/2020: Programs modified/developed in HTML/Javascript</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<h2>The Axiom</h2>
-<table>
-<tbody>
-<tr>
-<th>Program Name</th>
-<th>Date Last Modified (mm/dd/yyyy)</th>
-</tr>
-<tr>
-<td><a href="axiom.html">Timekeeping on the Axiom</a></td>
-<td>07/07/2020</td>
-</tr>
-<tr>
-<td><a href="axiomcalendar.html">Axiom Calendar</a></td>
-<td>
-<ul>
-<li>07/28/2020: Initial framework completed</li>
-<li>10/23/2020: Added a feature which allows users to see only skipped days on the Axiom as opposed to all days on the calendar</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<h2><a href = "/calendar/">Calendars</a></h2>
-<table>
-    <tr>
-        <td><a href = "/aigyptian/">Aigyptian Calendar</a></td>
-        <td>
-            <ul>
-                <li>12/11/20 - Date input code completed</li>
-                <li>12/11/20 - Calendar context information added</li>
-                <li>12/29/20 - Past and Future date calculation code completed</li>
-            </ul>
-        </td>
-    </tr>
-</table>
-<h2>Games and Generators</h2>
-<table>
-<tbody>
-<tr>
-<th>Program Name</th>
-<th>Date Last Modified (mm/dd/yyyy)</th>
-</tr>
-<tr>
-<td><a href="compliment.html">Compliment Generator</a></td>
-<td>10/26/2019</td>
-</tr>
-<tr>
-<td><a href="numbers.html">Random Number Guesser</a></td>
-<td>10/30/2019</td>
-</tr>
-<tr>
-<td><a href="rps.html">Rock, Paper, Scissors!</a></td>
-<td>10/31/2019</td>
-</tr>
-<tr>
-<td><a href="chasers.html">Chasers</a></td>
-<td>06/14/2020</td>
-</tr>
-</tbody>
-</table>
-
-<script>
-function sortTable(n) {
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("myTable");
-  switching = true;
-  //Set the sorting direction to ascending:
-  dir = "asc"; 
-  /*Make a loop that will continue until
-  no switching has been done:*/
-  while (switching) {
-    //start by saying: no switching is done:
-    switching = false;
-    rows = table.rows;
-    /*Loop through all table rows (except the
-    first, which contains table headers):*/
-    for (i = 1; i < (rows.length - 1); i++) {
-      //start by saying there should be no switching:
-      shouldSwitch = false;
-      /*Get the two elements you want to compare,
-      one from current row and one from the next:*/
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
-      /*check if the two rows should switch place,
-      based on the direction, asc or desc:*/
-      if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          //if so, mark as a switch and break the loop:
-          shouldSwitch= true;
-          break;
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <title>My Programs</title>
+    <style>
+        body {
+        height: 100%;
+        background: rgb(254,240,1);
+        background: linear-gradient(0deg, rgba(254,240,1,1) 0%, rgba(255,206,3,1) 20%, rgba(253,154,1,1) 40%, rgba(253,97,4,1) 60%, rgba(255,44,5,1) 80%, rgba(240,5,5,1) 100%);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
         }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          //if so, mark as a switch and break the loop:
-          shouldSwitch = true;
-          break;
-        }
-      }
-    }
-    if (shouldSwitch) {
-      /*If a switch has been marked, make the switch
-      and mark that a switch has been done:*/
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      //Each time a switch is done, increase this count by 1:
-      switchcount ++;      
-    } else {
-      /*If no switching has been done AND the direction is "asc",
-      set the direction to "desc" and run the while loop again.*/
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
-    }
-  }
-}
-</script>
 
-  </body>
+        th, td{
+            align:center;
+            text-align: center;
+        }
+
+        table{
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        img {
+            width:300px;
+            
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            
+        }
+    </style>
+</head>
+<body>
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+
+    </div>
+
+    <script>
+    $(function(){
+    $("#nav-placeholder").load("nav.html");
+    });
+    </script>
+    <!--end of Navigation bar-->
+    <h1>My Programs</h1>
+
+    <table>
+        <tr>
+            <th>Calendars</th>
+            <th>Clocks</th>
+            <th>Cosmic Math</th>
+            <th>Games</th>
+            <th>Text-Based Generators</th>
+        </tr>
+        <tr>
+            <td><a href = "/calendar"><img src = "images/calendar.png"></a></td>
+            <td><a href = "/clocks"><img src = "images/clock.png"></a></td>
+            <td><a href = "/cosmic-math"><img src = "images/earth.png"></a></td>
+            <td><a href = "/games"><img src = "images/game-controller.png"></a></td>
+            <td><a href = "/text-based-generators"><img src = "images/keyboard.png"></a></td>
+        </tr>
+    </table>
+
+    <h2>Will figure out where these should go.</h2>
+    <a href = "/aigyptian/">Aigyptian</a>
+    <a href = "/axiom/">The Axiom</a>
+</body>
 </html>
