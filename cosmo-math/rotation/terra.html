@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Terrestrial Planets</title>
+		<style>
+		    body {
+              background-color: lightblue;
+            }
+		</style>
+		<link rel="icon" 
+        type="image/png" 
+        href="../images/earth.png" />
+	</head>
+	
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js">
+    </script>
+        
+	<body>
+		<h1>Terrestrial Planets</h1>
+		<button onclick="window.location.href = '/cosmic-math/rotation';">Go Back</button>
+		<h2>For Terrestrial Planets (Mass &leq; 10 Earths), the rotational velocity is:</h2>
+		$$v_p = \frac{2.699*10^{-5} \sqrt[3]{M_p[ln(\frac{M_p}{3.933*10^{16}})]^2}    }{\sqrt{D_p}}$$
+		
+		<!--These are the variables for the calculator.
+		They are different from the ones used for Jovian Planets.
+		Nonetheless, the two formulas have the same structure and use the same
+		algorithms to solve for the missing variable.-->
+		<script>
+		    const1 = 2.699*Math.pow(10,-5);
+	        const2 = 3.933*Math.pow(10, 16);
+		</script>
+		
+		<!--Begin importing calc.html here-->
+		
+		<!--https://stackoverflow.com/questions/31954089/how-can-i-reuse-a-navigation-bar-on-multiple-pages-->
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+		<!--Navigation bar-->
+        <div id="nav-placeholder">
+        
+        </div>
+        <script>
+        $(function(){
+          $("#nav-placeholder").load("calc.html");
+        });
+        </script>
+        <!--end of Navigation bar-->
+        <!--end of calc.html-->
+		
+		
+	</body>
+</html>

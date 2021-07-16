@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rotation and Gravity</title>
+		<style>
+		    img {
+		        width:600px;
+		        height:450px;
+		        display: block;
+		        margin-left: auto;
+		        margin-right: auto;
+		        
+		    }
+            input[type=number]{
+                width: 180px;
+            }
+		</style>
+		<link rel="icon" 
+        type="image/png" 
+        href="../images/earth.png" />
+	</head>
+
+	<body>
+	
+<h1>Rotation and Gravity</h1>
+<button onclick="window.location.href = '/cosmic-math';">Go Back</button>
+<h2>How to use this calculator:</h2>
+<table style = "width:100%">
+    <tr>
+        <th style = "width:33%">Mass, Density, Radius</th>
+        <th style = "width:33%">Radius, Rotational Velocity, Rotational Period</th>
+        <th style = "width:33%">Acceleration of Gravity</th>
+    </tr>
+    <tr>
+        <td>
+            <ol>
+                <li>Enter two of these values: Mass, Density, and Radius of planet. Press the <span style = "background-color:yellow">yellow "find missing value" button</span> to get the third value.</li>
+                <li>Satisfied? Follow one of the two methods below to get the rotational velocity and period of your planet. Otherwise, click any of the clear buttons to clear the data in one or all fields.</li>
+                <b>I want to enter my own values for rotational velocity or period.</b>
+                <ul>
+                    <li>Enter the rotational velocity or period in their respective input areas.</li>
+                    <li>Press the <span style = "background-color:tomato">red "find missing value" button</span> to get the third value.</li>
+                </ul>
+                <b>I want the computer to output the rotational velocity and period for me.</b>
+                <ul>
+                    <li>Click the <span style = "background-color:orange">"Generate" button</span> to generate those values from the outsourced formula.</li>
+                    <li>Pressing this button will calculate the rotaitonal velocity and period of your planet from the outsourced formula.</li>
+                    <li>To change mass, density or radius, simply remove that value by clicking its respective "clear" button. Then, change the other values. Go to step 2.</li>
+                </ul>
+            </ol>
+        </td>
+        <td>
+            <ol>
+                <li>Enter two of these values: Radius of planet, Rotational Velocity and Rotational Period. Press the <span style = "background-color:tomato">red "find missing value" button</span> to get the third value.</li>
+                <li>Satisfied? To get the other data for the planet, fill out one more value in the "Mass, Density, Radius" section. Press the <span style = "background-color:yellow">yellow "find missing value" button</span> to get the third value in that section.</li>
+                <ul>
+                    <li>If you aren't satsifed with any of the data values, click any of the clear buttons to clear the data in one or all fields.</li>
+                    <li>To change radius, rotational velocity, or rotational period, simply remove that value by clicking its respective "clear" button. Then, change the other values. Go to step 1.</li>
+                            
+                </ul>
+                <li>To get the amount of gravity on your planet, make sure you fill out the mass, density and radius of the planet. From that data, the gravity of your planet will be generated.</li>
+            </ol>
+        </td>
+        <td>
+            <ol>
+                <li>Enter two of these values: Mass, Density, and Radius of planet. Press the <span style = "background-color:yellow">yellow "find missing value" button</span> to get the third value.</li>
+                <ul>
+                    <li>This will generate the gravity of the planet at the planet's radius.</li>
+                </ul>
+                <li>To figure out the speed of gravity at different heights above the center of the planet, change the value of the radius while keeping the values of density and mass the same.</li>
+                <ul>
+                    <li>The "radius" is the distance from the center. Changing it would calculate the amount of gravity at different distances from the center of the planet.</li>
+                    <li><a href = "https://www.physicsclassroom.com/class/circles/Lesson-3/The-Value-of-g">Gravity of Earths at various heights</a></li>
+                    <li>The gravity of a planet of M Earth masses at 1 earth radius is M times the gravity of Earth.</li>
+                </ul>
+            </ol>
+        </td>
+    </tr>
+</table>
+<h2>Important Details</h2>
+<a href = "https://astro.unl.edu/naap/motion3/sidereal_synodic.html#:~:text=Because%2C%20for%20all%20intents%20and,with%20respect%20to%20the%20stars.">Siderial v. Syndonic Periods</a>
+    
+<ul>
+    <li>The syndonic rotational period is different than the siderial period of a planet or other cellestial body. The siderial period is how long it takes a body to compelte a spin on its axis.</li>
+    <li>The syndonic period is how long it takes for the sun to appear in the same place in the sky, the length of a day.</li>
+    <li>A sidereal day is 23 hours 56 minutes and 4.09 seconds long. A syndonic day is 24 hours long.</li>
+</ul>
+<table style="background-color: slateblue">
+    <thead>
+        <tr>
+            <th style = "background-color: limegreen">Mass, Density, Radius</th>
+            <th style = "background-color: violet">Rotational Velocity and Period</th>
+            <th style = "background-color: yellowgreen">Gravity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <table style="width: 100%; background-color: limegreen">
+                    <tr>
+                        <th>Mass (Earths)</th>
+                        <!--https://www.w3schools.com/tags/att_a_target.asp-->
+                        <th><a href = "density.html" target="_blank">Density</a></th>
+                        <th><a href = "radius.html" target="_blank">Radius</a></th>
+                    </tr>
+                    <tbody>
+                        
+                        <td>
+                            <input type="number" id="earthmasses" value="" min="0" oninput = "info()" placeholder="Earth Masses"><br>
+                            <input type="radio" name="browser" onclick="myFunction2(this.value)" value="mass">Clear Mass
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <th>kg/m<sup>3</sup></th>
+                                    <th>Earths</th>
+                                </tr>
+                                <tr>
+                                    <td><input type="number" id="density" value="" min="0" oninput = "toEarth()" placeholder="kg/m&sup3"><br></td>
+                                    <td><input type="number" id="densityE" value="" min="0" oninput = "tokg()" placeholder="Earths"><br></td>
+                                </tr>
+                            </table>
+                            <input type="radio" name="browser" onclick="myFunction2(this.value)" value="density">Clear Density
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <th>Meters</th>
+                                    <th>Earths</th>
+                                </tr>
+                                <tr>
+                                    <td><input type="number" id="radius" value="" min="0" oninput = "toEarthM()" placeholder="Meters"><br></td>
+                                    <td><input type="number" id="radiusE" value="" min="0" oninput = "toM()" placeholder="Earths"><br></td>
+                
+                                </tr>
+                            </table>
+                            <input type="radio" name="browser" onclick="myFunction2(this.value)" value="radius">Clear Radius
+                        </td>
+        
+        </tr>
+                        <tr>
+                            <td colspan=3><button onclick = "stuff()" style = "margin: 0 auto;
+  display: block; background-color:yellow">Find missing value (mass, density, or radius)</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table style="width: 100%; background-color: violet">
+                    <tr>
+                        <th>Velocity (m/s)</th>
+                        <th>Rotational Period (hours)</th>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="number" id="velocity" value="" min="0" oninput = "info()" placeholder="Velocity (m/s)"><br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" value="velocity">Clear Velocity
+                            </td>
+                            <td>
+                                <input type="number" id="hours" value="" min="0" oninput = "info()" placeholder="Rotation Period (hours)"><br>
+                                <input type="radio" name="browser" onclick="myFunction2(this.value)" value="spin">Clear Rotation Period
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan = 2><button onclick = "stuff2()" style = "margin: 0 auto;
+  display: block; background-color:tomato">Find missing value (radius, velocity, or rotational period)</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table style="width: 100%; background-color: yellowgreen">
+                      <tr>
+                          <th>m/s<sup>2</sup></th>
+                          <th>Earths</th>
+                      </tr>
+                      <tr>
+                          <td><input type="number" id="gravityM" value="" min="0" oninput = "toEarthG()" placeholder="m/s&sup2"><br></td>
+                          <td><input type="number" id="gravity" value="" min="0" oninput = "toG()" placeholder="Earths"><br></td>
+                      </tr>
+                      <tr>
+                          <td colspan = 2 allign = "center">
+                              <input type="radio" name="browser" onclick="myFunction2(this.value)" value="gravity">Clear Gravity
+                          </td>
+                      </tr>
+              </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan = 5 align="center">
+                <button style = "background-color:turquoise" onclick = "clearPlanet()">Clear Planet Data</button>
+                <button style = "background-color:orange" onclick = "terra()">Generate</button>
+            </td>
+        </tr>
+        
+    </tbody>
+</table>
+
+
+
+        
+        <script>
+        //https://www.w3schools.com/tags/att_input_type_radio.asp
+        //https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_radio_value3
+        
+        //https://en.wikipedia.org/wiki/Standard_gravity
+        var earthGravity = 9.80665;
+        function toEarthG(){
+            var original = document.getElementById( 'gravityM' ).value;
+            document.getElementById( 'gravity' ).value = original/earthGravity; 
+        }
+        function toG(){
+            var original = document.getElementById( 'gravity' ).value;
+            document.getElementById( 'gravityM' ).value = original*earthGravity; 
+        }
+        function toEarthM(){
+            var original = document.getElementById( 'radius' ).value;
+            document.getElementById( 'radiusE' ).value = original/earthRadius; 
+            info();
+        }
+        function toM(){
+            var original = document.getElementById( 'radiusE' ).value;
+            document.getElementById( 'radius' ).value = original*earthRadius; 
+            info();
+        }
+        function toEarth(){
+            var original = document.getElementById( 'density' ).value;
+            document.getElementById( 'densityE' ).value = original/earthDensity; 
+            info();
+        }
+        function tokg(){
+            var original = document.getElementById( 'densityE' ).value;
+            document.getElementById( 'density' ).value = original*earthDensity; 
+            info();
+        }
+        function myFunction2(browser) {
+          if(browser == "mass"){
+              document.getElementById( 'earthmasses' ).value = "";
+          }
+          if(browser == "density"){
+              document.getElementById( 'density' ).value = "";
+              document.getElementById( 'densityE' ).value = "";
+          }
+          if(browser == "radius"){
+              document.getElementById("radius").value = "";
+              document.getElementById("radiusE").value = "";
+
+          }
+          if(browser == "velocity"){
+              document.getElementById( 'velocity' ).value = "";
+          }
+          if(browser == "spin"){
+              document.getElementById("hours").value = "";
+          }
+          if(browser == "gravity"){
+              document.getElementById("gravity").value = "";
+              document.getElementById("gravityM").value = "";
+          }
+        }
+        
+        function clearPlanet(){
+            document.getElementById( 'earthmasses' ).value = "";
+            document.getElementById( 'density' ).value = "";
+            document.getElementById( 'densityE' ).value = "";
+            document.getElementById( 'velocity' ).value = "";
+            document.getElementById("radius").value = "";
+            document.getElementById("radiusE").value = "";
+            document.getElementById("hours").value = "";
+
+        }
+        </script>
+<br>
+
+<button onclick = "earth()">Earth</button>
+<button onclick = "mars()">Mars</button>
+<button onclick = "jupiter()">Jupiter</button>
+<p><a href = "https://www.quora.com/What-is-the-rotation-speed-of-Earth-and-what-is-the-formula-for-it">Equation</a></p>
+<p>Randy Evangelista, Electrical Engineer, Backyard Astronomer
+<a href = "https://www.quora.com/profile/Randy-Evangelista-1">Quora Page</a></p>
+
+<table>
+    <tbody>
+        <tr>
+            <th rowspan="2">Planet</th>
+            <th rowspan="2">Mass<br>(Earths)</th>
+            <th rowspan="2">Density<br>(kg/m^3)</th>
+            <th colspan="2">Rotational Velocity</th>
+            <th rowspan="2">% Error</th>
+        </tr>
+        <tr>
+            <td>Actual</td>
+            <td>Formula</td>
+        </tr>
+        <tr>
+            <td><a href="https://en.wikipedia.org/wiki/Earth">Earth</a></td>
+            <td>1</td>
+            <td>5514</td>
+            <td>465</td>
+            <td>466</td>
+            <td>0.215</td>
+        </tr>
+        <tr>
+            <td><a href="https://en.wikipedia.org/wiki/Mars">Mars</a></td>
+            <td>0.107</td>
+            <td>3983</td>
+            <td>241</td>
+            <td>241</td>
+            <td>0.000</td>
+        </tr>
+        <tr>
+            <td><a href="https://en.wikipedia.org/wiki/Jupiter">Jupiter</a></td>
+            <td>317.957064</td>
+            <td>1326</td>
+            <td>12600</td>
+            <td>12596</td>
+            <td>0.032</td>
+        </tr>
+        <tr>
+            <td><a href="https://en.wikipedia.org/wiki/Saturn">Saturn</a></td>
+            <td>95.16</td>
+            <td>687</td>
+            <td>9870</td>
+            <td>9868</td>
+            <td>0.020</td>
+        </tr>
+        <tr>
+            <td><a href="https://en.wikipedia.org/wiki/Uranus">Uranus</a></td>
+            <td>14.54</td>
+            <td>1270</td>
+            <td>2590</td>
+            <td>2589</td>
+            <td>0.039</td>
+        </tr>
+        <tr>
+            <td><a href="https://en.wikipedia.org/wiki/Neptune">Neptune</a></td>
+            <td>17.15</td>
+            <td>1638</td>
+            <td>2680</td>
+            <td>2525</td>
+            <td>5.784</td>
+        </tr>
+    </tbody>
+</table>
+
+<table>
+    <tr>
+        <th>For Jovian Planets (Mass >10 Earths), this formula is used:</th>
+        <th>For Terrestrial Planets (Mass <= 10 Earths), this formula is used:</th>
+    </tr>
+    <tr>
+        <td><img src = "https://qph.fs.quoracdn.net/main-qimg-f175434c4b70a9c56c131b0fe305be0e"></td>
+        <td><img src = "https://qph.fs.quoracdn.net/main-qimg-148ba10c3db224bdedc4f9ed8c66be3a"></td>
+    </tr>
+</table>
+
+<a href = "https://www.engineeringtoolbox.com/density-solids-d_1265.html">Densities of Solids - Engineering Toolbox</a>
+<a href = "https://public.tableau.com/views/StarWarsPlanets_1/StarWarsPlanets?:showVizHome=no">Star Wars Planets</a>
+<a href = "https://www.theforce.net/swtc/orbs.html">Star Wars Planets</a>
+<script>
+var mass;
+var hours;
+var density;
+var densityE;
+//https://en.wikipedia.org/wiki/Earth_mass
+var earthMass = 5.9722*Math.pow(10, 24);
+//Earth density = 5514 kg/m^3
+var earthDensity = 5514;
+var velocity;
+var volume;
+var radius;
+var circum;
+//Earth radius = 6371 km = 6,371,000 m
+//Earth radius as calculated by computer program
+var earthRadius = 6370785.613958337;
+var gravity;
+
+var velocity;
+var hours;
+
+function info(){
+    mass = document.getElementById( 'earthmasses' ).value;
+    mass = Number(mass);
+    mass*=earthMass;
+    density = document.getElementById( 'density' ).value;
+    density = Number(density);
+    densityE = document.getElementById( 'densityE' ).value;
+    densityE = Number(densityE);
+    radius = document.getElementById( 'radius' ).value;
+    radius = Number(radius);
+    volume = (4/3)*Math.PI*Math.pow(radius,3);
+    
+    gravity = (mass/earthMass)/Math.pow((radius/earthRadius),2);
+    //gravity = (radius/earthRadius)*(densityE);
+    document.getElementById( 'gravity' ).value = gravity;
+    toG();
+    
+    velocity = document.getElementById( 'velocity' ).value;
+    velocity = Number(velocity);
+    hours = document.getElementById( 'hours' ).value;
+    hours = Number(hours);
+    
+
+    
+}
+function stuff(){
+    info();
+    
+    
+    //volume = mass/density;
+    //volume = document.getElementById( 'radius' ).value;
+    //volume = Number(volume);
+    
+    if(mass == ""){
+        mass = density*volume;
+        mass/=earthMass;
+        document.getElementById( 'earthmasses' ).value = mass;
+    }else if(density == ""){
+        density = mass/volume;
+        density = Number(density);
+        document.getElementById( 'density' ).value = density;
+        document.getElementById( 'densityE' ).value = density*earthDensity;
+    }else if(radius == ""){
+        volume = mass/density;
+        //document.getElementById( 'volume' ).value = volume;
+        radius = Math.cbrt(3*(volume/(Math.PI*4)));
+        document.getElementById( 'radius' ).value = radius;
+        document.getElementById( 'radiusE' ).value = radius/earthRadius;
+
+    }
+    gravity = (mass/earthMass)/Math.pow((radius/earthRadius),2);
+    //gravity = (radius/earthRadius)*(densityE);
+    document.getElementById( 'gravity' ).value = gravity;
+    toG();
+}
+
+function stuff2(){
+    info();
+    if(radius == ""){
+        //1 hour = 60 minutes = 3600 seconds
+        //Velocity in meters per second. Multiply by seconds to get meters of circumference.
+        circum = velocity * 3600 * hours;
+        radius = circum/(2*Math.PI);
+        document.getElementById( 'radius' ).value = radius;
+        document.getElementById( 'radiusE' ).value = radius/earthRadius;
+        
+    }else if(velocity == ""){
+        circum = 2*Math.PI*radius;
+        velocity = circum/(hours*3600);
+        document.getElementById( 'velocity' ).value = velocity;
+    }else if(hours == ""){
+        //radius is in meters, velocity is in meters per second.
+        //hours = (radius*velocity)/3600;
+        circum = 2*Math.PI*radius;
+        hours = (circum/velocity)/3600;
+        //alert(hours + "hours" + radius + "meters" + velocity * "m/s");
+        document.getElementById( 'hours' ).value = hours;
+    }
+    
+}
+//https://en.wikipedia.org/wiki/Earth
+function earth(){
+    document.getElementById( 'earthmasses' ).value = 1;
+    document.getElementById( 'density' ).value = 5514;
+    document.getElementById( 'radius' ).value = earthRadius;
+    //document.getElementById( 'radius' ).value = 6371;
+    //gasQuery();
+    toEarth();
+    toEarthM();
+    terra();
+}
+//https://en.wikipedia.org/wiki/Mars
+function mars(){
+    document.getElementById( 'earthmasses' ).value = 0.107;
+    document.getElementById( 'density' ).value = 3933;
+    document.getElementById( 'radius' ).value = 3385076.7640417395;
+    //document.getElementById( 'radius' ).value = 3389.5;
+    //gasQuery();
+    toEarth();
+    toEarthM();
+    terra();
+}
+
+function jupiter(){
+    document.getElementById( 'earthmasses' ).value = 317.957064;
+    document.getElementById( 'density' ).value = 1326;
+    document.getElementById( 'radius' ).value = 69923565.04147087;
+    //gasQuery();
+    toEarth();
+    toEarthM();
+    terra();
+}
+
+//https://www.quora.com/What-is-the-rotation-speed-of-Earth-and-what-is-the-formula-for-it
+//Solve for velocity in meters per second.
+//var terra1;
+//var terra2;
+function gasQuery(){
+    
+    //https://en.wikipedia.org/wiki/Terrestrial_planet
+    //http://www.sun.org/encyclopedia/exoplanets
+    //"Super-Earths are planets of between 1 and about 10 Earth masses."
+    if(mass<=10){
+        terra1 = 2.694*Math.pow(10, -5);
+        terra2 = 3.933*Math.pow(10,16);
+    }else{
+        terra1 = 1.213*Math.pow(10, -4);
+        terra2 = 9.138*Math.pow(10, 24);
+    }
+    //terra();
+}
+var terra1 = 2.694*Math.pow(10, -5);
+var terra2 = 3.933*Math.pow(10,16);
+    function terra(){
+        //Convert kilograms to earths
+        mass = document.getElementById( 'earthmasses' ).value;
+        mass = Number(mass);
+        gasQuery();
+        mass*=earthMass;
+        
+        
+        //Kg/m^3
+        density = document.getElementById( 'density' ).value;
+        density = Number(density);
+        
+        //volume in m^3
+        volume = mass/density;
+        
+        radius = Math.cbrt(3*(volume/(Math.PI*4)));
+        document.getElementById( 'radius' ).value = radius;
+
+        
+        velocity = (terra1*Math.cbrt(mass*   Math.pow    (Math.log(mass/(terra2   )   ),2   )))/Math.sqrt(density);
+        
+        
+        
+        document.getElementById( 'velocity' ).value = velocity;
+        
+        //radius = document.getElementById( 'radius' ).value;
+        //radius = Number(radius);
+        
+        //Radius is in meters
+        
+        circum = 2*Math.PI*radius;
+        hours = circum/velocity;
+        hours/= 60*60;
+        document.getElementById( 'hours' ).value = hours;
+        info();
+
+    }
+
+    function toHours(){
+        mass = document.getElementById( 'earthmasses' ).value;
+        hours = 21.63 - 2.1*Math.log(mass);
+        document.getElementById( 'hours' ).value = hours;
+
+    }
+    //https://www.quora.com/What-is-the-rotation-speed-of-Earth-and-what-is-the-formula-for-it
+    
+    //https://arxiv.org/pdf/0906.3531.pdf
+    
+    //Mass is in Earths, with Earth being 1
+    //Time is measured in hours
+    
+    /*Y = 21.63 – 2.1 ln X 
+    y = rotation (hours)
+    x = Planet mass (Earths)*/
+</script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Star Luminosity and Orbital Zones</title>
+		<style>
+		    table, th, td {
+              border: 1px solid black;
+            }
+		</style>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="icon" 
+        type="image/png" 
+        href="../images/earth.png" />
+	</head>
+
+	<body>
+		<h1>Star Luminosity and Orbital Zones</h1>
+		<button onclick="window.location.href = '/cosmic-math';">Go Back</button>
+		<h2>Calculator Instructions</h2>
+		<ol>
+		    <li>Fill 2 of the 3 follwing fields: Radius, Temperature, Luminosity</li>
+		    <li>Click "Generate Star" to get the 3rd value for the Star.</li>
+		</ol>
+		<table style = "background-color: gold">
+		    <tr>
+		        <th rowspan = "2">Radius (Suns)</th>
+		        <th colspan = "2">Temperature</th>
+		        <th rowspan = "2">Luminosity (Suns)</th>
+		    </tr>
+		    <tr>
+		        <th>Suns <a href = "https://en.wikipedia.org/wiki/Sun">(5772 K)</a></th>
+		        <th>Kelvin</th>
+		    </tr>
+		    <tr>
+		        <td><input type="number" id="rad" value="" min="0" oninput = "" placeholder="Radius (Suns)"></td></td>
+		        <td><input type="number" id="tem" value="" min="0" oninput = "toSunH()" placeholder="Temperature (Suns)"></td>
+		        <td><input type="number" id="toK" value="" min="0" oninput = "toKH()" placeholder="Kelvin"></td>
+		        <td><input type="number" id="lum" value="" min="0" oninput = "zones()" placeholder="Luminosity (Suns)"></td>
+		    </tr>
+		    <tr>
+		        <td colspan = "4" align = "center"><button onclick = "stuff()">Generate Star</button></td>
+		    </tr>
+		</table>
+		<h2>Zone Calculator Instructions</h2>
+		<p>Enter any value in one of the fields: Luminosity, Inner and Outer Habitable Zone, Frost Line. The other values will update immediately.</p>
+		<ul>
+		    <li>The Habitable Zone is the range a planet can reside in for it to be habitable, provided it has a sufficient atmosphere and magnetosphere, among other things.</li>
+		    <li>The Frost Line is the distance from a star where gas giants begin to form.</li>
+		</ul>
+		<table>
+		    <tr>
+		        <th colspan = "2" style = "background-color:lightgreen">Habitable Zone (AU)<br><a href = "https://www.planetarybiology.com/calculating_habitable_zone.html">Formula Source</a></th>
+		        <th rowspan = "2" style = "background-color:powderblue">Frost Line (AU)<br><a href = "https://www.youtube.com/watch?v=1nV2ygdKZ3s&app=desktop">Formula Source</a></th>
+		    </tr>
+		    <tr>
+		        <th style = "background-color:lightgreen">Inner</th>
+		        <th style = "background-color:lightgreen">Outer</th>
+		    </tr>
+		    <tr>
+		        <td style = "background-color:lightgreen"><input type="number" id="inhabit" value="" min="0" oninput = "inner()" placeholder="AU"></td>
+		        <td style = "background-color:lightgreen"><input type="number" id="outhabit" value="" min="0" oninput = "outer()" placeholder="AU"></td>
+		        <td style = "background-color:powderblue"><input type="number" id="frost" value="" min="0" oninput = "frosty()" placeholder="AU"></td>
+		    </tr>
+		    <!--<tr>
+		        <td colspan = "3" align = "center"><button onclick = "zones()">Generate Zones</button></td>
+		    </tr>-->
+		</table>
+		<script>
+		function inner(){
+		    var innerHabit = document.getElementById("inhabit").value;
+		    document.getElementById("lum").value = Math.pow(innerHabit, 2)*1.1;
+		    //zones();
+		    var bright =  document.getElementById("lum").value;
+		    var outerHabit = Math.sqrt(bright/0.53);
+		    document.getElementById("outhabit").value = outerHabit;
+            var frost = 4.85*Math.sqrt(bright);
+            document.getElementById("frost").value = frost;
+		}
+		function outer(){
+		    var outerHabit = document.getElementById("outhabit").value;
+		    document.getElementById("lum").value = Math.pow(outerHabit, 2)*0.53;
+		    //zones();
+		    var bright =  document.getElementById("lum").value;
+		    var innerHabit = Math.sqrt(bright/1.1);
+		    document.getElementById("inhabit").value = innerHabit;
+            var frost = 4.85*Math.sqrt(bright);
+            document.getElementById("frost").value = frost;
+		}
+		function frosty(){
+		    var frost = document.getElementById("frost").value;
+		    document.getElementById("lum").value = Math.pow((frost/4.85), 2);
+		    //zones();
+		    var bright =  document.getElementById("lum").value;
+		    var innerHabit = Math.sqrt(bright/1.1);
+		    document.getElementById("inhabit").value = innerHabit;
+		    var outerHabit = Math.sqrt(bright/0.53);
+		    document.getElementById("outhabit").value = outerHabit;
+		}
+		
+		    function zones(){
+		        //https://www.planetarybiology.com/calculating_habitable_zone.html
+                var bright =  document.getElementById("lum").value;
+               //https://www.tutorialspoint.com/How-to-get-the-square-root-of-a-number-in-JavaScript
+               
+               //Inner limit of Habitable Zone
+               var innerHabit = Math.sqrt(bright/1.1);
+               
+               //Earth Equivalent Distance: Proportional to how far Earth is from the Sun based on the Sun's luminosity.
+               var terra = Math.sqrt(bright);
+               //Outer limit of Habitable Zone
+               var outerHabit = Math.sqrt(bright/0.53);
+               
+               var frost = 4.85*Math.sqrt(bright);
+               
+               document.getElementById("inhabit").value = innerHabit;
+              //document.getElementById("terra").innerHTML = "Earth Equivalent Distance: " + terra + " AU";
+              document.getElementById("outhabit").value = outerHabit;
+              document.getElementById("frost").value = frost;
+		    }
+		    /*function sunlight(){
+                //info();
+                //toKH();
+                //stuff();
+                //https://www.planetarybiology.com/calculating_habitable_zone.html
+                //var bright;
+                var bright = document.getElementById("lum").value;
+                if(bright==""){
+                    alert("empty!")
+                }
+                var innerHabit;
+                var outerHabit;
+                var frost;
+               bright =  document.getElementById("lum").value;
+               //https://www.tutorialspoint.com/How-to-get-the-square-root-of-a-number-in-JavaScript
+               
+               //Inner limit of Habitable Zone
+               innerHabit = Math.sqrt(bright/1.1);
+               
+               //Earth Equivalent Distance: Proportional to how far Earth is from the Sun based on the Sun's luminosity.
+               //var terra = Math.sqrt(bright);
+               //Outer limit of Habitable Zone
+               outerHabit = Math.sqrt(bright/0.53);
+               
+               frost = 4.85*Math.sqrt(bright);
+               
+              document.getElementById("inhabit").value = innerHabit;
+              //document.getElementById("terra").value = "Earth Equivalent Distance: " + terra + " AU";
+              document.getElementById("outhabit").value = outerHabit;
+              document.getElementById("frost").value = frost;
+              //hot();
+            }*/
+		</script>
+		
+        <!--<table>
+            <thead>
+                <tr>
+                    <th>Radius (Suns)</th>
+                    <th>Temperature</th>
+                    <th>Luminosity (Suns)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="number" id="rad" value="" min="0" oninput = "" placeholder="Radius (Suns)"></td>
+                    <td>
+                        <table style="width: 100%;">
+                            <tbody>
+                                <tr>
+                                    <th style="width: 50.0000%;">Suns <a href = "https://en.wikipedia.org/wiki/Sun">(5772 K)</a></th>
+                                    <th style="width: 50.0000%;">Kelvin</th>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50.0000%;">
+                                        <input type="number" id="tem" value="" min="0" oninput = "toSunH()" placeholder="Temperature (Suns)">
+                                  </td>
+                                    <td style="width: 50.0000%;">
+                                        <input type="number" id="toK" value="" min="0" oninput = "toKH()" placeholder="Kelvin">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td><input type="number" id="lum" value="" min="0" oninput = "" placeholder="Luminosity (Suns)"></td>
+                </tr>
+                <tr>
+                    <td colspan = "4" align = "center"><button onclick = "stuff()">Generate Star</button></td>
+                </tr>
+            </tbody>
+        </table>-->
+        
+        
+        
+        <br>
+        <button onclick = "sunBright()">Sun</button>
+            		<button onclick = "redsun()">Sun (peak Red Giant)</button>
+            		<p>“This new habitable zone will stretch from 49.4 AU to 71.4 AU – 
+            		well into the Kuiper Belt – which means the formerly icy worlds will melt, 
+            		and liquid water will be present beyond the orbit of Pluto.” 
+            		<a href = "https://phys.org/news/2016-05-earth-survive-sun-red-giant.html">(Source)</a></p>
+            		<button onclick = "veryBright()">R136a1 (brightest star)</button>
+            		<button onclick = "notBright()">2MASS J0523−1403 (dimmest star)</button>
+            		<button onclick = "quasi()">Quasi-Star</button>
+            		
+        <p>A <a href = "https://en.wikipedia.org/wiki/Quasi-star">quasi-star</a> is a hypothetical type of extremely massive and luminous star that existed in the early history of the universe. The star's energy came from a dying black hole in its core.</p>
+        
+        <a href = "https://en.wikipedia.org/wiki/List_of_star_extremes">List of Star Extremes</a>
+        <table>
+            <tr>
+                <th>Radius</th>
+                <th>Temperature</th>
+                <th>Mass</th>
+                <th>Luminosity</th>
+            </tr>
+            <tr>
+                <td>
+                    <p>Quasi-star: 10 billion kilometres (66.85 au) or 7,187 Suns</p>
+                    <p>Largest Star: <a href = "https://en.wikipedia.org/wiki/Stephenson_2-18">Stephenson_2-18</a>: 2,150 Suns</p>
+                </td>
+                <td>
+                    <p>Quasi-star: ~ 4000K</p>
+                </td>
+                <td>
+                    <p>Quasi-star: 1,000 - 10,000 Suns</p>
+                    <p>Most Massive Star: <a href = "https://en.wikipedia.org/wiki/R136a1">R136a1</a>: 315 Suns</p>
+                </td>
+                <td>
+                    <p>Quasi-star: 11,913,242.038742166 Suns</p>
+                    <p>Brightest Star: <a href = "https://en.wikipedia.org/wiki/R136a1">R136a1</a>: 8,710,000 suns</p>
+                </td>
+            </tr>
+        </table>
+        <script>
+        var rad;
+        var tem;
+        //var tem2;
+        var lum;
+        var boltz = 5.67051*Math.pow(10,-8);
+        //https://en.wikipedia.org/wiki/Sun
+        
+        var sunTemp = 5772;
+        //https://en.wikipedia.org/wiki/Solar_radius
+        var sunRad = 6.95700*Math.pow(10,8);
+        //radius = meters;
+        function quasi(){
+            //https://en.wikipedia.org/wiki/Quasi-star
+            document.getElementById( 'rad' ).value = 7187;
+            //Temp = 4,000K
+            document.getElementById( 'tem' ).value = 4000/sunTemp;
+            //generate();
+            info();
+            lum = Math.pow(rad, 2)*Math.pow(tem, 4);
+            document.getElementById( 'lum' ).value = lum;
+            document.getElementById( 'toK' ).value = 4000;
+            toKH();
+            zones();
+            
+        }
+        function toSunH(){
+            //Converts from Sun to Kelvin
+            //K value from toK
+            //document.getElementById( 'toSun' ).value = "";
+            var tem2 = document.getElementById( 'tem' ).value;
+            document.getElementById( 'toK' ).value = tem2*sunTemp;
+            //stuff();
+        }
+        function toKH(){
+            //Converts from Kelvbin to Suns
+            //Sun value fro tem
+            //document.getElementById( 'toK' ).value = "";
+            var tem2 = document.getElementById( 'toK' ).value;
+            document.getElementById( 'tem' ).value = tem2/sunTemp;
+        }
+        function info(){
+            rad = document.getElementById( 'rad' ).value;
+            rad = Number(rad);
+            //*sunrad;
+            tem = document.getElementById( 'tem' ).value;
+            tem = Number(tem);
+            lum = document.getElementById( 'lum' ).value;
+            lum = Number(lum);
+            var area = 4*Math.PI*Math.pow(rad, 2);
+        }
+        //https://astro.unl.edu/naap/hr/hr_background2.html
+        function stuff(){
+            rad = document.getElementById( 'rad' ).value;
+            rad = Number(rad);
+            //*sunrad;
+            tem = document.getElementById( 'tem' ).value;
+            tem = Number(tem);
+            lum = document.getElementById( 'lum' ).value;
+            lum = Number(lum);
+            var area = 4*Math.PI*Math.pow(rad, 2);
+            if(rad ==""){
+                rad = Math.pow(lum/Math.pow(tem,4) ,0.5);
+                document.getElementById( 'rad' ).value = rad;
+            }
+            else if(tem == ""){
+                tem = Math.pow(lum/(Math.pow(rad,2)), 0.25);
+                document.getElementById( 'tem' ).value = tem;
+                toSunH();
+            }
+            else if(lum == ""){
+                lum = Math.pow(rad, 2)*Math.pow(tem, 4);
+                document.getElementById( 'lum' ).value = lum;
+            }
+            //zones();
+        }
+        //https://en.wikipedia.org/wiki/Sun
+        //L = F x Area = 4 π R^2 σ T^4
+        //r is in meters
+        //Area = 4 π R^2
+            //http://www.astronomy.ohio-state.edu/~thompson/1144/Lecture9.html
+            //https://astro.unl.edu/naap/hr/hr_background2.html
+            
+            
+        /*
+        
+        https://en.m.wikipedia.org/wiki/Quasi-star
+        
+        1000 solar masses
+        
+        Temp = 4000 k
+        Radius = 7187 suns
+        
+        
+        http://www.astronomy.ohio-state.edu/~thompson/1144/Lecture9.html
+        
+        
+        L = F x Area = 4 π R^2 σSB T^4
+        
+        R = radius (suns)
+        T = temperature (K)
+        SB = 5.6703 * 10^-8
+        L = Luminosity (suns)
+        Formula to calculate luminosity of sun from radius and temperature.
+        
+        
+        https://astro.unl.edu/naap/hr/hr_background2.html
+        L(Sun) = R^2T^4
+        r = radius (sun)
+        t = temp (sun)
+        */
+        function sunBright(){
+        	    clear();
+        	    document.getElementById("lum").value = 1;
+        	    //sunlight();
+                document.getElementById( 'rad' ).value = 1;
+                info();
+                document.getElementById( 'tem' ).value = 1;
+                toSunH();
+                zones();
+            	}
+        	function redsun(){
+        	    clear();
+                document.getElementById("lum").value = 2701.9188;
+                //sunlight();
+                document.getElementById( 'rad' ).value = 256;
+                stuff();
+                zones();
+            }
+            function clear(){
+                document.getElementById("lum").value = "";
+                document.getElementById( 'rad' ).value = "";
+                document.getElementById( 'tem' ).value = "";
+                document.getElementById( 'toK' ).value = "";
+            }
+        	function veryBright(){
+        	    clear();
+        	    //https://en.wikipedia.org/wiki/R136a1
+        	    document.getElementById("lum").value = 8710000;
+        	    //sunlight();
+        	    document.getElementById( 'toK' ).value = 53000;
+                //document.getElementById( 'rad' ).value = 1;
+                info();
+                toKH();
+                stuff();
+                zones();
+        	}
+        	function notBright(){
+        	    clear();
+        	    //https://en.wikipedia.org/wiki/2MASS_J0523%E2%88%921403
+        	    document.getElementById("lum").value = 0.000138;
+        	    //sunlight();
+        	    
+        	    //1.01 jupiters
+                //document.getElementById( 'rad' ).value = 1.01/;
+                //https://en.wikipedia.org/wiki/2MASS_J0523%E2%88%921403
+                document.getElementById( 'toK' ).value = 2074;
+                //document.getElementById( 'rad' ).value = 1;
+                info();
+                toKH();
+                stuff();
+                zones();
+        	}
+        </script>
+	</body>
+</html>

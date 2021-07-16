@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Star Flux</title>
+		<style>
+		    /*td:nth-child(2) {
+                background: yellow;
+            }
+            td:nth-child(3) {
+                background: tomato;
+            }*/
+		</style>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="icon" 
+        type="image/png" 
+        href="../images/earth.png" />
+	</head>
+
+	<body>
+		<h1>Star Flux</h1>
+		<button onclick="window.location.href = '/cosmic-math';">Go Back</button>
+		<table style = "width:100%">
+		    <tr>
+		        <th>Flux</th>
+		        <th>Apparent Magnitude</th>
+		    </tr>
+		    <tr>
+		        <td>
+		            <p><a href = "https://www.e-education.psu.edu/astro801/content/l4_p4.html">Luminosity Formula</a></p>
+            		<p>F=L/4&pi;d<sup>2</sup></p>
+            		<ul>
+            		    <li>F = Flux (watts/square meter)</li>
+            		    <li>L = Luminosity (watts)</li>
+            		    <ul>
+            		        <li>Watts = Joules/Second</li>
+            		    </ul>
+            		    <li>D = Distance from star (meters)</li>
+            		</ul>
+		        </td>
+		        <td>
+		            <p><a href = "https://www.phys.ksu.edu/personal/wysin/astro/magnitudes.html">Apparent Magnitude</a></p>
+		            <p><a href = "https://en.wikipedia.org/wiki/Apparent_magnitude">Apparent Magnitude - Wikipedia</a></p>
+		            <p>The scale is reverse&nbsp;<a title="Logarithmic scale" href="https://en.wikipedia.org/wiki/Logarithmic_scale">logarithmic</a>: the brighter an object is, the lower its&nbsp;<a title="Magnitude (astronomy)" href="https://en.wikipedia.org/wiki/Magnitude_(astronomy)">magnitude</a>&nbsp;number. A difference of 1.0 in magnitude corresponds to a brightness ratio of&nbsp;<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/d26eff2c044a521107db3cf827e04c2b8415691d" alt="{\displaystyle {\sqrt[{5}]{100}}}" />, or about 2.512.</p>
+		            
+		            <p>m<sub>2</sub>-m<sub>1</sub> = -2.512 log(B<sub>2</sub>/B<sub>1</sub>)</p>
+		            <ul>
+		                <li>m = magnitude of object</li>
+		                <li>b = actual brightness of object</li>
+		            </ul>
+		            <p>With B<sub>1</sub> being the brightness of the sun, being a brightness of 1, and B<sub>2</sub> being the brightness of the star generated in this calculator, the formula can be rewritten as:</p>
+		            <p>m<sub>star</sub>-(-26.74) = -2.512 log(B<sub>star</sub>)</p>
+		            <p>Apparent magnitude of the Sun from Earth: -26.74</p>
+		        </td>
+		    </tr>
+		</table>
+		
+		
+		<h2>How to use this calculator</h2>
+        <ol>
+            <li>Enter two of the following values (leave the third value blank):</li>
+            <ul>
+                <li>Flux (watts/square meter) or Apparent Magnitude</li>
+    		    <li>Luminosity (Joules/Second or Suns)</li>
+    		    <li>Distance from star (meters or AU)</li>
+            </ul>
+            <li>Press the "Generate" Button to calculate the missing value.</li>
+        </ol>
+		<p>The Sun generates 3.828 x 10<sup>26</sup> joules of energy per second. <a href = "https://en.wikipedia.org/wiki/Sun">(Source)</a></p>
+		<p>The&nbsp;<a href="https://en.wikipedia.org/wiki/Astronomical_unit">Astronomical Unit (AU)&nbsp;</a>is 1.495978707&times;10<sup>11</sup> meters, the distance between the Earth and the Sun.</p>
+		<table>
+		    <tr>
+		        <th colspan = "2" style = "background-color:yellow">Luminosity</th>
+		        <th colspan = "2" style = "background-color:tomato">Distance</th>
+		        <th colspan = "2" style = "background-color:powderblue">Flux</th>
+		        <th rowspan = "2" style = "background-color:silver">Apparent Magnitude</th>
+		    </tr>
+		    <tr>
+		        <th style = "background-color:yellow">Joules/Second</th>
+		        <th style = "background-color:yellow">Suns</th>
+		        <th style = "background-color:tomato">Meters</th>
+		        <th style = "background-color:tomato">AU</th>
+		        <th style = "background-color:powderblue">Watts/m<sup>2</sup></th>
+		        <th style = "background-color:powderblue">Suns</th>
+		    </tr>
+		    <tr>
+		        <td style = "background-color:yellow"><input type="number" id="watt"  oninput = "toSun()" placeholder="Joules/Second"></td>
+		        <td style = "background-color:yellow"><input type="number" id="sun"  oninput = "toWatt()" placeholder="Suns"></td>
+		        
+		        <td style = "background-color:tomato"><input type="number" id="meter"  oninput = "toAU()" placeholder="Meters"></td>
+		        <td style = "background-color:tomato"><input type="number" id="AU"  oninput = "toMeter()" placeholder="AU"></td>
+		        
+		        <td style = "background-color:powderblue"><input type="number" id="flux"  oninput = "toSunF()" placeholder="Watts/m&sup2"></td>
+		        <td style = "background-color:powderblue"><input type="number" id="sunflux"  oninput = "toF()" placeholder="Suns"></td>
+		        
+		        <td style = "background-color:silver"><input type="number" id="magnitude"  oninput = "fromMag()" placeholder="Apparent Magnitude"></td>
+		    </tr>
+		    <tr align = "center">
+		        <td colspan = "7"><button onclick = "solve()">Generate</button></td>
+		    </tr>
+		    
+		    
+		</table>
+		<script>
+		//https://en.wikipedia.org/wiki/Sun
+		var sunWatt = 3.828*Math.pow(10, 26);
+		//1 AU = 149597870700 m
+		var dist = 1.495978707*Math.pow(10,11);
+		
+		var sunFlux = sunWatt/(4*Math.PI*Math.pow(dist, 2))
+		//Pogson's ratio = 100^(1/5)
+		var pogson = Math.pow(100, 0.2)
+		
+		var sunMag = -26.74;
+		/*var watt;
+		var sun;
+		var AU;
+		var meter;
+		var flux;*/
+		function fromMag(){
+		    magnitude = document.getElementById("magnitude").value;
+            document.getElementById("sunflux").value = Math.pow(pogson, -1*magnitude+sunMag);
+            flux = document.getElementById("sunflux").value;
+            document.getElementById("flux").value = flux*sunFlux;
+		}
+		function toMag(){
+		    flux = document.getElementById("sunflux").value;
+		    document.getElementById("magnitude").value = -1*pogson*Math.log10(flux) + sunMag;
+		}
+		function toSunF(){
+		    flux = document.getElementById("flux").value;
+            document.getElementById("sunflux").value = flux/sunFlux;
+            toMag();
+		}
+		function toF(){
+		    flux = document.getElementById("sunflux").value;
+            document.getElementById("flux").value = flux*sunFlux;
+            toMag();
+		}
+		    function toSun(){
+		        watt = document.getElementById("watt").value;
+                document.getElementById("sun").value = watt/sunWatt;
+		    }
+		    function toWatt(){
+		        sun = document.getElementById("sun").value;
+                document.getElementById("watt").value = sun*sunWatt;
+		    }
+		    
+		    function toMeter(){
+		        AU = document.getElementById("AU").value;
+                document.getElementById("meter").value = AU*dist;
+		    }
+		    function toAU(){
+		        meter = document.getElementById("meter").value;
+                document.getElementById("AU").value = meter/dist;
+		    }
+		    
+		    function solve(){
+		        var watt = document.getElementById("watt").value;
+		        watt = Number(watt);
+		        var meter = document.getElementById("meter").value;
+		        meter = Number(meter);
+		        var flux = document.getElementById("flux").value;
+		        flux = Number(flux);
+		        if(watt==""){
+		            watt = flux*4*Math.PI*Math.pow(meter, 2);
+		            document.getElementById("watt").value = watt;
+		            toSun();
+		        }
+		        if(meter==""){
+		            meter = Math.sqrt(watt/(flux*4*Math.PI));
+		            document.getElementById("meter").value = meter;
+		            toAU();
+		        }
+		        if(flux==""){
+		            flux = watt/(4*Math.PI*Math.pow(meter, 2));
+		            document.getElementById("flux").value = flux;
+		            toSunF();
+		        }
+		    }
+		</script>
+
+	</body>
+</html>

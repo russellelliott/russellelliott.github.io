@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Momentum</title>
+		<style>
+              /*https://forums.asp.net/t/1919981.aspx?align+textbox+in+a+cell+of+a+table+to+center*/
+              td{
+                    text-align: center; /* center textbox horizontally */
+                    vertical-align: middle; /* center textbox vertically */
+                }
+		</style>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="icon" 
+        type="image/png" 
+        href="../images/earth.png" />
+	</head>
+
+	<body>
+	    <h1>Rotational and Orbital Momentum</h1>
+	    <button onclick="window.location.href = '/cosmic-math';">Go Back</button>
+	    <h2>Orbital Momentum</h2>
+		<a href = "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html">Moon Fact Sheet</a>
+		<a href = "https://en.wikipedia.org/wiki/Moon">Wikipedia - Moon</a>
+		<ul>
+		    <li>Moon Mass = 0.0123 Earths</li>
+		    <li>Moon Orbital Distance = 384399 km</li>
+		    <li>Moon Radius = 1737.4 km</li>
+		</ul>
+		<table>
+		    <tr>
+		        <th>Mass of Host (Earths)</th>
+		        <th>Mass of Satellite (Earths)</th>
+		        <th>Orbital Distance (km)</th>
+		    </tr>
+		    <tr>
+		        <td><input type="number" id="center" placeholder = "Mass (Earths)" oninput = "orbit()"></td>
+		        <td><input type="number" id="satel" placeholder = "Mass (Earths)" oninput = "orbit()"></td>
+		        <td><input type="number" id="distance" placeholder = "Distance (km)" oninput = "orbit()"></td>
+		    </tr>
+		</table>
+		<table>
+		    <tr>
+		        <th>Orbital Period (Days)</th>
+		        <th>Orbital Velocity (km/s)</th>
+		        <th>Orbital Momentum (kg*m<sup>2</sup>*s<sup>-1</sup>)</th>
+		    </tr>
+		    <tr>
+		        <td><input type="number" id="period" readonly></td>
+		        <td><input type="number" id="orbitV" readonly></td>
+		        <td><input type="number" id="moment" readonly></td>
+		    </tr>
+		</table>
+		<script>
+		    var secInDay = 86400;
+		    //#https://en.wikipedia.org/wiki/Earth_mass
+		    //Mass in kg
+		    var earthMass = 5.9722*Math.pow(10, 24);
+		    function orbit(){
+		        //Mass of host in Earths
+		        var center = document.getElementById("center").value;
+		        center = Number(center);
+		        if (center<0){
+		            center = 0;
+		            document.getElementById("center").value = center;
+		        }
+		        
+		        //Mass of Moon in Earths
+		        var satel = document.getElementById("satel").value;
+		        satel = Number(satel);
+		        if (satel<0){
+		            satel = 0;
+		            document.getElementById("satel").value = satel;
+		        }
+		        
+		        //Radius of Moon orbit (km)
+		        var distance = document.getElementById("distance").value;
+		        distance = Number(distance);
+		        if (distance<0){
+		            distance = 0;
+		            document.getElementById("distance").value = distance;
+		        }
+		        //Number of km in AU
+		        tokm = 149597870.7
+		        AU = distance/tokm
+		        
+		        period = 0;
+    		    //#earth mass in suns
+    		    var earthMassSun = 3.00273e-6;
+                function orbit(AU){
+                    period = Math.pow((Math.pow(AU,3)/(center*earthMassSun)),1/2);
+                    //Convert years to days
+                    period*=365.242190402;
+                    return period;
+                }
+                period = orbit(AU);
+                document.getElementById("period").value = period;
+		        
+		        //Distance = circumference
+		        //Speed = distance/time(sec)
+                velocity = (2*Math.PI*(distance))/(period*secInDay);
+                document.getElementById("orbitV").value = velocity;
+                
+                //Momentum = mass(kg)*velocity (meters/second)*radius (meters)
+                //Moon orbit in AU = 0.0025695486052128686 (384399 km)
+                //Turn km to m by multiplying by 1000
+                moment = (satel*earthMass)*velocity*(distance*1000);
+                
+                document.getElementById("moment").value = moment;
+                /*
+                #https://www.physicsclassroom.com/class/circles/Lesson-4/Mathematics-of-Satellite-Motion
+                #https://www.astronomynotes.com/angmom/s2.htm
+                #https://www.livephysics.com/problems-and-answers/classical-mechanics/find-earth-angular-momentum/
+                */
+		    }
+    		    
+		</script>
+		
+	</body>
+</html>

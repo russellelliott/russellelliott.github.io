@@ -1,0 +1,141 @@
+<!--This is the calculator code used for both Terran and Jovian Planets.
+It can't be used independently of the site.
+
+The html from this file is directly uploaded to the webpage.
+The variables defined in the page before immporting the html still work.-->
+
+<!--Adjust width and height of iframe to fit with content in it
+https://stackoverflow.com/questions/819416/adjust-width-and-height-of-iframe-to-fit-with-content-in-it-->
+
+<iframe src="table.html" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' style="height:200px;width:100%;border:none;overflow:hidden;"></iframe>
+
+
+		<table>
+		    <tr>
+		        <th>Mass (Earths)</th>
+		        <th>Density (kg/m<sup>3</sup>)</th>
+		        <th>Rotational Velocity (m/s)</th>
+		    </tr>
+		    <tr>
+		        <td><input type="number" id="massE" placeholder = "Earths"></td>
+		        <td><input type="number" id="density" placeholder = "kg/m&sup3"></td>
+		        <td><input type="number" id="velocity" placeholder = "m/s"></td>
+		    </tr>
+		    <tr>
+		        <td colspan = "3"><button onclick = "solve()" style = "margin: 0 auto;
+  display: block; background-color:yellow">Solve</button></td>
+		    </tr>
+		</table>
+		
+		<script>
+		//https://en.wikipedia.org/wiki/Earth_mass
+        var earthMass = 5.9722*Math.pow(10, 24);
+	    function toMassEarth(kg){
+	        return kg/earthMass;
+	    }
+	    function toMasskg(earth){
+	        return earth*earthMass;
+	    }
+	    
+	    //Given mass in kg, returns the right side of the equation
+	    function rightSide(m){
+	        return m * (Math.log(m/const2)**2);
+	    }
+	    
+	    //Returns exponent x such that plugging 10^x to the right side of the equation 
+        //is above the result
+	    function findOverEstimate(start, exponent){
+            while(true){
+                if(rightSide(10**start)>finalResult){
+                    break
+                }
+                start+=exponent;
+            }
+            return start
+	    }
+	    
+	    //Returns exponent x such that plugging 10^x to the right side of the equation 
+        //is below the result
+	    function findUnderEstimate(start, exponent){
+            while(true){
+                if(rightSide(10**start)<finalResult){
+                    break
+                }
+                start-=exponent;
+            }
+            return start
+	    }
+	    
+	    //Calculates the average of two numbers.
+	    function average(a, b){
+            return (a+b)/2;
+	    }
+	    function solve(){
+	        massE = document.getElementById( 'massE' ).value;
+	        massE = Number(massE);
+	        massE = toMasskg(massE);
+	        
+	        density = document.getElementById( 'density' ).value;
+	        density = Number(density);
+	        
+	        velocity = document.getElementById( 'velocity' ).value;
+	        velocity = Number(velocity)
+	        
+	        if(massE == ""){
+	            //This formula is rearranged in terms of mass as much as possible. Sympy, Symbolab, and MatLab can't seen to solve this equation in terms of m.
+                finalResult = ((density**1.5)*(velocity**3))/(const1**3);
+                //This is NOT the mass. This is the right side of the equation. From this, we need a mass m to yield the final result.
+                //print(finalResult)
+                //Now, we need to find the mass such that rightSide(mass) equals the finalResult
+                //Set the increment. For now, it's 1
+                increment = 1;
+                //1. First, find the smallest exponent of 10 which produces an over estimate of the result.
+                overEstimate = findOverEstimate(1, increment);
+                //2. Now that we have the overestimate, an underestimate must be found.
+                //Starting at the overestimate, the exponent will be counted down until the result
+                //is below finalResult
+                underEstimate = findUnderEstimate(overEstimate, increment);
+                //3. Now we have the underestimate and the overestimate. This produces a range.
+                //From the underestimate, we'll increase the counter by a number until an
+                //overestimate is reached.
+
+                //Decrease the exponent tested by 0.001 each iteration
+                //This brings the upper and lower bounds closer and closer together,
+                //enabling an accurate result to be produced.
+                amount = 0.001
+                while(true){
+                    increment-=amount;
+                    //print(f"Increment: {increment}")
+                    overEstimate = findOverEstimate(underEstimate, increment);
+                    //print(overEstimate)
+                    underEstimate = findUnderEstimate(overEstimate, increment);
+                    //print(underEstimate)
+                    if(increment <= amount){
+                        break
+                    }
+                }
+                //The new exponent, calculated as the average of the upper and lower bounds.
+                newExponent = average(overEstimate, underEstimate);
+                //This is our final mass in earthMasses
+                massE = 10**newExponent/earthMass;
+                document.getElementById( 'massE' ).value = massE;
+                
+                
+
+                
+	            
+	        }else if(density == ""){
+	            density = ((const1*Math.pow(massE*Math.pow(Math.log(massE/const2)      ,2)         ,1/3))/(velocity))**2;
+	            document.getElementById( 'density' ).value = density;
+	        
+	            
+	        }else if(velocity == ""){
+	            //velocity = const1*Math.pow(massE*Math.pow((Math.log(massE/const2))2),1/3))/(Math.sqrt(density))
+	            
+	            velocity = (const1*Math.pow(massE*Math.pow(Math.log(massE/const2)      ,2)         ,1/3))/(Math.sqrt(density));
+	            
+	            document.getElementById( 'velocity' ).value = velocity;
+	        }
+	    }
+		</script>
+		<p><b>NOTE: </b>While the formula can be easily rearranged in terms of density and velocity, the same can't be said for mass. This program approximates the mass by finding the powers of 10 such that one is an overestimate and one is an underestimate. The bounds are brought closer together and a result is approximated as the average of the two once they get sufficiently close together. </p>

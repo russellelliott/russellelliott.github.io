@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Calculate Planet Temperature and Greenhouse Effect</title>
+		<style>
+            
+            .center {
+              margin-left: auto;
+              margin-right: auto;
+            }
+            #tableGreen input:read-only, #tableGreen tr td:nth-child(4), #tableGreen tr th:nth-child(4) {
+                background-color: #3CBC8D;
+                color: white;
+            }
+            
+            #tableAtm input:read-only, #tableAtm tr td:nth-child(4), #tableAtm tr th:nth-child(4) {
+                background-color: dodgerblue;
+                color: white;
+            }
+            
+		</style>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="icon" 
+        type="image/png" 
+        href="../images/earth.png" />
+	</head>
+
+	<body>
+		<h1>Calculate Planet Temperature</h1>
+		<button onclick="window.location.href = '/cosmic-math';">Go Back</button>
+		<table width = "100%">
+		    <tr>
+		        <th width = "50%">Blackbody Temperature</th>
+		        <th width = "50%">Greenhouse Effect</th>
+		    </tr>
+		    <tr>
+		        <td style = "vertical-align: top;">
+		            <p>The blackbody temperature of a planet can be calcualted using this <a href = "https://scied.ucar.edu/planetary-energy-balance-temperature-calculate">formula</a></p>
+            		<img src = "https://scied.ucar.edu/sites/default/files/images/long-content-page/planetary_temperature_eqn_360x120.png">
+            		<ul>
+            		    <li>T = temperature (kelvin)</li>
+            		    <li>K<sub>S</sub> = Solar constant (For Earth, this value is about 1361 watts/m<sup>2</sup>)</li>
+            		    <li>σ = Stefan-Boltzmann constant = 5.670373 x 10<sup>-8</sup> watts / m<sup>2</sup> K<sup>4</sup> (m = meters, K = kelvins)</li>
+            		    <li>Albedo: For the Earth, this value is 0.31.</li>
+            		</ul>
+            		<p>The formula can also be rewritten as:</p>
+                    <table class="center">
+                    <tr>
+                        <th><a href = "https://www.lpl.arizona.edu/~showman/greenhouse.html"><h1>$$T = \sqrt[4]{\frac{F}{σ}}$$</h1></a></th>
+                        <th><a href = "http://faculty.washington.edu/dcatling/555_PlanetaryAtmos/EnergySourcesOrbits_Student.pdf"><h1>$$F = \frac{K_{S}(1-A)}{4}$$</h1></a></th>
+                    </tr>
+                    <tr>
+                      <td colspan = "2".>
+                         <ul>
+                            <li>F = Absorbed solar radiation flux (watts/m<sup>2</sup>)</li>
+                        </ul> 
+                      </td>
+                    </tr>
+                    </table>
+            		
+
+		        </td>
+		        <td style = "vertical-align: top;">
+		            <p>The formula for the blackbody temperature of a planet can be modified by adding the greenhouse effect in watts per square meter.</p>
+
+                    <a href = "https://www.realclimate.org/index.php/archives/2006/01/calculating-the-greenhouse-effect/"><h1>
+            	        $$T = \sqrt[4]{\frac{F+G}{σ}} = \sqrt[4]{\frac{K_{S}(1-A)}{4σ} + \frac{G}{σ}}$$
+            	    </h1></a>
+            	    
+            	    
+            	    <ul>
+            		    <li>T = temperature (kelvin)</li>
+            		    <li>K<sub>S</sub> = Solar constant (watts/m<sup>2</sup>)</li>
+            		    <li>σ = Stefan-Boltzmann constant = 5.670373 x 10<sup>-8</sup> watts / m<sup>2</sup> K<sup>4</sup> (m = meters, K = kelvins)</li>
+            		    <li>A = Albedo (0-1)</li>
+            		    <li><span style="color:#4BB543">G = Greenhouse Effect (watts/m<sup>2</sup>)</span></li>
+            		</ul>
+		        </td>
+		    </tr>
+		    <tr>
+		        <td style = "background-color:#FF9494">
+		            <p>However, this formula doesn't take greenhouse effect into account. By adding the equivalent watts/m<sup>2</sup> produced by a given volume of greenhouse gasses in the planet's atmosphere to this formula, we can calculate the temperature of the planet more accurately.</p>
+		        </td>
+		        <td style="background-color:#4BB543">
+                    <p>With this formula, we can get a better idea of the temperature of the planet, as greenhouse effect is taken into account.</p>
+		        </td>
+		    </tr>
+		</table>
+		
+	    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async
+                src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js">
+        </script>
+	    
+	    
+	    <h1>
+	        $$T = \sqrt[4]{\frac{K_{S}(1-A)}{4σ}}$$
+	    </h1>
+	    <p>Formula made with 	    <a href = "https://www.mathjax.org/">MathJax</a></p>
+	    
+		<table>
+		    <tr>
+		        <th>Variable</th>
+		        <th>Meaning</th>
+		        <th><a href = "https://en.wikipedia.org/wiki/Earth">Earth</a></th>
+		    </tr>
+		    <tr>
+		        <td>T</td>
+		        <td>Temperature (<sup>o</sup>K)</td>
+		        <td>287.16</td>
+		    </tr>
+		    <tr>
+		        <td>K</td>
+		        <td>Solar Constant (W/m<sup>2</sup>)</td>
+		        <td>1361</td>
+		    </tr>
+		    <tr>
+		        <td>A</td>
+		        <td>Albedo</td>
+		        <td>0.31</td>
+		    </tr>
+		    <tr>
+		        <td>G</td>
+		        <td>Greenhouse Effect (W/m<sup>2</sup>)</td>
+		        <td><a href = "https://www.realclimate.org/index.php/archives/2006/01/calculating-the-greenhouse-effect/">150</a></td>
+		    </tr>
+		</table>
+	    <h2>Instructions</h2>
+	    <ol>
+	        <li>Enter 3 of the following values: Solar Constant, Greenhouse Effect, Albedo, Temperature</li>
+	        <li>Press the "Calculate" button to get the 4th value.</li>
+	    </ol>
+	    <table>
+	        <tr>
+	            <th>Solar Constant (w/m<sup>2</sup>)</th>
+	            <th>Greenhouse Effect (w/m<sup>2</sup>)</th>
+	            <th>Albedo</th>
+	            <th>Temperature (K)</th>
+	        </tr>
+	        <tr>
+	            <td><input type="number" id="solar" value="" min="0" oninput = "" placeholder="Solar Constant"></td>
+	            <td><input type="number" id="green" value="" min="0" oninput = "" placeholder="Greenhouse Effect"></td>
+
+	            <td><input type="number" id="albedo" value="" min="0" oninput = "" placeholder="Albedo"></td>
+	            <td><input type="number" id="temp" value="" min="0" oninput = "" placeholder="Temperature"></td>
+	        </tr>
+	        
+	        <tr>
+	            <td colspan = "4" align = "center"><button onclick = "calculate()">Calculate</button></td>
+	        </tr>
+	    </table>
+	    
+	    <script>
+	        var boltz = 5.67051*Math.pow(10,-8);
+	        function makeNumbers(){
+	            solar = Number(solar);
+	            green = Number(green);
+	            albedo = Number(albedo);
+	            temp = Number(temp);
+	        }
+	        function calculate(){
+	            var solar = document.getElementById("solar").value;
+	            var green = document.getElementById("green").value;
+	            var albedo = document.getElementById("albedo").value;
+	            var temp = document.getElementById("temp").value;
+	            
+	            if(temp == ""){
+	                //makeNumbers();
+	                
+	                solar = Number(solar);
+    	            green = Number(green);
+    	            albedo = Number(albedo);
+    	            
+	                numer = (solar)*(1-albedo);
+	                denom = 4*boltz;
+	                temp = Math.pow(numer/denom + green/boltz, 0.25);
+	                document.getElementById("temp").value = temp;
+	                return
+	            }
+	            
+	            if(solar == ""){
+	                //makeNumbers();
+	                temp = Number(temp);
+    	            green = Number(green);
+    	            albedo = Number(albedo);
+    	            
+	                numer = (Math.pow(temp, 4)*4*boltz)-(4*green);
+	                denom = 1-albedo;
+	                solar = (numer/denom);
+	                document.getElementById("solar").value = solar;
+	                return
+	            }
+	            
+	            if(green == ""){
+	                //makeNumbers();
+	                temp = Number(temp);
+	                solar = Number(solar);
+    	            albedo = Number(albedo);
+    	            
+	                numer = (Math.pow(temp, 4)*4*boltz)-(solar*(1-albedo));
+	                denom = 4;
+	                green = numer/denom;
+	                document.getElementById("green").value = green;
+	                return
+	            }
+	            
+	            if(albedo == ""){
+	                //makeNumbers();
+	                temp = Number(temp);
+	                solar = Number(solar);
+    	            green = Number(green);
+
+	                numer = (Math.pow(temp, 4)*4*boltz)-(4*green);
+	                denom = solar;
+	                albedo = 1-numer/denom;
+	                document.getElementById("albedo").value = albedo;
+	                return
+
+	            }
+	        }
+
+	    </script>
+		<h1>Calculating Greenhouse Effect</h1>
+		<p>The greenhouse effect of a planet is represented as watts/m<sup>2</sup>, as the greenhouse effect traps heat from a star in the planet's atmosphere, effectively increasing the amount of the sun's heat absorbed by the planet, in addition to what the planet itself already absorbs.</p>
+	    <table>
+	        <tr>
+	            <th>Planet</th>
+	            <th>Effect (w/m<sup>2</sup>)</th>
+	        </tr>
+	        <tr>
+	            <td>Earth</td>
+	            <td><a href = "https://www.realclimate.org/index.php/archives/2006/01/calculating-the-greenhouse-effect/">150</a></td>
+	        </tr>
+	    </table>
+	    
+	    <table>
+	        <tr>
+	            <th rowspan = "2">Compound</th>
+	            <th rowspan = "2"><a href = "https://en.wikipedia.org/wiki/Earth">Concentration in atmosphere (ppm)</a></th>
+	            <th colspan = "3">Contribution to Greenhouse Effect (w/m<sup>2</sup>)</th>
+	            <th>Total Greenhouse Effect (w/m<sup>2</sup>)</th>
+	        </tr>
+	        <tr>
+	            <th><a href = "https://en.wikipedia.org/wiki/Greenhouse_gas#Greenhouse_gases">Wikipedia - Greenhouse Gasses*</a></th>
+	        </tr>
+	        <tr>
+	            <th>Water Vapor (H<sub>2</sub>O)</th>
+	            <td><p id = "water"></p></td>
+	            <td><p id = "waterGreen"></p></td>
+	        </tr>
+	        <tr>
+	            <th>Carbon Dioxide (CO<sub>2</sub>)</th>
+	            <td><p id = "CO2"></p></td>
+	            <td><p id = "carbonGreen"></p></td>
+	        </tr>
+	        <tr>
+	            <th>Methane (CH<sub>4</sub>)</th>
+	            <td><p id = "meth"></p></td>
+	            <td><p id = "methGreen"></p></td>
+	        </tr>
+	        <tr>
+	            <th>Ozone (O<sub>3</sub>)**</th>
+	            <td><p id = "Oz"></p></td>
+	            <td><p id = "OzGreen"></p></td>
+	        </tr>
+	        <tr>
+	            <th>Dust***</th>
+	            <td><p id = "dustPPM"></p></td>
+	            <td><a href = "https://www.giss.nasa.gov/research/briefs/miller_01/"><p id = "dustGreen"></p></a></td>
+	        </tr>
+	        
+	    </table>
+	    <p>* Based on percentages of their respective contributions to Earth's greenhouse effect, using 150 w/m<sup>2</sup> for Earth's Greenhouse effect.</p>
+	    <p>** The range for the ppm of Ozone in the air provided by Wikipedia is 2-8. The average (5) is used in this calculator.</p>
+	    <p>*** Not included in Earth's greenhouse effect. PPM value calculated by dividing the amount of dust in the air <a href = "https://www.nsf.gov/discoveries/disc_summ.jsp?cntn_id=300432&org=NSF&from=news">(17 million metric tonnes) </a>by the mass of the atmosphere <a href = "https://en.wikipedia.org/wiki/Atmosphere_of_Earth">(5.15*10<sup>18</sup>kg).</a></p>
+	    <table id = "tableGreen">
+	        <tr>
+	            <th colspan = "4">Amount of Compound in Atmosphere</th>
+	        </tr>
+	        <tr>
+	            <th></th>
+	            <th>PPM</th>
+	            <th>Earths</th>
+	            <th>Greenhouse Effect</th>
+	        </tr>
+	        <tr>
+	            <th>Water</th>
+	            <td><input type="number" id="waterppm" value="" min="0" oninput = "toEarth('water')" placeholder=""></td>
+	            <td><input type="number" id="waterEarth" value="" min="0" oninput = "toPPM('water')" placeholder=""></td>
+	            <td><input type="number" id="waterHouse" value="" min="0" oninput = "" readonly></td>
+	        </tr>
+	        <tr>
+	            <th>CO<sub>2</sub></th>
+	            <td><input type="number" id="CO2ppm" value="" min="0" oninput = "toEarth('CO2')" placeholder=""></td>
+	            <td><input type="number" id="CO2Earth" value="" min="0" oninput = "toPPM('CO2')" placeholder=""></td>
+	            <td><input type="number" id="CO2House" value="" min="0" oninput = "" readonly></td>
+	        </tr>
+	        <tr>
+	            <th>Methane</th>
+	            <td><input type="number" id="methppm" value="" min="0" oninput = "toEarth('meth')" placeholder=""></td>
+	            <td><input type="number" id="methEarth" value="" min="0" oninput = "toPPM('meth')" placeholder=""></td>
+	            <td><input type="number" id="methHouse" value="" min="0" oninput = "" readonly></td>
+	        </tr>
+	        <tr>
+	            <th>Ozone</th>
+	            <td><input type="number" id="Ozppm" value="" min="0" oninput = "toEarth('Oz')" placeholder=""></td>
+	            <td><input type="number" id="OzEarth" value="" min="0" oninput = "toPPM('Oz')" placeholder=""></td>
+	            <td><input type="number" id="OzHouse" value="" min="0" oninput = "" readonly></td>
+	        </tr>
+	        <tr>
+	            <th>Dust</th>
+	            <td><input type="number" id="dustppm" value="" min="0" oninput = "toEarth('dust')" placeholder=""></td>
+	            <td><input type="number" id="dustEarth" value="" min="0" oninput = "toPPM('dust')" placeholder=""></td>
+	            <td><input type="number" id="dustHouse" value="" min="0" oninput = "" readonly></td>
+	        </tr>
+	        <tr>
+	            <th colspan = "3">Total Greenhouse Effect</th>
+	            <td><input type="number" id="total" value="" min="0" oninput = "" readonly></td>
+	        </tr>
+	        
+	        
+	        
+	    </table>
+	    
+	    <script>
+	        
+	        //Greenhouse effect of Earth in w/m^2
+	        var earthGreen = 150;
+	        
+	        //Amount in atmosphere (ppm)
+	        var water = 1000;
+	        var CO2 = 413;
+	        var meth = 19;
+	        //Wikipedia, ozone is between 2-8 ppm
+	        var Oz = average(2, 8);
+	        
+	        document.getElementById("water").innerHTML = water;
+	        document.getElementById("CO2").innerHTML = CO2;
+	        document.getElementById("meth").innerHTML = meth;
+	        document.getElementById("Oz").innerHTML = Oz;
+
+	        
+	        //Estimates (low and high) from wikipedia as % of contribution
+	        //They don't add to 100%, so we find their sum and use the ratio of that and 100 to make the total 100 whilst also retaining the ratio.
+	        //Now that they equal to 100, we can multiply them by the greenhouse effect of Earth divided by 100 to make the sum of the values equal Earth's greenhouse effect.
+	        var lowWater = 36;
+	        var lowCO2 = 9;
+	        var lowMeth = 4;
+	        var lowOz = 3;
+	        
+	        var lowTotal = lowWater+lowCO2+lowMeth+lowOz;
+	        var lowFactor = (100/lowTotal)*(earthGreen/100);
+	        
+	        lowWater*=lowFactor;
+	        lowCO2*=lowFactor;
+	        lowMeth*=lowFactor;
+	        lowOz*=lowFactor;
+	        
+	        
+	        var highWater = 72;
+	        var highCO2 = 26;
+	        var highMeth = 9;
+	        var highOz = 7;
+	        
+	        var highTotal = highWater+highCO2+highMeth+highOz;
+	        var highFactor = (100/highTotal)*(earthGreen/100);
+	        
+	        highWater*=highFactor;
+	        highCO2*=highFactor;
+	        highMeth*=highFactor;
+	        highOz*=highFactor;
+	        
+	        document.getElementById("waterGreen").innerHTML = highWater+" - "+ lowWater;
+	        document.getElementById("carbonGreen").innerHTML = lowCO2+" - "+ highCO2;
+	        document.getElementById("methGreen").innerHTML = lowMeth+" - "+ highMeth;
+	        document.getElementById("OzGreen").innerHTML = lowOz+" - "+ highOz;
+	        
+	        //https://www.nsf.gov/discoveries/disc_summ.jsp?cntn_id=300432&org=NSF&from=news
+	        var dustKg = 17*Math.pow(10,6)/1000;
+	        
+	        //https://en.wikipedia.org/wiki/Atmosphere_of_Earth
+	        var atmMassKg = 5.15*Math.pow(10, 18);
+	        
+	        var dustPPM = dustKg/atmMassKg; //1 = 100%
+	        dustPPM*=Math.pow(10,6); //Convert decimal to ppm, multiply by 1 million
+	        
+	        document.getElementById("dustPPM").innerHTML = dustPPM;
+	        
+	        function average(a, b) {
+        		return ((a + b) /2);
+        	}
+        	
+        	//These values are the averages and will be used in the calculation of the planet's greenhouse effect
+        	waterAvg = average(lowWater, highWater);
+        	CO2Avg = average(lowCO2, highCO2);
+        	methAvg = average(lowMeth, highMeth);
+        	OzAvg = average(lowOz, highOz);
+        	
+        	document.getElementById("waterGreen").innerHTML = waterAvg;
+	        document.getElementById("carbonGreen").innerHTML = CO2Avg;
+	        document.getElementById("methGreen").innerHTML = methAvg;
+	        document.getElementById("OzGreen").innerHTML = OzAvg;
+	        
+	        var dustGreen = -2.72;
+	        document.getElementById("dustGreen").innerHTML = dustGreen;
+	        
+	        //Convert ppm to decimal
+	        function ppmToPer(a){
+	           return a*(Math.pow(10, 6)); 
+	        }
+	        var waterPerc = ppmToPer(water);
+	        var CO2Perc = ppmToPer(CO2);
+	        var methPerc = ppmToPer(meth);
+	        var OzPerc = ppmToPer(Oz);
+	        
+	        //Convert from amount in Earths to ppm
+        	function toPPM(water2){
+        	    if(water2 == "water"){
+        	        PPM = water;
+        	        avg = waterAvg;
+        	        input = "waterEarth";
+        	        output = "waterppm";
+        	        house = "waterHouse";
+        	    }
+        	    if(water2 == "CO2"){
+        	        PPM = CO2;
+        	        avg = CO2Avg;
+        	        input = "CO2Earth";
+        	        output = "CO2ppm";
+        	        house = "CO2House";
+        	    }
+        	    if(water2 == "meth"){
+        	        PPM = meth;
+        	        avg = methAvg;
+        	        input = "methEarth";
+        	        output = "methppm";
+        	        house = "methHouse";
+        	    }
+        	    if(water2 == "Oz"){
+        	        PPM = Oz;
+        	        avg = OzAvg;
+        	        input = "OzEarth";
+        	        output = "Ozppm";
+        	        house = "OzHouse";
+        	    }
+        	    if(water2 == "dust"){
+        	        PPM = dustPPM;
+        	        avg = dustGreen;
+        	        input = "dustEarth";
+        	        output = "dustppm";
+        	        house = "dustHouse";
+        	    }
+        	    waterEarth = document.getElementById(input).value;
+        	    waterPPM = waterEarth*PPM;
+        	    document.getElementById(output).value = waterPPM;
+        	    document.getElementById(house).value = waterEarth*avg;
+        	    
+        	    totalGreen();
+        	}
+        	//convert from amounf in ppm to Earths
+        	function toEarth(water2){
+        	    if(water2 == "water"){
+        	        PPM = water;
+        	        avg = waterAvg;
+        	        input = "waterppm";
+        	        output = "waterEarth";
+        	        house = "waterHouse";
+        	    }
+        	    if(water2 == "CO2"){
+        	        PPM = CO2;
+        	        avg = CO2Avg;
+        	        output = "CO2Earth";
+        	        input = "CO2ppm";
+        	        house = "CO2House";
+        	    }
+        	    if(water2 == "meth"){
+        	        PPM = meth;
+        	        avg = methAvg;
+        	        output = "methEarth";
+        	        input = "methppm";
+        	        house = "methHouse";
+        	    }
+        	    if(water2 == "Oz"){
+        	        PPM = Oz;
+        	        avg = OzAvg;
+        	        output = "OzEarth";
+        	        input = "Ozppm";
+        	        house = "OzHouse";
+        	    }
+        	    if(water2 == "dust"){
+        	        PPM = dustPPM;
+        	        avg = dustGreen;
+        	        output = "dustEarth";
+        	        input = "dustppm";
+        	        house = "dustHouse";
+        	    }
+        	    waterPPM = document.getElementById(input).value;
+        	    waterEarth = waterPPM/PPM;
+        	    document.getElementById(output).value = waterEarth;
+        	    document.getElementById(house).value = waterEarth*avg;
+        	    
+        	    totalGreen();
+        	}
+        	function totalGreen(){
+        	    totalWater = document.getElementById("waterHouse").value;
+        	    totalWater = Number(totalWater);
+        	    totalCO2 = document.getElementById("CO2House").value;
+        	    totalCO2 = Number(totalCO2);
+        	    totalMeth = document.getElementById("methHouse").value;
+        	    totalMeth = Number(totalMeth);
+        	    totalOz = document.getElementById("OzHouse").value;
+        	    totalOz = Number(totalOz);
+        	    totalDust = document.getElementById("dustHouse").value;
+        	    totalDust = Number(totalDust);
+        	    var total = totalWater+totalCO2+totalMeth+totalOz+totalDust;
+        	    document.getElementById("total").value = total;
+        	}
+        	
+
+	        
+	        
+	        
+	    </script>
+	    
+	    
+	    <table id = "tableAtm">
+	        <tr>
+	            <th colspan = "4">Amount of Compound in Atmosphere</th>
+	        </tr>
+	        <tr>
+	            <th></th>
+	            <th>% of Atmosphere</th>
+	            <th>Atmospheric Pressure (Earths)</th>
+	            <th>Amount of Compound (Earths)</th>
+	        </tr>
+	        <tr>
+	            <th>Water</th>
+	            <td><input type="number" id="waterppm2" value="" min="0" oninput = "atm('water')" placeholder=""></td>
+	            <td><input type="number" id="waterEarth2" value="" min="0" oninput = "atm('water')" placeholder=""></td>
+	            <td><input type="number" id="waterHouse2" value="" min="0" oninput = "" readonly></td>
+	        </tr>
+	        <tr>
+	            <th>CO<sub>2</sub></th>
+	            <td><input type="number" id="CO2ppm2" value="" min="0" oninput = "atm('CO2')" placeholder=""></td>
+	            <td><input type="number" id="CO2Earth2" value="" min="0" oninput = "atm('CO2')" placeholder=""></td>
+	            <td><input type="number" id="CO2House2" value="" min="0" oninput = "" readonly></td>
+	        </tr>
+	        <tr>
+	            <th>Methane</th>
+	            <td><input type="number" id="methppm2" value="" min="0" oninput = "atm('meth')" placeholder=""></td>
+	            <td><input type="number" id="methEarth2" value="" min="0" oninput = "atm('meth')" placeholder=""></td>
+	            <td><input type="number" id="methHouse2" value="" min="0" oninput = "" readonly></td>
+	        </tr>
+	        <tr>
+	            <th>Ozone</th>
+	            <td><input type="number" id="Ozppm2" value="" min="0" oninput = "atm('Oz')" placeholder=""></td>
+	            <td><input type="number" id="OzEarth2" value="" min="0" oninput = "atm('Oz')" placeholder=""></td>
+	            <td><input type="number" id="OzHouse2" value="" min="0" oninput = "" readonly></td>
+	        </tr>
+	        <tr>
+	            <th>Dust</th>
+	            <td><input type="number" id="dustppm2" value="" min="0" oninput = "atm('dust')" placeholder=""></td>
+	            <td><input type="number" id="dustEarth2" value="" min="0" oninput = "atm('dust')" placeholder=""></td>
+	            <td><input type="number" id="dustHouse2" value="" min="0" oninput = "" readonly></td>
+	        </tr>
+	        <!--<tr>
+	            <th colspan = "3">Total Greenhouse Effect</th>
+	            <td><input type="number" id="total" value="" min="0" oninput = "" readonly></td>
+	        </tr>-->
+	    </table>
+	    
+	    <script>
+	        
+	        
+	        function atm(water2){
+        	    if(water2 == "water"){
+        	        PPM = water;
+        	        input = "waterEarth2";
+        	        output = "waterppm2";
+        	        house = "waterHouse2";
+        	    }
+        	    if(water2 == "CO2"){
+        	        PPM = CO2;
+        	        input = "CO2Earth2";
+        	        output = "CO2ppm2";
+        	        house = "CO2House2";
+        	    }
+        	    if(water2 == "meth"){
+        	        PPM = meth;
+        	        input = "methEarth2";
+        	        output = "methppm2";
+        	        house = "methHouse2";
+        	    }
+        	    if(water2 == "Oz"){
+        	        PPM = Oz;
+        	        input = "OzEarth2";
+        	        output = "Ozppm2";
+        	        house = "OzHouse2";
+        	    }
+        	    if(water2 == "dust"){
+        	        PPM = dustPPM;
+        	        input = "dustEarth2";
+        	        output = "dustppm2";
+        	        house = "dustHouse2";
+        	    }
+        	    percent = document.getElementById(input).value;
+        	    percent = Number(percent);
+        	    pressure = document.getElementById(output).value;
+        	    pressure = Number(pressure);
+        	    //waterPPM = waterEarth*PPM;
+        	    //document.getElementById(output).value = waterPPM;
+        	    document.getElementById(house).value = (percent/100)*pressure*(1000000/PPM);
+        	    
+        	    //totalGreen();
+        	}
+	    </script>
+	</body>
+</html>

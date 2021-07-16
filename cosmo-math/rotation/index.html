@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rotation and Gravity</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        * {
+          box-sizing: border-box;
+        }
+        
+        .zoom {
+          padding-top: 50px;
+          
+          transition: transform .2s;
+          width: 300px;
+          height: 300px;
+          margin: auto;
+        }
+        
+        .zoom:hover {
+          -ms-transform: scale(1.5); /* IE 9 */
+          -webkit-transform: scale(1.5); /* Safari 3-8 */
+          transform: scale(1.5); 
+        }
+        </style>
+		<style>
+    		th{
+    		    align:center
+    		}
+
+
+		    img {
+		        width:300px;
+		        height:300px;
+		        display: block;
+		        margin-left: auto;
+		        margin-right: auto;
+		        
+		    }
+            input[type=number]{
+                width: 180px;
+            }
+		</style>
+		<link rel="icon" 
+        type="image/png" 
+        href="../images/earth.png" />
+	</head>
+	<!--
+	CSS Zoom: https://www.w3schools.com/howto/howto_css_zoom_hover.asp
+	Div padding: https://www.w3schools.com/css/css_padding.asp
+	-->
+	<body>
+		<h1>Planet Rotation Period</h1>
+		<button onclick="window.location.href = '/cosmic-math';">Go Back</button>
+		<h2>These calculators calculate the rotational period of a planet given its mass and density. Select a calculator below.</h2>
+		<table style = "width:100%">
+		    <tr>
+		        <th style = "width:50%">Terrestrial Planers (Mass &leq; 10 Earths)</th>
+		        <th style = "width:50%">Jovian Planets (Mass &gt; 10 Earths)</th>
+		    </tr>
+		    <tr>
+		        <td><div class="zoom">
+		            <a href = "terra.html">
+		            <img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/The_Earth_seen_from_Apollo_17_with_transparent_background.png/772px-The_Earth_seen_from_Apollo_17_with_transparent_background.png">
+	                </a>
+	            </div></td>
+		        <td><div class="zoom">
+		            <a href = "jovian.html">
+		            <img src = "https://upload.wikimedia.org/wikipedia/commons/e/e1/Jupiter_%28transparent%29.png">
+	                </a>
+	            </div></td>
+		    </tr>
+		</table>
+		<br><br><br><br><br><br>
+		<h1>Development Log</h1>
+		<table>
+			<tr>
+				<th>Date</th>
+				<th>Info</th>
+			</tr>
+			<tr>
+				<td>8/1/20 - 10/8/20</td>
+				<td>
+					<p>8/1/20 - 10/8/20: Developed and completed first version of the program. It can be viewed <a href = "https://russellelliott.github.io/cosmic-math/rotation-and-gravity.html">here</a>.</p>
+					<p>This earlier version of the program was able to:</p>
+					<ul>
+						<li>Calcualte the rotational velocity of a planet given its mass and density.</li>
+						<li>Calculate the gravity of a planet given its mass and density.</li>
+					</ul>
+					<p>However, the program was unable to calculate the mass of a planet given its density and rotational velocity. This feature was added to the second version of the program.</p>
+				</td>
+			</tr>
+			<tr>
+				<td>5/24/21 - 6/4/21</td>
+				<td>Programed algorithm in Google Colab using Python that calculates mass from rotation velocity and radius from the given formula.</td>
+			</tr>
+			<tr>
+				<td>6/23/21</td>
+				<td>Added algorithm to Planet Rotation calculator. Used code so the program code will operate on the Terran and Jovian pages, without having to copy-paste all the code to the other page. Rather, the same code is used for both pages by using a div element and Javascript code to import an html file containing the calculator code to the page.</td>
+			</tr>
+		</table>
+		
+	</body>
+</html>

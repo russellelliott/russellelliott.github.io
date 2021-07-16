@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Gravitational Binding Energy</title>
+		<style>
+              /*https://forums.asp.net/t/1919981.aspx?align+textbox+in+a+cell+of+a+table+to+center*/
+              td{
+                    text-align: center; /* center textbox horizontally */
+                    vertical-align: middle; /* center textbox vertically */
+                }
+		</style>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="icon" 
+        type="image/png" 
+        href="../images/earth.png" />
+	</head>
+
+	<body>
+		<h1>Gravitational Binding Energy</h1>
+        <button onclick="window.location.href = '/cosmic-math';">Go Back</button>
+		<p>The gravitational binding energy of a system is the minimum energy which must be added to it in order for the system to cease being in a gravitationally bound state.</p>
+		<p>The formula for the gravitational binding energy of a sphere of uniform density is:</p>
+		<img src = "https://wikimedia.org/api/rest_v1/media/math/render/svg/440c2e7d068027cd0537f81994ff3001e8108e5f">
+		<ul>
+		    <li>M = Mass is kilograms</li>
+		    <li>R = Radius is in meters</li>
+		    <li>G = <a href = "https://en.wikipedia.org/wiki/Gravitational_constant">Gravitational Constant</a></li>
+		</ul>
+		<p><a href = "https://en.wikipedia.org/wiki/Gravitational_binding_energy">Source</a></p>
+		<h1>How to Use</h1>
+		<ol>
+		    <li>Fill in two of the following: Mass, Radius, Biding Energy</li>
+		    <li>Press the "Generate" Button to generate the third value.</li>
+		</ol>
+		
+		<table style = "background-color:tan">
+		    <tr>
+		        <th style = "background-color:skyblue">Mass (Earths)</th>
+		        <th style = "background-color:tan">Radius</th>
+		        <th style = "background-color:silver">Binding Energy (Joules)</th>
+		    </tr>
+		    <tr>
+		        <td style = "background-color:skyblue"><input type="number" id="mass" placeholder = "Mass (Earths)" oninput = ""></td>
+		        <td>
+		            <table style = "background-color:tan">
+    		            <tr>
+    		                <th>Kilometers</th>
+    		                <th>Earths</th>
+    		            </tr>
+    		            <tr>
+    		                <td><input type="number" id="radiuskm" placeholder = "Radius (km)" oninput = "toE()"></td>
+    		                <td><input type="number" id="radiusE" placeholder = "Radius (Earths)" oninput = "tokm()"></td>
+    		            </tr>
+    		            <tr>
+    		                <td colspan = "2">Earth's radius = 6371 km</td>
+    		            </tr>
+    		        </table>
+		        </td>
+		        <td style = "background-color:silver"><input type="number" id="energy" placeholder = "Joules" oninput = "power()">
+		        <br>The Gravitational binding energy of Earth<br>is 2.2419093864637764&times;10<sup>32</sup>&nbsp;J.</td>
+
+		    </tr>
+		    <tr style = "background-color:lightgreen">
+		        <td colspan = "3"><button onclick = "bind()">Generate</button></td>
+		    </tr>
+		</table>
+		<script>
+    		var earthMass = 5.9722*Math.pow(10, 24);
+    		var gConst = 6.67430e-11;
+    		function power(){
+    		    energy = document.getElementById("energy").value;
+                //Joules/(joule/sec) = sec
+                //Turn joules to time in seconds
+                energy/=sunJoule;
+                document.getElementById("rsecond").value = energy;
+                document.getElementById("rdays").value = "";
+                  document.getElementById("rhour").value = "";
+                  document.getElementById("rminute").value = "";
+                  document.getElementById("rsecond").value = "";
+                convertx();
+    		}
+    		function toE(){
+                km = document.getElementById("radiuskm").value;
+                document.getElementById("radiusE").value = km/6371;
+                //bind();
+            }
+            function tokm(){
+                earthRad = document.getElementById("radiusE").value;
+                document.getElementById("radiuskm").value = earthRad*6371;
+                //bind();
+            }
+            
+            function bind(){
+    		    //Mass of host in Earths
+		        var mass = document.getElementById("mass").value;
+		        mass = Number(mass);
+		        /*if (mass<0){
+		            mass = 0;
+		            document.getElementById("mass").value = mass;
+		        }*/
+		        
+		        //Radius (km)
+		        var radius = document.getElementById("radiuskm").value;
+		        radius = Number(radius);
+		        /*if (radius<0){
+		            radius = 0;
+		            document.getElementById("radiuskm").value = radius;
+		        }*/
+		        
+		        //Binding energy
+		        //Convert km to meters by multiplying by 1000
+		        //Convert Earth mass to kg by multiplying by kg per Earth mass.
+		        var energy = document.getElementById("energy").value;
+		        /*var binding = binder(mass*earthMass, radius*1000);
+    		    document.getElementById("energy").value = binding;*/
+    		    
+    		    //Mass in kg
+    		    if(mass==""){
+    		        mass = Math.sqrt((5*radius*1000*energy)/(3*gConst));
+    		        mass/=earthMass;
+    		        document.getElementById("mass").value = mass;
+    		    }
+    		    //radius in meters
+    		    else if(radius==""){
+    		        //gConst
+    		        radius = (3*gConst*Math.pow(mass*earthMass, 2))/(5*energy);
+    		        radius/=1000;
+    		        document.getElementById("radiuskm").value = radius;
+    		        toE();
+    		    }
+    		    else if(energy==""){
+    		        energy = binder(mass*earthMass, radius*1000);
+    		        document.getElementById("energy").value = energy;
+    		        document.getElementById("rdays").value = "";
+                      document.getElementById("rhour").value = "";
+                      document.getElementById("rminute").value = "";
+                      document.getElementById("rsecond").value = "";
+    		    }
+    		    
+    		    energy = document.getElementById("energy").value;
+                //Joules/(joule/sec) = sec
+                /*energy/=sunJoule;
+                document.getElementById("rsecond").value = energy;
+                convertx();
+    		    
+    		    
+    		    
+    		    var totalSeconds = 24*60*60*day + 60*60*hour + 60*minute + second;
+                document.getElementById("energy").value = (totalSeconds*sunJoule);*/
+    		}
+    		function binder(m, r){
+    		    energy = (3*gConst*Math.pow(m, 2))/(r*5)
+    		    return energy
+    		}
+            //https://en.wikipedia.org/wiki/Gravitational_binding_energy
+    		
+        </script>
+        <!--<table>
+            <tr>
+      <th colspan = "4">Sun Energy Output Time</th>
+          </tr>
+          <tr>
+            <th>Days</th>
+            <th>Hours</th>
+            <th>Minutes</th>
+            <th>Seconds</th>
+          </tr>
+          <tr>
+            <td><input type="number" id="rdays" value="" min = "0" oninput = "converty()" placeholder = "Days">
+        </td>
+            <td><input type="number" id="rhour" value="" min = "0" oninput = "converty()" placeholder = "Hours">
+        </td>
+            <td><input type="number" id="rminute" value="" min = "0" oninput = "converty()" placeholder = "Minutes">
+        </td>
+            <td><input type="number" id="rsecond" value="" min = "0" oninput = "converty()" placeholder = "Seconds">
+        </td>
+          </tr>
+          <th colspan = "4">Time Reorganized Below</th>
+          <tr>
+            <td>
+            <input type="number" id="clock" value="" min = "0" oninput = "convertx()" placeholder = "Days"readonly>
+        </td>
+            <td>
+            <input type="number" id="clock2" value="" min = "0" oninput = "convertx()" placeholder = "Hours"readonly>
+        </td>
+            <td>
+            <input type="number" id="clock3" value="" min = "0" oninput = "convertx()" placeholder = "Minutes"readonly>
+        </td>
+            <td>
+            <input type="number" id="clock4" value="" min = "0" oninput = "convertx()" placeholder = "Seconds"readonly>
+        </td>
+          </tr>
+        </table>-->
+        <!--<p id="clock5">Rotational Period (Earth days): </p>
+        <p id="newCalendar">Orbital Period (Planet days): </p>-->
+        <script>
+        //Energy the sun releases every second
+        var sunJoule = 3.8*Math.pow(10, 26);
+        function converty(){
+            energy = document.getElementById("energy").value = "";
+            convertx();
+            //alert("boy");
+            var day2 = document.getElementById("clock").value;
+              var hour2 = document.getElementById("clock2").value;
+              var minute2 = document.getElementById("clock3").value;
+              var second2 = document.getElementById("clock4").value;
+              day2 = Number(day2);
+              hour2 = Number(hour2);
+              minute2 = Number(minute2);
+              second2 = Number(second2);
+            var totalSeconds = 24*60*60*day2 + 60*60*hour2 + 60*minute2 + second2;
+            //alert(totalSeconds);
+            document.getElementById("energy").value = (totalSeconds*sunJoule);
+        }
+        function convertz() {
+            
+            energy = document.getElementById("energy").value;
+            //Joules/(joule/sec) = sec
+            energy/=sunJoule;
+            document.getElementById("rsecond").value = energy;
+            //document.getElementById("energy").value == "";
+          var day = document.getElementById("rdays").value;
+          var hour = document.getElementById("rhour").value;
+          var minute = document.getElementById("rminute").value;
+          var second = document.getElementById("rsecond").value;
+        
+          var n = minute.toString();
+        
+          if(second>59){
+              //If minute field is above 60, converts to hh:mm
+              var multiple2 = Math.floor(second/60);
+              
+              second-=60*multiple2;
+              minute+=multiple2; 
+          }
+          if(minute>59){
+              //If minute field is above 60, converts to hh:mm
+              var multiple = Math.floor(minute/60);
+              
+              minute-=60*multiple;
+              hour+=multiple; 
+          }
+          if(hour>23){
+              //If minute field is above 60, converts to hh:mm
+              var multiple = Math.floor(hour/24);
+              
+              hour-=24*multiple;
+              day+=multiple; 
+          }
+          
+          
+          //if(minute<10 && n.length<2){
+              //minute = "0" + minute;
+          //}
+          document.getElementById("clock").value = day;
+          document.getElementById("clock2").value = hour;
+          document.getElementById("clock3").value = minute;
+          document.getElementById("clock4").value = second;
+          day = Number(day);
+          hour = Number(hour);
+          minute = Number(minute);
+          second = Number(second);
+          
+          //sunTime();
+          //document.getElementById("energy").value = "";
+          //Change time = delete joules
+          //Change joules = delete time
+          //var totalSeconds = 24*60*60*day + 60*60*hour + 60*minute + second;
+          //document.getElementById("energy").value = (totalSeconds*sunJoule);
+        
+          /*var spin = 24*60*60*day + 60*60*hour + 60*minute + second;
+          
+          //Earth's day is 86400 seconds long
+          var earthDay = 86400;
+          spin/=earthDay;
+        
+          document.getElementById("clock5").innerHTML = "Rotational Period (Earth days): " + spin;
+            var original = document.getElementById( 'convertDate' ).value;
+            //spin*365.24217
+            var planetPeriod = original/spin;
+          document.getElementById("newCalendar").innerHTML = "Orbital Period (Planet days): " + planetPeriod;
+        */
+        }
+        </script>
+	</body>
+</html>

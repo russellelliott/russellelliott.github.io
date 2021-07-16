@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Planet Size Visualizer</title>
+		<style>
+        html,
+        body {
+            /*width: 90%;*/
+            width:100%;
+            height: 40%;
+            margin: 0;
+        }
+        /*canvas {
+            background-color: #ccc;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+        }*/
+        canvas{
+            /*width:100%;*/
+            width:99%;
+        }
+    </style>
+    <link rel="icon" 
+    type="image/png" 
+    href="../images/earth.png" />
+	</head>
+
+	<body>
+    <h1>Planet Size Visualizer</h1>
+    <button onclick="window.location.href = '/cosmic-math';">Go Back</button>
+    <p>Enter a radius in Earths or kilometers in the input box below. This will be the radius of the <b style = "color:red">red</b> circle. 
+    Earth is represented by the <b style = "color:blue">blue</b> circle.</p>
+    <ul>
+        <li>The circle on the left will shrink as the radius number is larger or smaller than 1.</li>
+        <ul>
+            <li>Radius >=1 Earths: The circle on the <b style = "color:red">right is your planet</b>, the circle on the <b style = "color:blue">left is Earth.</b></li>
+            <li>Radius < 1 Earths: The circle on the <b style = "color:red">left is your planet</b>, the circle on the <b style = "color:blue">right is Earth.</b></li>
+        </ul>
+        <li>At radius = 20 Earths or 1/20 Earths, the left circle will stop shrinking so it stays visible on the screen. The right circle will grow instead to reflect the <b style = "color:red">red planet's</b> radius.</li>
+    </ul>
+    
+    <table>
+        <tr>
+            <th>Death Star I and II</th>
+            <th>Starkiller Base</th>
+        </tr>
+        <tr>
+            <td style = "width:50%">The First Death Star has a diameter of 120 km. The estimates for the diameter of the Second Death Star range from 160 to 900 km. <a href = "https://en.wikipedia.org/wiki/Death_Star">(Source)</a></td>
+            <td style = "width:50%">Starkiller Base (the planet <a href = "https://starwars.fandom.com/wiki/Ilum">Ilum</a>) is 4 times the size of the Death Star II. The diameter used for this program assumes the Death Star II is 900 km in diameter and Starkiller Base is 4200 km in diameter. <a href = "https://www.quora.com/What-is-the-size-comparison-between-Death-Star-I-Death-Star-II-and-the-Starkiller-Base">(Source)</a></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <th>Object</th>
+            <td>Earth</td>
+            <td>Moon</td>
+            <td>Jupiter</td>
+            <td>Sun</td>
+        </tr>
+        <tr>
+            <th>Radius (Earths)</th>
+            <td><a href = "https://en.wikipedia.org/wiki/Earth">1 (6371 km)</a></td>
+            <td><a href = "https://en.wikipedia.org/wiki/Moon">0.2727</a></td>
+            <td><a href = "https://en.wikipedia.org/wiki/Jupiter">11.209</a></td>
+            <td><a href = "https://en.wikipedia.org/wiki/Solar_radius">109</a></td>
+        </tr>
+    </table>
+    
+    <table style = "background-color: dodgerblue">
+        <tr>
+            <th>Radius</th>
+            <th>Other Bodies</th>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <th>Earths</th>
+                        <th>km</th>
+                    </tr>
+                    <tr>
+                        <td><input type="number" id="radiusE" value="" min="1" step=".01" oninput = "tokm()" placeholder="Earths"></td>
+                        <td><input type="number" id="radiuskm" value="" min="1" step=".01" oninput = "toE()" placeholder="kilometers"></td>
+                    </tr>
+                    
+                </table>
+                
+                
+            </td>
+            <td>
+                <button onclick = "ds1()">Death Star I<br>(120 km diameter)</button>
+                <button onclick = "ds2()">Death Star II<br>(900km diameter)</button>
+                <button onclick = "starkiller()">Starkiller Base<br>(4200km diameter)</button>
+                <button onclick="moon()">Moon</button>
+                <button onclick="jupiter()">Jupiter</button>
+                <button onclick="sun()">Sun</button>
+            </td>
+        </tr>
+    </table>
+    <canvas id="myCanvas"  width="1000" height="400" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.</canvas>
+    <br>
+
+    <button onclick="ahoy()">Animate</button>
+    <button onclick="clearCanvas()">Clear canvas</button>
+
+    <script>
+    //https://stackoverflow.com/questions/34057595/allow-2-decimal-places-in-input-type-number/34057860
+    //https://www.w3schools.com/html/html5_canvas.asp
+    //https://www.w3schools.com/tags/canvas_fill.asp
+    
+    var radius;
+    var c;
+    var ctx;
+    var rad = 15;
+    var earthX = 30;
+    var earthY = 200;
+    var other;
+    function ahoy(){
+        //100 radius = 100, canvas height = 200;
+        //200 radius = 200, canvas = 400;
+        //earthX*2 = 60;
+        //canvas width = 500
+        //width = 1000
+        //500-60 = 440
+        //1000 - 60 = 940
+        //940/2 = 470
+        //440/2 = 220
+        for(var i=1; i<=470; i++){
+            art(i);
+            //shape();
+            //setInterval(shape(), 1000);
+            //setTimeout(shape(), 1000);
+            //setTimeout(function(){ shape(); }, 3000);
+        }
+        
+        
+
+
+        
+        //document.getElementById("radiusE").value = 70;
+        //alert("big boi is here!!!");
+        //document.getElementById("radiusE").value = 70;
+    }
+    //Earth radius = 6371 km = 6,371,000 m
+    //Death Star 1: 160 km
+    //Death Star 2: 900km
+    function toE(){
+        km = document.getElementById("radiuskm").value;
+        document.getElementById("radiusE").value = km/6371;
+        shape();
+    }
+    function tokm(){
+        earthRad = document.getElementById("radiusE").value;
+        document.getElementById("radiuskm").value = earthRad*6371;
+        shape();
+    }
+    function ds1(){
+        document.getElementById("radiuskm").value = 60;
+        toE();
+        shape();
+    }
+    function ds2(){
+        document.getElementById("radiuskm").value = 450;
+        toE();
+        shape();
+    }
+    function starkiller(){
+        document.getElementById("radiuskm").value = 2100;
+        toE();
+        shape();
+    }
+    function jupiter(){
+        document.getElementById("radiusE").value = 11.209;
+        tokm();
+        shape();
+    }
+    function moon(){
+        //https://en.wikipedia.org/wiki/Moon
+        document.getElementById("radiusE").value = 0.2727;
+        tokm();
+        shape();
+    }
+    function sun(){
+        //https://en.wikipedia.org/wiki/Solar_radius
+        //approximately 10 times the average radius of Jupiter, about 109 times the radius of the Earth, and 1/215th of an astronomical unit
+        
+        document.getElementById("radiusE").value = 109;
+        tokm();
+        shape();
+    }
+//https://www.geeksforgeeks.org/how-to-add-a-delay-in-a-javascript-loop/
+    function art(i){
+        setTimeout(function(){
+            document.getElementById("radiusE").value = i;
+            shape();
+            }, 100*i);
+        
+        
+        
+    }
+    var color1;
+    var color2;
+    function shape(){
+        clearCanvas;
+        radius = document.getElementById("radiusE").value;
+        radius = Number(radius);
+        if(radius<1){
+            radius = 1/radius;
+            color2 = "blue";
+            color1 = "red";
+        }else{
+            color1 = "blue";
+            color2 = "red";
+        }
+        
+        rad = Math.max((earthX-10)/radius, 1);
+        //rad = Math.max((100)/radius, 1);
+        //rad = earthX-20;
+        //if(rad>40){
+            //rad = Math.min(40/radius, 40)
+        //}
+        //rad = 40/(radius/2);
+        /*if(radius<20 && radius>=1){
+            //rad = 6;
+            rad = 40;
+        }else if(radius>20 && radius<40){
+            rad = 3;
+        }else if(radius>40){
+            rad = 1
+        }*/
+        //if(radius<1){
+            //radius = 1/rad;
+            //rad = 1/radius;
+        //}else{
+            //rad = radius;
+        //}
+        /*if(radius<=1){
+            radius = 1/radius;
+            rad = 40*radius;
+        }else{
+            radius = radius;
+        }*/
+        /*if(radius<=1){
+            rad = 40/radius;
+        }
+        else{
+            rad = 40;
+        }*/
+        
+        //
+        //1 -> 100
+        //rad = 5/radius;
+        //rad = 5
+        //
+        //rad = 15/radius;
+        //earthX = 100/radius
+        
+        c = document.getElementById("myCanvas");
+        ctx = c.getContext("2d");
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, 1000, 400);
+        
+        
+        
+        ctx.beginPath();
+        //x, y, radius (pixels), start angle (radians), end angle (radians)
+        //*2-(0.5*rad)/(radius*2)
+        ctx.arc(earthX,earthY,rad,0,2*Math.PI);
+        ctx.fillStyle = color1;
+        ctx.fill();
+        
+        //https://www.w3schools.com/tags/canvas_font.asp
+        //https://www.w3schools.com/tags/canvas_measuretext.asp
+        //ctx.font = "15px Arial";
+        //var txt = "Earth"
+        //ctx.fillText("width:" + ctx.measureText(txt).width, 10, ctx.measureText(txt).width)
+        //ctx.fillText(txt, ctx.measureText(txt).width+earthX, 100);
+        
+        
+        ctx.beginPath();
+        //earthX+radius*radius
+        ctx.arc(earthX*2+rad*2*(radius/2),earthY,rad*radius,0,2*Math.PI);
+        ctx.fillStyle = color2;
+        ctx.fill();
+        //ctx.stroke();
+        
+        
+        /*clearCanvas;
+        c = document.getElementById("myCanvas");
+        terra = c.getContext("2d");
+        terra.beginPath();
+        //x, y, radius (pixels), start angle (radians), end angle (radians)
+        terra.arc(100, 75, terraRadius, 0, 2 * Math.PI);
+        terra.fillStyle = "blue";
+        terra.fill();
+        
+        terra.beginPath();
+        //x, y, radius (pixels), start angle (radians), end angle (radians)
+        terra.arc(200, 100, terraRadius*radius, 0, 2 * Math.PI);
+        terra.fillStyle = "red";
+        terra.fill();*/
+    }
+        
+        
+        //https://www.w3schools.com/tags/canvas_clearrect.asp
+        //https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_canvas_height_width_clear
+        
+        //Clear rectangle = clear canvas
+        function clearCanvas() {
+          //c.height = 200;
+          //x1, y1, x2, y2
+          //ctx.clearRect(0, 0, 300, 200);
+          
+          ctx.fillStyle = "white";
+          ctx.fillRect(0, 0, 1000, 400);
+          document.getElementById("radiuskm").value = "";
+            document.getElementById("radiusE").value = "";
+        }
+    </script> 
+    
+    </body>
+</html>

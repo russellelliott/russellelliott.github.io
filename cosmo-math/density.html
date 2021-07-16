@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Planet Density</title>
+		<style>
+              /*https://forums.asp.net/t/1919981.aspx?align+textbox+in+a+cell+of+a+table+to+center*/
+              td{
+                    text-align: center; /* center textbox horizontally */
+                    vertical-align: middle; /* center textbox vertically */
+                }
+		</style>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="icon" 
+        type="image/png" 
+        href="../images/earth.png" />
+	</head>
+
+	<body>
+	      <h1>Calculate Planet Density</h1>
+	      <button onclick="window.location.href = '/cosmic-math';">Go Back</button>
+	      <p>Input the amount of water, iron and silicates the planet has in terms of Earth.</p>
+  <h2>How the program works</h2>
+    <p>Here's all the steps the program takes to output the various data you will see below:</p>
+    <ol>
+        <li>You input the number of Earth's worth of water, iron and silicates the planet has.
+        <ul>
+            <li>In each input field, enter the number of Earth's worth of each material you want on your planet. Entering "1" in the input field for water represents 1 Earth's worth of water, which is about 1.4 x 10<sup>18</sup> tonnes (1 tonne = 1000 kg), or 0.023% of the Earth's mass.</li>
+            <li>If you wish for the planet to not have that specific material, leave the input field empty, or enter 0. Otherwise, enter a positive number into the field to represent how many Earth's worth of that material you want for your planet.</li>
+            <li>If you wish for your planet to have the same composition as Earth, make sure the input fields have the same number.</li>
+            <li>For the program to work, the planet's mass must be above zero. Make sure at least one of the input fields is filled with a positive number.</li>
+        </ul>
+        </li>
+        <li>Those three material values are all multiplied by the percentage composition of each respective material on Earth. They are then added together to get the planet's total mass in Earth masses.
+        <ul>
+            <li>Water = 0.023% of Earth's mass</li>
+            <li>Iron = 35% of Earth's mass</li>
+            <li>Silicates = 64.997% of Earth's mass</li>
+        </ul>
+        </li>
+            <li>The three material values and the planet's mass are multiplied by the Earth's mass in kilograms to get the mass of water, iron and silicates and the mass of the whole planet in kilograms.</li>
+            <li>The three material values are divided by the mass of the planet in kilograms to get the percentage composition of the planet.</li>
+            <li>Those percentage values are multiplied by the densities of their respective materials (in g/cm<sup>3</sup>) to get the average uncompressed density of your planet.
+        <ul>
+            <li>Water = 1 g/cm<sup>3</sup></li>
+            <li>Iron = 7.87 g/cm<sup>3</sup></li>
+            <li>Silicates = 3.23 g/cm<sup>3</sup></li>
+        </ul>
+        </li>
+            <li>The uncompressed denity of your planet is multiplied by the uncompressed density of Earth as calculated in this program to get the density of your planet in Earths.
+        <ul>
+            <li>This is a better baseline for the density of your planet, as it approximates the compressed density of the planet, as it puts it in terms of Earth's density as calculated in this program.</li>
+            <li>This enables a better approximation of the planet's radius from its mass and density.</li>
+        </ul>
+        </li>
+    </ol>
+    <p>The densities of the materials and the mathematical methods of calculating the planet's density are inspired by Artifexian's Video <a href="https://www.youtube.com/watch?v=t6i6TPsqvaM&amp;app=desktop">"Terrestrial Moons"</a>, which discusses the various components of a moon, including the compositions and densities of said moons for the purpose of worldbuilding.</p>
+    <p>If you wish to start over, click the <span style="background-color: orangered;">red reset button.</span>
+
+            <button style = "background-color:orangered;" onclick="window.location.href = 'javascript:history.go(0)';"><b>Reset</b></button>	    
+	    
+		<table style = "width:100%">
+		    <tr>
+		        <th style = "width:33%; background-color:skyblue">Water</th>
+		        <th style = "width:33%; background-color:tan">Silicates</th>
+		        <th style = "width: 33%; background-color:silver">Iron</th>
+		    </tr>
+		    <tr>
+		        <td style = "background-color:skyblue"><input type="number" id="water" placeholder = "Water (Earths)" oninput = "density()">
+		        <br>
+		        The total mass of Earth's hydrosphere is about 1.4 × 10<sup>18</sup> tonnes, which is about 0.023% of Earth's total mass. <a href = "https://en.wikipedia.org/wiki/Hydrosphere">Source</a>
+		        </td>
+		        <td style = "background-color:tan"><input type="number" id="silc" placeholder = "Silicates (Earths)" oninput = "density()">
+		        <br>
+		        64.977% of Earth's mass is silicates.(100-0.023-35 = 64.977%)
+		        </td>
+		        <td style = "background-color:silver"><input type="number" id="iron" placeholder = "Iron (Earths)" oninput = "density()">
+		        <br>
+		        Earth's iron core constitutes 35% of the planet's mass. <a href = "http://www.solstation.com/stars/earth.htm">Source</a>
+
+		        </td>
+		    </tr>
+		    
+		    <tr>
+		        <td>
+		            <table style = "width:100%; background-color:skyblue">
+        		        <tr>
+        		            <th style = "width:50%">Water Mass (kg)</th>
+        		            <th style = "width:50%">Water Mass (% of planet)</th>
+        		        </tr>
+        		        <tr>
+        		            <td><input type="number" id="waterMass" readonly></td>
+        		            <td><input type="number" id="waterPercent" readonly></td>
+        		        </tr>
+        		    </table>
+		        </td>
+		        <td>
+		            <table style = "width:100%; background-color:tan">
+        		        <tr>
+        		            <th style = "width:50%">Silicate Mass (kg)</th>
+        		            <th style = "width:50%">Silicate Mass (% of planet)</th>
+        		        </tr>
+        		        <tr>
+        		            <td><input type="number" id="silcMass" readonly></td>
+        		            <td><input type="number" id="silcPercent" readonly></td>
+        		        </tr>
+        		    </table>
+		        </td>
+		        <td>
+		            <table style = "width:100%; background-color:silver">
+        		        <tr>
+        		            <th style = "width:50%">Iron Mass (kg)</th>
+        		            <th style = "width:50%">Iron Mass (% of planet)</th>
+        		        </tr>
+        		        <tr>
+        		            <td><input type="number" id="ironMass" readonly></td>
+        		            <td><input type="number" id="ironPercent" readonly></td>
+        		        </tr>
+        		    </table>
+		        </td>
+		    </tr>
+		</table>
+		<table style = "width:100%; background-color:orange">
+		    <tr>
+	            <th style = "width:50%">Planet Mass (Earths)</th>
+	            <th style = "width:50%">Planet Density (g/cm<sup>3</sup>)</th>
+	        </tr>
+	        <tr>
+	            <td><input type="number" id="planetMassE" readonly></td>
+	            <td><input type="number" id="newDensity" readonly></td>
+	        </tr>
+		</table>
+		<script>
+		    function density(){
+		        //https://en.m.wikipedia.org/wiki/Hydrosphere
+		        //https://en.m.wikipedia.org/wiki/Hydrosphere
+		        //Percentage composition of the Earth
+                var earthWater = 0.023/100
+                var earthIron = 35/100
+                var earthSilc = 64.977/100
+                
+                //Earth Mass in kilograms
+		        var earthMass = 5.972e24;
+                //#5.972 × 10^24 kg
+                //#https://en.wikipedia.org/wiki/Earth
+                
+                //Values of amt of water, silicates and iron user inputted
+                //Values are prohibited from going below zero, as it is impossible to ahve negative mass of common elelements.
+		        var water = document.getElementById("water").value;
+		        water = Number(water);
+		        if (water<0){
+		            water = 0;
+		            document.getElementById("water").value = water;
+		        }
+		        var silc = document.getElementById("silc").value;
+		        silc = Number(silc);
+		        if (silc<0){
+		            silc = 0;
+		            document.getElementById("water").value = silc;
+		        }
+		        var iron = document.getElementById("iron").value;
+		        iron = Number(iron);
+		        if (iron<0){
+		            iron == 0;
+		            document.getElementById("water").value = iron;
+		        }
+		        
+		        //#Multiply the amount of element in  Earths by percentage of mass times the mass of the Earth.
+                //#first, multiple amount of element by percentage of Earth mass
+                water*=earthWater
+                iron*=earthIron
+                silc*=earthSilc
+                var mass = water+iron+silc
+                document.getElementById("planetMassE").value = mass;
+                
+                //#Amount of each thing in kg (multiply by Earth mass in kg to get that)
+                water*=earthMass
+                iron*=earthMass
+                silc*=earthMass
+                mass*=earthMass
+                document.getElementById("waterMass").value = water;
+                document.getElementById("silcMass").value = silc;
+                document.getElementById("ironMass").value = iron;
+                
+                //#% composition of elements (divide by mass of planet)
+                water/=mass
+                iron/=mass
+                silc/=mass
+                document.getElementById("waterPercent").value = water*100;
+                document.getElementById("silcPercent").value = silc*100;
+                document.getElementById("ironPercent").value = iron*100;
+                
+                //#Get density of the planet by multiplying percentage values of each element by the densities of said elements.
+                //#density in g/cm^3
+                //#water = 1g/cm^3
+                iron*= 7.87
+                silc*=3.23
+                
+                newDensity = water+iron+silc
+                document.getElementById("newDensity").value = newDensity;
+		    }
+		</script>
+	</body>
+</html>
