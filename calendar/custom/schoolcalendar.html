@@ -1,111 +1,82 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Make Your Own Calendar</title>
+		<title>School Calendar</title>
 		<style>
 		    body {
-              background-image: url('https://i1.wp.com/blogs.itron.com/wp-content/uploads/2019/07/iStock-1161898151.jpg?ssl=1');
+              background-image: url('https://blogs.itron.com/wp-content/uploads/2019/07/iStock-1161898151.jpg');
               background-repeat: no-repeat;
               background-attachment: fixed;
               background-size: cover;
             }
+            /*https://www.w3schools.com/cssref/sel_read-only.asp*/
+            input:read-only {
+              background-color: yellow;
+            }
+            
 		</style>
         <link rel="icon" 
         type="image/png" 
-        href="../images/calendar.png" />
+        href="../../images/calendar.png" />
 	</head>
 
 	<body>
-	    <h1>Make Your Own Calendar</h1>
+	    <h1>School Calendar</h1>
+	    <ul>
+	        <li>Genenerate a school calendar by inputting the length of schooling and breaks in their respective input fields below. You can also adjust the width of the calendar.</li>
+	        <li>Input fields are not colored. Output fields are highlighted yellow.</li>
+	    </ul>
+	    <table>
+	        <tr>
+	            <th>Length of Year</th>
+	            <th>Period Length (School + Break)</th>
+	        </tr>
+	        <tr>
+	            <td><input type="number" id="days" min="0" oninput = "daysX()" placeholder = "Length of Year"></td>
+	            <td><input type="number" id="period" min="0" oninput = "" placeholder = "Period" readonly></td>
+	        </tr>
+	    </table>
         
-        <p>Make your own calendar by entering the neccesary data below. Customize the length of the year, length of each month, and length of the week.</p>
-        <p>When you are done entering the data, press the "Generate Button" or any of the custom display buttons.</p>
+        <h2>Amount of consecutive days in school or in break (not including weekends).</h2>
+        <p><a href = "http://www.nea.org/tools/17057.htm">Year Round School Plans</a></p>
+        <p>There are seveal <a href = "https://www.cde.ca.gov/ls/fa/yr/yrecal.asp">variations</a> of a year-round school year calendar. Each of these systems has 180 days of schooling. All these options have a 4 week summer break after their scheduled break.</p>
         <ul>
-            <li>"Show Day Number": Shows the day number in the year.</li>
-            <li>"Show Month Date": Shows the day number for each month. Each month starts at 1 and ends as the month length you entered.</li>
-            <li>"Earth Calendar Date": Shows the calendar date.</li>
-            <ul>
-                <li>The calendar date starts at the date you input. For instance, if you set the start to be August 12, Day 1 of the generated calendar would be August 12. Day 2 would be August 13. Day 3 would be August 14, etc.</li>
-            </ul>
+            <li>45-15 (45 days of school, followed by 15 days of break)</li>
+            <li>60-20 (60 days of school, followed by 20 days of break)</li>
+            <li>90-30 (90 days of school, followed by 30 days of break)</li>
         </ul>
-        <a href = "https://blogs.itron.com/close-up-of-calendar-and-alarm-clock-on-the-green-background-planning-for-business-meeting-or-travel-planning-concept/">Background</a>
-        <table style = "background-color:dodgerblue">
+        <table>
             <tr>
+                <th>&nbsp;</th>
                 <th>
-                    Length of Year
+                    School
                 </th>
                 <th>
-                    Length of Month
-                </th>
-                <th>
-                    Length of Week
+                    Break
                 </th>
             </tr>
             <tr>
-                <td>
-                    <input type="number" id="days" min="0" oninput = "daysX()" placeholder = "Length of Year">
-                </td>
-                <td>
-                    <input type="number" id="school" min="0" oninput = "daysX()" placeholder = "Length of Month">
-                </td>
-                <td>
-                    <input type="number" value = "7" id="result">
-                </td>
+                <th>Weeks</th>
+                <td><input type="number" id="schoolweek" min="0" oninput = "weekX()" placeholder = "School Weeks"></td>
+                <td><input type="number" id="breakweek" min="0" oninput = "weekX()" placeholder = "Break Weeks"></td>
             </tr>
             <tr>
-                <td colspan = "3">
-                    
-                    <button onclick = "hide()">Show Day Number</button>
-                    <button onclick = "show()">Show Month Dates</button>
-                    <button onclick = "show2()">Earth Calendar Dates</button>
-                    <input type="date" id="birthday">
-                </td>
+                <th>Total Days (Mon-Fri)</th>
+                <td><input type="number" id="school" min="0" oninput = "daysX()" placeholder = "School Days"></td>
+                <td><input type="number" id="break" min="0" oninput = "daysX()" placeholder = "Break Days"></td>
             </tr>
             <tr>
-                <td colspan = "3"><button style="display: block; margin: 0 auto;" onclick = "generate()">Generate</button></td>
+                <th>Total Calendar Days</th>
+                <td><input type="number" id="weekschool" min="0" oninput = "" placeholder = "Total Calendar Days" readonly></td>
+                <td><input type="number" id="weekbreak" min="0" oninput = "" placeholder = "Total Calendar Days" readonly></td>
             </tr>
         </table>
-        <button onclick = "month13()">International Fixed Calendar</button>
-        <button onclick = "french()">French Republican Calendar</button>
-        <script>
-            function month13(){
-                var newYear = new Date("January 1")
-                document.getElementById('birthday').valueAsDate = newYear;
-                week = 7;
-                document.getElementById("result").value = week;
-                
-                //Number of days in a year
-                days = 365;
-                document.getElementById("days").value = days;
-                
-                //Length of Month
-                period = 28;
-                document.getElementById("school").value = period;
-                daysX();
-                generate();
-                show2();
-            }
-            function french(){
-                var newYear = new Date("September 21")
-                document.getElementById('birthday').valueAsDate = newYear;
-                week = 10;
-                document.getElementById("result").value = week;
-                
-                //Number of days in a year
-                days = 365;
-                document.getElementById("days").value = days;
-                
-                //Length of Month
-                period = 30;
-                document.getElementById("school").value = period;
-                //school = Number(school);
-                //school*=(7/5);
-                //weekschool = school;
-                daysX();
-                generate();
-                show2();
-            }
-        </script>
+        <button onclick = "hide()">Hide Dates</button>
+        <button onclick = "show()">Show Dates</button>
+        <input type="date" id="birthday">
+        <button onclick = "generate()">Generate</button>
+
+
 
         
         <h2>Number of school days</h2>
@@ -114,18 +85,69 @@
                 <th>Cycles<br>(If decimal, rounded down)</th>
                 <th>Number of days</th>
                 <th>School Days</th>
-                <th>Number of Earth Years (365 days)</th>
+                <th>Number of Earth School Years (180 days)</th>
             </tr>
             <tr>
                 <td><input type="number" id="cycles" min="0" oninput = "" placeholder = "Cycles" readonly></td>
                 <td><input type="number" id="cycledays" min="0" oninput = "" placeholder = "Number of Days" readonly></td>
                 <td><input type="number" id="schooldays" min="0" oninput = "" placeholder = "School days" readonly></td>
-                <td><input type="number" id="schoolyears" min="0" oninput = "" placeholder = "Earth years" readonly></td>
+                <td><input type="number" id="schoolyears" min="0" oninput = "" placeholder = "School years" readonly></td>
             </tr>
         </table>
         
+        <p>Width of Calendar</p>
+        
+          <input type="radio" name="browser" onclick="myFunction2(this.value)" value="7" checked>7 Days<br>
+          <input type="radio" name="browser" onclick="myFunction2(this.value)" value="14">14 days<br>
+          <input type="radio" name="browser" onclick="myFunction2(this.value)" value="28">28 Days<br>
+          <input type="radio" name="browser" onclick="myFunction2(this.value)" value="period">Length of Period (School Days + Break Days)<br>
+
+          Width of Calendar: <input type="text" value = "7" id="result" readonly>
+        
+        
+        <script>
+        function weekX(){
+            var numSchoolwk = document.getElementById("schoolweek").value;
+            numSchoolwk = Number(numSchoolwk);
+            var numBreakwk = document.getElementById("breakweek").value;
+            numBreakwk = Number(numBreakwk);
+            document.getElementById("school").value = numSchoolwk*5;
+            document.getElementById("break").value = numBreakwk*5;
+            daysX();
+        }
+        //https://www.w3schools.com/tags/att_input_type_radio.asp
+        //https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_radio_value3
+        function myFunction2(browser) {
+          document.getElementById("result").value = browser;
+          if(browser == "7"){
+              week = 7;
+          }
+          if(browser == "14"){
+              week = 14;
+          }
+          if(browser == "28"){
+              week = 28;
+          }
+          if(browser == "period"){
+              week = period;
+              document.getElementById("result").value = period;
+          }
+          generate();
+        }
+        </script>
+
+        <!--<div>
+            <span id = "calendar"  oninput = "days()" contenteditable="true"
+            style="display: inline-block;
+            border: solid 1px black;
+            font-size: 30px;
+            width: 420px">
+            </span>
+        </div>-->
+        <p><span style = 'background-color:orange;'>Weekends and breaks are highlighted orange. School days are not colored.</span></p>
+        <a href = "https://blogs.itron.com/close-up-of-calendar-and-alarm-clock-on-the-green-background-planning-for-business-meeting-or-travel-planning-concept/">Website Background</a>
         <div>
-          <table id="calendar" style = "background-color:white">
+          <table id="calendar">
             <tr>
               <th>S</th>
               <th>M</th>
@@ -139,7 +161,7 @@
         </div>
                 
         <script>
-        var week;
+        var week = 7;
         
         //var hider = false;
         /*function hide(){
@@ -167,15 +189,11 @@
             display = 2;
             generate();
         }
-        function show2(){
-            display = 3;
-            generate();
-        }
         var input;
         var daysz;
         var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         function displayTest(){
-            if(display == 3){
+            if(display == 2){
                     input = document.getElementById( 'birthday' ).value;
                     begin = new Date( input );
                     begin.setDate(begin.getDate()+start);
@@ -186,10 +204,6 @@
                 }
         }
         function generate(){
-            week = document.getElementById("result").value;
-            if(week == "");{
-                week = 7;
-            }
             //if(week == 0){
                 //week == 7;
             //}
@@ -204,7 +218,7 @@
                 
                 
                 //Adds days on top of the calendar
-                /*htmlstring+="<tr>";
+                htmlstring+="<tr>";
                 for(var i=0; i<week/7; i++){
                     //htmlstring+="<tr>";
                     htmlstring+="<th>";
@@ -230,7 +244,7 @@
                     htmlstring+="</th>";
                     //htmlstring+="</tr>";                    
                 }
-                htmlstring+="</tr>";*/                    
+                htmlstring+="</tr>";                    
 
                 
                 //number of weeks
@@ -258,7 +272,7 @@
                   }
                   //This determines total length of the year
                   for(var k=1; k<=cycles; k++){
-                      htmlstring+= "<td colspan = '7'>" + "Month " + k + "</td>";
+                      htmlstring+= "<td colspan = '7'>" + "Period " + k + "</td>";
 
                       htmlstring += "</tr>";
                       htmlstring += "<tr>";
@@ -268,7 +282,7 @@
                   //Length of a period (schooling+break)
                   for (var i = 1; i <= period; i++) {
                     count = start;
-                    if(count>period){
+                    if(count>28){
                         dateCount();
                         
                         
@@ -285,7 +299,7 @@
                     //}
                     
                     //Sundays and Saturdays = no school
-                    /*if(i%7==0||i%7==1){
+                    if(i%7==0||i%7==1){
                         //count = 0;
                         
                         //https://www.javascript.com/learn/strings
@@ -299,9 +313,7 @@
                     }
                     if(i>weekschool){
                         stylus = "style = 'background-color:orange;'";
-                    }*/
-                    stylus = "";
-
+                    }
                     //style = ""\"please\""";
                     //alert(style);
                     //var daysz = "<td " + stylus + ">" + count + "</td>";
@@ -312,12 +324,11 @@
                     
                     //if i divide by 7 and remainder is 0
                     //This ends the current week and makes a new one.
-                    week = document.getElementById("result").value;
                     if (i % week == 0) {
                         //Doing it here makes "end" appear after every week.
                         //htmlstring += "<td>" + "end" + "</td>";
                       htmlstring += "</tr>";
-                        if(count%period==0){
+                        if(count%28==0){
                             htmlstring += "<td>" + "&nbsp" + "</td>";
                         }
                       htmlstring += "<tr>";
@@ -337,12 +348,11 @@
                   //for(var i = cycledays; i<days; i++){
                     //htmlstring+= "<td>" + "end" + "</td>";
                 //}
-                htmlstring += "<tr>";
-                htmlstring+= "<td colspan = '7'>" + "Month " + (cycles+1) + "</td>";
-                htmlstring+="</tr><tr>"
+                                    //htmlstring += "<tr>";
+
                 for (var i = cycledays; i <= days; i++) {
                     count = start;
-                    if(count>period){
+                    if(count>28){
                         dateCount();
                         
                         
@@ -359,7 +369,7 @@
                     //}
                     
                     //Sundays and Saturdays = no school
-                    /*if(i%7==0||i%7==1){
+                    if(i%7==0||i%7==1){
                         //count = 0;
                         
                         //https://www.javascript.com/learn/strings
@@ -373,8 +383,7 @@
                     }
                     if(i>weekschool){
                         stylus = "style = 'background-color:orange;'";
-                    }*/
-                    stylus = "";
+                    }
                     //style = ""\"please\""";
                     //alert(style);
                     
@@ -387,12 +396,11 @@
                     
                     //if i divide by 7 and remainder is 0
                     //This ends the current week and makes a new one.
-                    week = document.getElementById("result").value;
                     if (count % week == 0) {
                         //Doing it here makes "end" appear after every week.
                         //htmlstring += "<td>" + "end" + "</td>";
                       htmlstring += "</tr>";
-                        if(count%period==0){
+                        if(count%28==0){
                             htmlstring += "<td>" + "&nbsp" + "</td>";
                         }
                         htmlstring += "<tr>";
@@ -411,13 +419,9 @@
         var cycles;
         var days;
         function dateCount(){
-            factor = Math.floor(count/period);
-            if(display == 2){
-                count = count-(period*factor);
-            }
+            factor = Math.floor(count/28);
             //count = count-(28*factor);
         }
-        var school;
             function daysX(){
                 //var space = "";
                 
@@ -428,22 +432,27 @@
                 days = Number(days);
                 
                 //Number of consecutive days schooling
-                school = document.getElementById("school").value;
+                var school = document.getElementById("school").value;
                 school = Number(school);
                 //school*=(7/5);
-                weekschool = school;
+                weekschool = Math.floor((school/5)*7);
+                weekschool = Math.floor(weekschool);
+                document.getElementById("weekschool").value = weekschool;
                 
+                document.getElementById("schoolweek").value = Math.floor(school/5);
                 
                 //Number of consecutive days break
-                //var schoolbreak = document.getElementById("break").value;
-                //schoolbreak = Number(schoolbreak);
-                //var weekbreak = schoolbreak;
+                var schoolbreak = document.getElementById("break").value;
+                schoolbreak = Number(schoolbreak);
+                var weekbreak = Math.floor((schoolbreak/5)*7);
+                weekbreak = Math.floor(weekbreak);
+                document.getElementById("weekbreak").value = weekbreak;
                 
+                document.getElementById("breakweek").value = Math.floor(schoolbreak/5);
                 
                 //length of a period (school+break)
-                //period = weekschool+weekbreak;
-                period = weekschool;
-                //document.getElementById("period").value = period;
+                period = weekschool+weekbreak;
+                document.getElementById("period").value = period;
                 
                 //Number of periods
                 cycles = Math.floor(days/period);
@@ -457,7 +466,7 @@
                 document.getElementById("schooldays").value = schooldays;
                 
                 //How many Earth school days
-                var schoolyears = schooldays/365;
+                var schoolyears = schooldays/180;
                 document.getElementById("schoolyears").value = schoolyears;
                 //generate();
                 

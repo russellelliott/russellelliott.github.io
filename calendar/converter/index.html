@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar Converters</title>
+		<style>
+		    th, td {
+              border: 1px solid black;
+            }
+            table#calendars {
+              table-layout: fixed ;
+              width: 100% ;
+              border-collapse: collapse ;
+              border: 1px black solid ;
+            }
+            table#calendars td {
+              width: 16% ;
+              /*border: 1px black solid ;
+              padding: 10px ;*/
+            }
+
+            #codeHS{
+                background-color:orange
+            }
+            #toHTML{
+                background-color:yellow
+            }
+            #divop{
+                background-color:yellowgreen
+            }
+            #UIsimple{
+                background-color:powderblue
+            }
+
+		</style>
+		<link rel="icon" 
+        type="image/png" 
+        href="../../images/calendar.png" />
+</head>
+<body>
+    <h1>Calendar Converters</h1>
+<p>There are several proposed calendar reforms. I have programmed six calendar converters, which can be found by clicking on their respective hyperlinks below.</p>
+<h2>Development Key</h2>
+<span id = "codeHS">Developed in CodeHS Javascript</span>
+<br>
+<span id = "toHTML">Modified/Developed in HTML/Javascript</span>
+<br>
+<span id = "divop">Integrated division operator to enable calendar to work with all dates</span>
+<br>
+<span id = "UIsimple">User Interface Simplified</span>
+
+<h2>Development Info</h2>
+<p>These calendar programs are programmed in Javascript and organized in an interactive HTML page. They are all spawned from the International Fixed Calendar (IFC) program. Initially developed in CodeHS on a CodeHS canvas, the IFC program was modified to operate on an HTML webpage for easier use and programability. The other calendars are spawned from this code, with modifications to the year start, and/or month length and number of months.</p>
+<h3>May 28, 2020</h3>
+<p>Completed the IFC converter on CodeHS and embedded that canvas onto the website. However, the converter didn't work on mobile devices, which motivated me to alter the code to work on HTMl pages on both desktop and mobile as well as creating more calendar converters.</p>
+<h3>September 8 - October 7, 2020</h3>
+<p>Completed the calendar converters for the six calendar converters.</p>
+<h3>October 23, 2020</h3>
+<p>An issue previously present in these programs was the conversion system, stemmed from dividing the number of days from the year start. On desktop, the user's date was limited to between January 1 and December 1 of a common year. However, a person on a mobile device can circumvent this limit, rendering undersirable output, as at the time, there was no failsafe to this issue. On October 23, 2020, all calendar programs recieved a modification which enabled the calendar program to operate properly for all dates and years.</p>
+<p>diffDays -= Math.floor(365.2425*(Math.floor(Days/365.2425)))</p>
+<p>If the day goes over the number of days in that year, the exceeding number of days are removed. 365.2425 is the number of days in the Gregorian calendar, the calendar currently in use (as of October 23, 2020), which is used to calculate the dates to and from the respective calendar reforms.</p>
+<h3>October 31, 2020</h3>
+<p>Completed the Kalentris Calendar converter using similar code to the other converters at the time. However, I neglected to include it on the website because I planned on releasing it along with the Kalentris Time Converter.</p>
+<h3>Janaury 10, 2021</h3>
+<p>The calendar programs have been redone so the user doesn't have to enter the year number. User interface has been cleaned up and simplified for a better experience for the user. Also, the IFC and Reddit Calendar converters have been combined into one program because they start on the same day.</p>
+<h3>January 11, 2021</h3>
+<p>Completed Kalentris Time Converter</p>
+<br>
+    <table>
+        <tr>
+            <th>Calendar</th>
+            <th>Key Dates</th>
+        </tr>
+        <tr>
+            <td><a href = "3way.html">International Fixed Calendar</a></td>
+            <td>
+                <ul>
+                    <li style = "background-color:orange">5/28/20: Initial Framework Completed</li>
+                    <li style = "background-color:yellow">9/8/20: Modified for easier operation on PC/desktop</li>
+                    <li style = "background-color:yellowgreen">10/23/20: Finished</li>
+                    <li style = "background-color:powderblue">1/10/21: UI Simplified</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><a href = "frenchcalendar.html">French Republican Calendar</td>
+            <td>
+                <ul>
+                    <li style = "background-color:yellow">9/8/20: Intital Framework Completed</li>
+                    <li style = "background-color:yellowgreen">10/23/20: Finished</li>
+                    <li style = "background-color:powderblue">1/10/21: UI Simplified</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><a href = "13moon.html">13 Moon Calendar</a></td>
+            <td>
+                <ul>
+                    <li style = "background-color:yellow">10/2/20: Initial Framework Completed</li>
+                    <li style = "background-color:yellowgreen">10/23/20: Finished</li>
+                    <li style = "background-color:powderblue">1/10/21: UI Simplified</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><a href = "thenewcalendar.html">The New Calendar</a></td>
+            <td>
+                <ul>
+                    <li style = "background-color:yellow">10/7/20: Initial Framework Completed</li>
+                    <li style = "background-color:yellowgreen">10/23/20: Finished</li>
+                    <li style = "background-color:powderblue">1/10/21: UI Simplified</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><a href = "solstice.html">Solstice Calendar</a></td>
+            <td>
+                <ul>
+                    <li style = "background-color:yellow">10/9/20: Initial Framework Completed</li>
+                    <li style = "background-color:yellowgreen">10/23/20: Finished</li>
+                    <li style = "background-color:powderblue">1/10/21: UI Simplified</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><a href = "3way.html">Reddit 8 Day Week Calendar</a></td>
+            <td>
+                <ul>
+                    <li style = "background-color:yellow">10/9/20: Initial Framework Completed</li>
+                    <li style = "background-color:yellowgreen">10/23/20: Finished</li>
+                    <li style = "background-color:powderblue">1/10/21: UI Simplified</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><a href = "base3.html">Base 3 Calendar</a></td>
+            <td>
+                <ul>
+                    <li style = "background-color:yellowgreen">10/31/20: Finished</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><a href = "kalentris.html">Kalentris Timekeeping System</a></td>
+            <td>
+                <ul>
+                    <li>1/11/21: Finished</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

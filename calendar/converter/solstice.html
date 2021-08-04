@@ -23,19 +23,19 @@
         </style>
         <link rel="icon" 
         type="image/png" 
-        href="../images/calendar.png" />
+        href="../../images/calendar.png" />
 	
 	</head>
 
 	<body>
-	    <h1 style = "background-color:white">Convert date between Gregorian Calendar and <a href = "https://thenewcalendar.com">The New Calendar</a></h1>
+	    <h1 style = "background-color:white">Convert date between Gregorian Calendar and <a href = "http://www.solsticecalendar.com/2009-solstice-calendar/">Solstice Calendar</a></h1>
         <a href = "https://www.pinterest.ca/pin/11610911509491989/">Clock Background</a>
         
         <table style = "background-color:white">
             <tr>
                 <th>Gregorian</th>
                 <th>Day Number</th>
-                <th>The New Calendar</th>
+                <th>Solstice</th>
             </tr>
             <tr>
                 <td>
@@ -84,11 +84,19 @@
                             <td>
                                 <form>
                                   <select id="mySelect2" oninput = "toGreg()">
-                                    <option value="0">Winter</option>
-                                    <option value="1">Spring</option>
-                                    <option value="2">Summer</option>
-                                    <option value="3">Autumn</option>
-                                    <option value="4">Fall</option>
+                                    <option value="0">Solstice</option>
+                                    <option value="1">Mercury</option>
+                                    <option value="2">Venus</option>
+                                    <option value="3">Gaia</option>
+                                    <option value="4">Luna</option>
+                                    <option value="5">Martian</option>
+                                    <option value="6">Asteroid</option>
+                                    <option value="7">Jupiter</option>
+                                    <option value="8">Saturn</option>
+                                    <option value="9">Uranus</option>
+                                    <option value="10">Neptune</option>
+                                    <option value="11">Pluto</option>
+                                    <option value="12">Comet</option>
                                   </select>
                                 </form>
                             </td>
@@ -132,14 +140,12 @@
             ifcMonth = document.getElementById("mySelect2").value;
             ifcMonth = Number(ifcMonth);
             
-            /*if(ifcMonth==12){
+            if(ifcMonth==12){
                 //13th month has 29 days
                 dayLimit = 29;
             }else{
                 dayLimit = 28;
-            }*/
-            //Each of the 5 months is 73 days long
-            dayLimit = 73;
+            }
             if(ifcDay>dayLimit){
                 document.getElementById("day2").value = dayLimit;
                 ifcDay = document.getElementById("day2").value;
@@ -151,9 +157,9 @@
                 ifcDay = Number(ifcDay);
             }*/
             
-            var gregDay = ifcMonth*73+ifcDay
+            var gregDay = ifcMonth*28+ifcDay
             
-            gregDay-=11; //The New calendar New Year is 11 days before the gregorian New Year
+            gregDay-=10; //The Solstice calendar New Year is 10 days before the gregorian New Year
             if(gregDay<=0){
                 gregDay+=365;
             }
@@ -235,7 +241,7 @@
                 //Convert to IFC
                 document.getElementById("dayNum").innerHTML = day;
                 
-                day+=11; //The previous method subtracted days while this method adds them.
+                day+=10; //The previous method subtracted days while this method adds them.
                 if(day<=0){
                     day+=365;
                 }
@@ -243,16 +249,16 @@
                     day-=365;
                 }
             
-                ifcMonth = Math.floor(day/73);
-                ifcDay = day%73;
-                if(ifcDay<=0){//An error occured in which the final day of the year was the "0th day" of the first month. This solves this issue, decreasing the month by 1 and adding 28 to the day number in the event the day of the month is at or below zero.
-                    ifcMonth--;
-                    ifcDay+=73;
-                }
-                /*if (ifcMonth==13){
+                ifcMonth = Math.floor(day/28);
+                ifcDay = day%28;
+                /*if(ifcDay<=0){//An error occured in which the final day of the year was the "0th day" of the first month. This solves this issue, decreasing the month by 1 and adding 28 to the day number in the event the day of the month is at or below zero.
                     ifcMonth--;
                     ifcDay+=28;
                 }*/
+                if (ifcMonth==13){
+                    ifcMonth--;
+                    ifcDay+=28;
+                }
                 
                 document.getElementById("day2").value = ifcDay;
                 document.getElementById("mySelect2").value = ifcMonth;
@@ -271,217 +277,36 @@
         <tr>
         <th>Northern Hemisphere&nbsp;<a href="https://en.wikipedia.org/wiki/Equinox">Equinox</a>&nbsp;and&nbsp;<a href="https://en.wikipedia.org/wiki/Solstice">Solstice</a>&nbsp;Dates</th>
         <th>Gregorian</th>
-        <th>The New Calendar*</th>
+        <th>13 Moon*</th>
         </tr>
         <tr>
         <td><a href="https://www.almanac.com/content/first-day-spring-vernal-equinox">Spring</a></td>
         <td><a href="https://www.space.com/881-date-changed-start-spring.html">March 20</a></td>
-        <td>Spring 17</td>
+        <td>Gaia 5</td>
         </tr>
         <tr>
         <td><a href="https://www.almanac.com/content/first-day-summer-summer-solstice">Summer</a></td>
         <td>June 21</td>
-        <td>Summer 37</td>
+        <td>Asteriod 14</td>
         </tr>
         <tr>
         <td><a href="https://www.almanac.com/content/first-day-fall-autumnal-equinox">Fall</a></td>
         <td><a href="https://www.calendarpedia.com/when-is/autumn.html">September 22</a></td>
-        <td>Autumn 57</td>
+        <td>Uranus 23</td>
         </tr>
         <tr>
         <td><a href="https://www.almanac.com/content/first-day-winter-winter-solstice">Winter</a></td>
         <td>December 21</td>
-        <td>Winter 1</td>
+        <td>Comet 29</td>
         </tr>
         </tbody>
         </table>
-        *Dates of the Seasons don't vary, as the calendar starts the day of the Winter Solstice (Although the date ranges from the December 20-23, December 21, the day it usually falls on, is used in this calculator. The Solstice is always Comet 29 on the Solstice Calendar)
-        
+        *Dates of the Seasons don't vary, as the calendar starts the day after the Winter Solstice (Although the date ranges from the December 20-23, December 21, the day it usually falls on, is used in this calculator. The Solstice is always Comet 29 on the Solstice Calendar)
         <h1>Information About the Calendar</h1>
-<a href = "https://thenewcalendar.com">The New Calendar Website</a>
-<br>
-<a href="https://whyy.org/segments/time-to-rip-up-the-calendar-how-about-5-seasons-9-days-in-a-week/">News Article about the Calendar</a>
-<br>
-<a href = "https://www.htmlcsscolor.com/hex/F5F3CE">Moon Glow HEX color</a>
-<p>The year begins on the Winter Solstice. The year is divided into 5 seasons of 73 days. There are 9 days in a week, named after the nine planets in our Solar System (Pluto is included)</p>
-
-<table style="width: 100%; background-color:white">
-    <thead>
-        <tr>
-            <th colspan="9">Early (Season)</th>
-        </tr>
-        <tr>
-            <th>Mercury</th>
-            <th>Venus</th>
-            <th>Earth</th>
-            <th>Mars</th>
-            <th>Jupiter</th>
-            <th>Saturn</th>
-            <th>Uranus</th>
-            <th>Neptune</th>
-            <th>Pluto</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="width: 11.1111%;">1</td>
-            <td style="width: 11.1111%;">2</td>
-            <td style="width: 11.1111%;">3</td>
-            <td style="width: 11.1111%;">4</td>
-            <td style="width: 11.1111%;">5</td>
-            <td style="width: 11.1111%;">6</td>
-            <td style="width: 11.1111%;">7</td>
-            <td style="width: 11.1111%;">8</td>
-            <td style="width: 11.1111%;">9</td>
-        </tr>
-        <tr>
-            <td style="width: 11.1111%;">10</td>
-            <td style="width: 11.1111%;">11</td>
-            <td style="width: 11.1111%;">12</td>
-            <td style="width: 11.1111%;">13</td>
-            <td style="width: 11.1111%;">14</td>
-            <td style="width: 11.1111%;">15</td>
-            <td style="width: 11.1111%;">16</td>
-            <td style="width: 11.1111%;">17</td>
-            <td style="width: 11.1111%;">18</td>
-        </tr>
-        <tr>
-            <td style="width: 11.1111%;">19</td>
-            <td style="width: 11.1111%;">20</td>
-            <td style="width: 11.1111%;">21</td>
-            <td style="width: 11.1111%;">22</td>
-            <td style="width: 11.1111%;">23</td>
-            <td style="width: 11.1111%;">24</td>
-            <td style="width: 11.1111%;">25</td>
-            <td style="width: 11.1111%;">26</td>
-            <td style="width: 11.1111%;">27</td>
-        </tr>
-        <tr>
-            <td style="width: 11.1111%;">28</td>
-            <td style="width: 11.1111%;">29</td>
-            <td style="width: 11.1111%;">30</td>
-            <td style="width: 11.1111%;">31</td>
-            <td style="width: 11.1111%;">32</td>
-            <td style="width: 11.1111%;">33</td>
-            <td style="width: 11.1111%;">34</td>
-            <td style="width: 11.1111%;">35</td>
-            <td style="width: 11.1111%;">36</td>
-        </tr>
-    </tbody>
-</table>
-<p>The 37th day of each of the 5 seasons is an intercalendary day, not aligned to any day of the week marking the middle between the Early and Late halves of the seasons.</p>
-<table style="width: 100%; background-color:white">
-    <thead>
-        <tr>
-            <th colspan="9">Late (Season)</th>
-        </tr>
-        <tr>
-            <th>Mercury</th>
-            <th>Venus</th>
-            <th>Earth</th>
-            <th>Mars</th>
-            <th>Jupiter</th>
-            <th>Saturn</th>
-            <th>Uranus</th>
-            <th>Neptune</th>
-            <th>Pluto</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="width: 11.1111%;">38</td>
-            <td style="width: 11.1111%;">39</td>
-            <td style="width: 11.1111%;">40</td>
-            <td style="width: 11.1111%;">41</td>
-            <td style="width: 11.1111%;">42</td>
-            <td style="width: 11.1111%;">43</td>
-            <td style="width: 11.1111%;">44</td>
-            <td style="width: 11.1111%;">45</td>
-            <td style="width: 11.1111%;">46</td>
-        </tr>
-        <tr>
-            <td style="width: 11.1111%;">47</td>
-            <td style="width: 11.1111%;">48</td>
-            <td style="width: 11.1111%;">49</td>
-            <td style="width: 11.1111%;">50</td>
-            <td style="width: 11.1111%;">51</td>
-            <td style="width: 11.1111%;">52</td>
-            <td style="width: 11.1111%;">53</td>
-            <td style="width: 11.1111%;">54</td>
-            <td style="width: 11.1111%;">55</td>
-        </tr>
-        <tr>
-            <td style="width: 11.1111%;">56</td>
-            <td style="width: 11.1111%;">57</td>
-            <td style="width: 11.1111%;">58</td>
-            <td style="width: 11.1111%;">59</td>
-            <td style="width: 11.1111%;">60</td>
-            <td style="width: 11.1111%;">62</td>
-            <td style="width: 11.1111%;">62</td>
-            <td style="width: 11.1111%;">63</td>
-            <td style="width: 11.1111%;">64</td>
-        </tr>
-        <tr>
-            <td style="width: 11.1111%;">65</td>
-            <td style="width: 11.1111%;">66</td>
-            <td style="width: 11.1111%;">67</td>
-            <td style="width: 11.1111%;">68</td>
-            <td style="width: 11.1111%;">69</td>
-            <td style="width: 11.1111%;">70</td>
-            <td style="width: 11.1111%;">71</td>
-            <td style="width: 11.1111%;">72</td>
-            <td style="width: 11.1111%;">73</td>
-        </tr>
-    </tbody>
-</table>
-
-
-
-<p>Benefits of the calendar, as highlighted by the website:</p>
-<ul>
-    <li>The calendar divides time evenly, as 73*5 is 365 days.</li>
-    <li>"Alligns intuitively with nature"</li>
-</ul>
-The Seasons
-<ol>
-<li>Winter (December 21 - March 3)</li>
-<li>Spring (March 4 - May 15)</li>
-<li>Summer (May 16 - July 27)</li>
-<li>Autumn (July 28 - October 8)</li>
-<li>Fall  (October 9 - December 20)</li>
-</ol>
-
-<a href = "https://thenewcalendar.com/how-does-the-new-calendar-work/">The Science of The New Calendar</a>
-<p>The day number each of the equinoxes and solstices lands on the calendar in relation to the length of the month is similar to the percentage of the year completed up to that point.</p>
-<p>For instance, the Summer Solstice, marking the middle of the year, is also in the middle of the month Summer.</p>
-<table style = "background-color:white">
-<tbody>
-<tr>
-<td>Season</td>
-<td>% of year complete</td>
-<td>% of month complete</td>
-</tr>
-<tr>
-<td>Spring</td>
-<td>25%</td>
-<td>17/73 = 23.2%</td>
-</tr>
-<tr>
-<td>Summer</td>
-<td>50%</td>
-<td>37/73 = 50.06%</td>
-</tr>
-<tr>
-<td>Autumn</td>
-<td>75%</td>
-<td>57/73 = 78.1%</td>
-</tr>
-<tr>
-<td>Winter</td>
-<td>100%</td>
-<td>73/73 = 100%</td>
-</tr>
-</tbody>
-</table>
-        </body>
+        <p><a href="http://www.solsticecalendar.com/2009-solstice-calendar/">Solstice Calendar</a>&nbsp;(Ends the year on the Winter Solstice, Starts year December 22)</p>
+        <p><a href="http://www.inrete.ch/cal13/en/">CAL13 FIXED CALENDAR</a>&nbsp;The calendar has 13 months of 28 days. It has two varieties:</p>
+        <p>Starts the year on the Winter Solstice, December 21:&nbsp;<a href="http://www.inrete.ch/cal13/en/dec21/cal13-gregorian-dec21-en.htm">Common Years</a>,&nbsp;<a href="http://www.inrete.ch/cal13/en/dec21/cal13-gregorian-dec21-leap-en.htm">Leap Years</a></p>
+        <p>Start the year on January 1:&nbsp;<a href="http://www.inrete.ch/cal13/en/cal13-gregorian-en.html">Common Years</a>,&nbsp;<a href="http://www.inrete.ch/cal13/en/cal13-gregorian-leap-en.html">Leap Years</a></p>	</body>
         </html>
+	</body>
+</html>

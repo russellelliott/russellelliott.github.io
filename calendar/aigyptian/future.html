@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Past Leap Days</title>
+		<title>Future Leap Days</title>
 		<style>
 		    table, th, td {
               border: 1px solid black;
               border-collapse: collapse;
             }
 		</style>
+       <link rel="icon" 
+       type="image/png" 
+       href="../../images/omega.png" />
 	</head>
 
 	<body>
-	    <h1>Past Leap Days (-356 - 2017)</h1>
-		
+	    <h1>Future Leap Days (2017 - 275757)</h1>
+	    <a href = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Minimum and Maximum Dates</a>
+        <blockquote>It should be noted that the maximum Date is not of the same value as the maximum safe integer (Number.MAX_SAFE_INTEGER is 9,007,199,254,740,991). 
+        Instead, it is defined in ECMA-262 that a maximum of ±100,000,000 (one hundred million) days relative to January 1, 1970 UTC (that is, April 20, 271821 BCE ~ September 13, 275760 CE) 
+        can be represented by the standard Date object (equivalent to ±8,640,000,000,000,000 milliseconds).</blockquote>
+	
+		<p>The farthest repeated day that can be represented by a Javascript date object is Mon, 21 Nov 275757</p>
 		<table id = "calendar">
 		    <tr>
 		        <th>Gregorian Day</th>
@@ -40,7 +48,7 @@
             //table.innerHTML = "";
             //https://stackoverflow.com/questions/7271490/delete-all-rows-in-an-html-table
             var htmlstring = "";
-            var current = new Date(Date.UTC(2017, 2, 6));
+            var current = epochStart;
             var leaps = current;
             //while current.getFullYear()
             htmlstring += "<tr>";
@@ -59,12 +67,12 @@
             htmlstring+=daysBefore;
             htmlstring += "</td>";
             htmlstring += "</tr>";
-            while(current.getUTCFullYear()>-356){
+            while(current.getUTCFullYear()<275757){
             //for (var i=0; i<100; i++){
                 daysBefore++; //Shows how many leap days before the starting date.
-                //current.setDate(current.getDate() - 1507);
-                current.setTime(epochStart.getTime() - 1507*daysBefore*24*60*60*1000);
-                //current.setTime(current.getTime() - 1507*24*60*60*1000); //Subtracts 1507 days from the date.
+                //current.setDate(current.getDate() + 1507);
+                //current.setTime(epochStart.getTime() + (1507*daysBefore)*24*60*60*1000);
+                current.setTime(current.getTime() + 1507*24*60*60*1000); //Subtracts 1507 days from the date.
                 htmlstring += "<tr>";
                 htmlstring += "<td>";
                 //htmlstring+=current.toUTCString();//Displays date as UTC string.

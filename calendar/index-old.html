@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Fixing/Modifying the Calendar</title>
+		<style>
+		    th, td {
+              border: 1px solid black;
+            }
+            table#calendars {
+              table-layout: fixed ;
+              width: 100% ;
+              border-collapse: collapse ;
+              border: 1px black solid ;
+            }
+            table#calendars td {
+              width: 16% ;
+              /*border: 1px black solid ;
+              padding: 10px ;*/
+            }
+		</style>
+		<link rel="icon" 
+        type="image/png" 
+        href="../images/calendar.png" />
+	</head>
+
+	<body>
+	<h1>Fixing the Calendar</h1>
+<p>The <a href="https://en.wikipedia.org/wiki/Gregorian_calendar">Gregorian calendar</a> is the <a title="Calendar" href="https://en.wikipedia.org/wiki/Calendar">calendar</a>&nbsp;used in most of the world. It is named after <a title="Pope Gregory XIII" href="https://en.wikipedia.org/wiki/Pope_Gregory_XIII">Pope Gregory XIII</a>, who introduced it in October 1582.</p>
+<p>While the calendar is renowned for its accuracy, there are some <a href="https://www.infoplease.com/curious-history-gregorian-calendar">issues</a>&nbsp;in the organization of the calendar:</p>
+<ul>
+<li>It cannot be divided into equal halves or quarters</li>
+<li>The number of days per month is haphazard.</li>
+<li>Months and years may begin on any day of the week, making the preceding calendar useless.</li>
+<li>Holidays pegged to specific dates may also fall on any day of the week.</li>
+</ul>
+
+<a href = "https://en.wikipedia.org/wiki/Thirty_Days_Hath_September">Thirty Days Hath September</a>
+<blockquote>Thirty days hath September,<br>
+April, June, and November,<br>
+All the rest have thirty-one,<br>
+But February's twenty-eight,<br>
+The LEAP YEAR, which comes once in four,<br>
+Gives February one day more.</blockquote>
+
+<a href = "https://en.wikipedia.org/wiki/Doomsday_rule">Doomsday Rule</a>
+
+<h1>Calendar Converters</h1>
+<p>There are several proposed calendar reforms. I have programmed six calendar converters, which can be found by clicking on their respective hyperlinks below.</p>
+<h2>Development Key</h2>
+<span style = "background-color:orange">Developed in CodeHS Javascript</span>
+<br>
+<span style = "background-color:yellow">Modified/Developed in HTML/Javascript</span>
+<br>
+<span style = "background-color:yellowgreen">Integrated division operator to enable calendar to work with all dates</span>
+<br>
+<span style = "background-color:powderblue">User Interface Simplified</span>
+
+<h2>Development Info</h2>
+<p>These calendar programs are programmed in Javascript and organized in an interactive HTML page. They are all spawned from the International Fixed Calendar (IFC) program. Initially developed in CodeHS on a CodeHS canvas, the IFC program was modified to operate on an HTML webpage for easier use and programability. The other calendars are spawned from this code, with modifications to the year start, and/or month length and number of months.</p>
+<h3>May 28, 2020</h3>
+<p>Completed the IFC converter on CodeHS and embedded that canvas onto the website. However, the converter didn't work on mobile devices, which motivated me to alter the code to work on HTMl pages on both desktop and mobile as well as creating more calendar converters.</p>
+<h3>September 8 - October 7, 2020</h3>
+<p>Completed the calendar converters for the six calendar converters.</p>
+<h3>October 23, 2020</h3>
+<p>An issue previously present in these programs was the conversion system, stemmed from dividing the number of days from the year start. On desktop, the user's date was limited to between January 1 and December 1 of a common year. However, a person on a mobile device can circumvent this limit, rendering undersirable output, as at the time, there was no failsafe to this issue. On October 23, 2020, all calendar programs recieved a modification which enabled the calendar program to operate properly for all dates and years.</p>
+<p>diffDays -= Math.floor(365.2425*(Math.floor(Days/365.2425)))</p>
+<p>If the day goes over the number of days in that year, the exceeding number of days are removed. 365.2425 is the number of days in the Gregorian calendar, the calendar currently in use (as of October 23, 2020), which is used to calculate the dates to and from the respective calendar reforms.</p>
+<h3>October 31, 2020</h3>
+<p>Completed the Kalentris Calendar converter using similar code to the other converters at the time. However, I neglected to include it on the website because I planned on releasing it along with the Kalentris Time Converter.</p>
+<h3>Janaury 10, 2021</h3>
+<p>The calendar programs have been redone so the user doesn't have to enter the year number. User interface has been cleaned up and simplified for a better experience for the user. Also, the IFC and Reddit Calendar converters have been combined into one program because they start on the same day.</p>
+<h3>January 11, 2021</h3>
+<p>Completed Kalentris Time Converter</p>
+<br>
+<table>
+    <tr>
+        <th>Calendar</th>
+        <th>Key Dates</th>
+    </tr>
+    <tr>
+        <td><a href = "3way.html">International Fixed Calendar</a></td>
+        <td>
+            <ul>
+                <li style = "background-color:orange">5/28/20: Initial Framework Completed</li>
+                <li style = "background-color:yellow">9/8/20: Modified for easier operation on PC/desktop</li>
+                <li style = "background-color:yellowgreen">10/23/20: Finished</li>
+                <li style = "background-color:powderblue">1/10/21: UI Simplified</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><a href = "frenchcalendar.html">French Republican Calendar</td>
+        <td>
+            <ul>
+                <li style = "background-color:yellow">9/8/20: Intital Framework Completed</li>
+                <li style = "background-color:yellowgreen">10/23/20: Finished</li>
+                <li style = "background-color:powderblue">1/10/21: UI Simplified</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><a href = "13moon.html">13 Moon Calendar</a></td>
+        <td>
+            <ul>
+                <li style = "background-color:yellow">10/2/20: Initial Framework Completed</li>
+                <li style = "background-color:yellowgreen">10/23/20: Finished</li>
+                <li style = "background-color:powderblue">1/10/21: UI Simplified</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><a href = "thenewcalendar.html">The New Calendar</a></td>
+        <td>
+            <ul>
+                <li style = "background-color:yellow">10/7/20: Initial Framework Completed</li>
+                <li style = "background-color:yellowgreen">10/23/20: Finished</li>
+                <li style = "background-color:powderblue">1/10/21: UI Simplified</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><a href = "solstice.html">Solstice Calendar</a></td>
+        <td>
+            <ul>
+                <li style = "background-color:yellow">10/9/20: Initial Framework Completed</li>
+                <li style = "background-color:yellowgreen">10/23/20: Finished</li>
+                <li style = "background-color:powderblue">1/10/21: UI Simplified</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><a href = "3way.html">Reddit 8 Day Week Calendar</a></td>
+        <td>
+            <ul>
+                <li style = "background-color:yellow">10/9/20: Initial Framework Completed</li>
+                <li style = "background-color:yellowgreen">10/23/20: Finished</li>
+                <li style = "background-color:powderblue">1/10/21: UI Simplified</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><a href = "base3.html">Base 3 Calendar</a></td>
+        <td>
+            <ul>
+                <li style = "background-color:yellowgreen">10/31/20: Finished</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><a href = "kalentris.html">Kalentris Timekeeping System</a></td>
+        <td>
+            <ul>
+                <li>1/11/21: Finished</li>
+            </ul>
+        </td>
+    </tr>
+</table>
+<h1>Custom Calendars</h1>
+<p>These calendars are also programmed in Javascript and organized in an interactive HTML page. Users input information to output custom calendars.</p>
+<table>
+    <tr>
+        <th>Calendar</th>
+        <th>Key Dates</th>
+    </tr>
+    <tr>
+        <td><a href = "schoolcalendar.html">School Calendar Generator</a></td>
+        <td>
+            <ul>
+                <li>8/31/20: Program Completed</li>
+                <li>
+                    11/12/20: Several features added
+                    <ul>
+                        <li>A user can input a certain number of weeks for schooling and break.</li>
+                        <li>Non-edible output fields have been highlighted to distinguish them from the edible input fields.</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><a href = "custom.html">Make Your Own Calendar</a></td>
+        <td>
+            <ul>
+                <li>Last Modified: 10/20/20</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><a href = "spacecalendars.html">Space Calendars</a></td>
+        <td>NA</td>
+    </tr>
+    <tr>
+        <td><a href = "https://colab.research.google.com/github/russellelliott/russellelliott.github.io/blob/main/Two_Moons_Lunar_Calendar.ipynb">Two Moons Lunar Calendar</a></td>
+        <td>Last Modified: 3/8/21</td>
+    </tr>
+</table>
+
+
+            <h1>13 Month calendar</h1>
+            <p><a href = "https://en.wikipedia.org/wiki/Calendar_reform">Calendar Reform</a></p>
+            <p>There have been several proposals for a 13-month calendar. Each month has 28 days, with one day left over in a common year (Year Day) and another day left over in a Leap Year (Leap Day). The left subcolumn of each column lists the month names, while the right subcolumn lists the Gregorian dates the months encompass.</p>
+            <table id = "calendars">
+                <tr>
+                    <th colspan = "2"><a href = "3way.html">International Fixed Calendar</a></th>
+                    <th colspan = "2"><a href = "solstice.html">Solstice Calendar</a></th>
+                    <th colspan = "2"><a href = "13moon.html">13 Moon Calendar</a></th>
+                </tr>
+                <tr>
+                    <th colspan = "2">Year begins January 1</th>
+                    <th colspan = "2">Year begins on the Norther Winter Solstice</th>
+                    <th colspan = "2">Year begins on some other date</th>
+                </tr>
+            <tbody>
+            <tr>
+            <td colspan = "2"><a href="https://en.wikipedia.org/wiki/International_Fixed_Calendar">International Fixed Calendar</a>
+            <p>Twelve months are named and ordered the same as those of the Gregorian calendar, 
+            except for the extra month inserted between June and July, and called Sol. 
+            Situated in mid-summer (from the point of view of its Northern Hemisphere authors) 
+            and including the mid-year solstice, the name of the new month was chosen in homage to the sun.</p></td>
+            <td colspan = "2">
+            <p><a href="http://www.solsticecalendar.com/2009-solstice-calendar/">Solstice Calendar</a>&nbsp;(Ends the year on the Winter Solstice, Starts year December 22)</p>
+            Year starts December 22, Gregorian, (marked as Solstice 1) the day after the Solstice (Winter in the Northern Hemisphere, Summer in the Southern Hemisphere) This is 10 days before the tradtional start of the Gregorian Year, January 1
+            <p><a href="http://www.inrete.ch/cal13/en/">CAL13 FIXED CALENDAR</a>&nbsp;The calendar has 13 months of 28 days. It has two varieties:</p>
+            <p>Starts the year on the Winter Solstice, December 21:&nbsp;<a href="http://www.inrete.ch/cal13/en/dec21/cal13-gregorian-dec21-en.htm">Common Years</a>,&nbsp;<a href="http://www.inrete.ch/cal13/en/dec21/cal13-gregorian-dec21-leap-en.htm">Leap Years</a></p>
+            <p>Start the year on January 1:&nbsp;<a href="http://www.inrete.ch/cal13/en/cal13-gregorian-en.html">Common Years</a>,&nbsp;<a href="http://www.inrete.ch/cal13/en/cal13-gregorian-leap-en.html">Leap Years</a></p>
+            </td>
+            <td colspan = "2">
+            <a href="https://lawoftime.org/thirteenmoon/tutorial.html">13 Moon calendar</a>
+            <br><a href="https://lawoftime.org/thirteenmoon/basics.html">13 Moon Calendar Matching Dates on Gregorian</a>
+            <p>Year starts on July 26 Gregorian. Year day is July 25 Gregorian</p>
+            </td>
+            </tr>
+            <tr>
+            <td>January</td>
+            <td>January 1 - January 28</td>
+            <td>Solstice</td>
+            <td>December 22 - January 18</td>
+            <td>Magnetic Moon&nbsp;</td>
+            <td>July 26 - August 22</td>
+            </tr>
+            <tr>
+            <td>Februrary</td>
+            <td>January 29 - Februrary 25</td>
+            <td>Mercury</td>
+            <td>January 19 - Februrary 15</td>
+            <td>Lunar Moon</td>
+            <td>August 23 - September 19</td>
+            </tr>
+            <tr>
+            <td>March</td>
+            <td>Februrary 26 - March 25*</td>
+            <td>Venus</td>
+            <td>Februrary 16 - March 15*</td>
+            <td>Electric Moon</td>
+            <td>September 20 - October 17</td>
+            </tr>
+            <tr>
+            <td>April</td>
+            <td>March 26* - April 22*</td>
+            <td>Gaia</td>
+            <td>March 16* - April 12*</td>
+            <td>Self-Existing Moon</td>
+            <td>October 18 - November 14</td>
+            </tr>
+            <tr>
+            <td>May</td>
+            <td>April 23* - May 20*</td>
+            <td>Luna</td>
+            <td>April 13* - May 10*</td>
+            <td>Overtone Moon&nbsp;</td>
+            <td>November 15 - December 12</td>
+            </tr>
+            <tr>
+            <td>June</td>
+            <td>
+            May 21* - June 17*
+            <br>June 17 = Leap Day
+            </td>
+            <td>Martian</td>
+            <td>May 11* - June 7*</td>
+            <td>Rhythmic Moon&nbsp;</td>
+            <td>December 13 - January 9&nbsp;</td>
+            </tr>
+            <tr>
+            <td>Sol</td>
+            <td>June 18 - July 15</td>
+            <td>Asteroid</td>
+            <td>June 8* - July 5*&nbsp;</td>
+            <td>Resonant Moon</td>
+            <td>January 10 - Februrary 6&nbsp;</td>
+            </tr>
+            <tr>
+            <td>July</td>
+            <td>July 16 - August 12</td>
+            <td>Jupiter</td>
+            <td>July 6* - August 2*</td>
+            <td>Galactic Moon</td>
+            <td>Februrary 7 - March 6*&nbsp;</td>
+            </tr>
+            <tr>
+            <td>August</td>
+            <td>August 13 - September 9</td>
+            <td>Saturn</td>
+            <td>August 3* - August 30*</td>
+            <td>Solar Moon</td>
+            <td>March 7* - April 3*&nbsp;</td>
+            </tr>
+            <tr>
+            <td>September</td>
+            <td>September 10 - October 7</td>
+            <td>Uranus</td>
+            <td>August 31* - September 27*&nbsp;</td>
+            <td>Planetary Moon</td>
+            <td>April 4* - May 1*&nbsp;</td>
+            </tr>
+            <tr>
+            <td>October</td>
+            <td>October 8 - November 4</td>
+            <td>Neptune</td>
+            <td>September 28* - October 25*&nbsp;</td>
+            <td>Spectral Moon</td>
+            <td>May 2* - May 29*&nbsp;</td>
+            </tr>
+            <tr>
+            <td>November</td>
+            <td>November 5 - December 2</td>
+            <td>Pluto</td>
+            <td>October 26* - November 22*</td>
+            <td>Crystal Moon&nbsp;</td>
+            <td>May 30* - June 26*</td>
+            </tr>
+            <tr>
+            <td>December</td>
+            <td>
+            <p>December 3 - December 30</p>
+            <p>December 31 = Year Day</p>
+            </td>
+            <td>Comet</td>
+            <td>
+            <p>November 22* - December 21*</p>
+            On Common Years: December 21 =&nbsp;Year Day (December 29 on Solstice Calendar)
+            <br>
+            <br>On Leap Years: December 20 = Year Day (December 29 on Solstice Calendar)
+            <br>December 21 = Leap Day (December 30 on Solstice calendar)
+            &nbsp;</td>
+            <td>Cosmic Moon&nbsp;</td>
+            <td>
+            <p>June 26* - July 24*</p>
+            <br>On Common Years:
+            <br>July 25 = "Day Without Time" (Year Day)
+            <br>
+            <br>On Leap Years:
+            <br>July 24 = "Day Without Time" (Year Day)
+            <br>July 25 = Leap Day
+            </td>
+            </tr>
+            </tbody>
+            </table>
+            <p>*IFC: These Gregorian dates between March and June are a day earlier in a Gregorian leap year. March in the Fixed Calendar always has a fixed number of days (28), and includes the Gregorian February 29 (on Gregorian leap years).</p>
+            <p>*Solstice Calendar: These dates after after March are a day earlier in a Gregorian leap year. March in this calendar always has a fixed number of days (28), and includes the Gregorian Februrary 29 (on Greogrian leap years)</p>
+            <p>*13 Moon Calendar:These dates after after Gregorian March are a day earlier in a Gregorian leap year. Galactic Moon in this calendar always has a fixed number of days (28), and includes the Gregorian Februrary 29 (on Greogrian leap years)</p>
+            <p><strong>Solstice Calendar</strong></p>
+            <p>: A calendar that starts the year on the Winter Solstice.</p>
+            <p>Also converts the date.</p>
+            <p>The Solstice Calendar names the first month Solstice after the Solstice which marks the&nbsp;end of the year. Then the other 12 months are named after the cellestial bodies of the Solar System: Mercury, Venus, Earth, The Moon, Mars, The Asteroid Belt, Jupiter, Satrn, Uranus, Neptune, Pluto and Comet (Oort Cloud bodies, like Halley's Comet) uses the modern names for the planets.</p>
+            <p>Roman and Greek god names</p>
+            <p><a href="https://coolcosmos.ipac.caltech.edu/ask/196-How-did-the-planets-get-their-names-">https://coolcosmos.ipac.caltech.edu/ask/196-How-did-the-planets-get-their-names-</a></p>
+            <p><a href="http://www.solsticecalendar.com/tag/13-month-calendar-system/">http://www.solsticecalendar.com/tag/13-month-calendar-system/</a></p>
+            <p>4th month named after Earth</p>
+            <p><a href="https://www.fourmilab.ch/documents/calendar/">Calendar Converter</a></p>
+    <h1>12 Month Calendar</h1>
+    <p>Other calendar reforms seek to maintain a year with 12 months. 12 is divisible by 2 (halves), 3 (thirds), 4 (quarters) and 6 (sixths)</p>
+    <table style = "width:100%">
+        <tr>
+            <th style = "width:50%"><a href = "3way.html">Reddit 8 Day Week Calendar</a></th>
+            <th style = "width:50%"><a href = "frenchcalendar.html">French Republican Calendar</a></th>
+        </tr>
+        <tr>
+            <td>
+                <ol>
+                    <li>January (January 1-Feburary 1)</li>
+                    <li>Feburary (Februrary 2-March 5)</li>
+                    <li>March (March 6-April 6)</li>
+                    <li>April (April 7-May 8)</li>
+                    <li>May (May 9-June 9)</li>
+                    <li>June (June 10-July 11)</li>
+                    <li>July (July 12-August 12)</li>
+                    <li>August (August 13-September 13)</li>
+                    <li>September (September 14-October 15)</li>
+                    <li>October (Ocotber 16-November 17)</li>
+                    <li>November (November 17-December 18)</li>
+                    <li>December (Decmeber 18-December 31)</li>
+                </ol>
+            </td>
+            <td>
+<ul>
+<li>Autumn:
+<ul>
+<li><a title="Vend&eacute;miaire" href="https://en.wikipedia.org/wiki/Vend%C3%A9miaire">Vend&eacute;miaire</a>&nbsp;(from French&nbsp;<em>vendange</em>, derived from Latin&nbsp;<em>vindemia</em>, "vintage"), starting 22, 23, or 24 September</li>
+<li><a title="Brumaire" href="https://en.wikipedia.org/wiki/Brumaire">Brumaire</a>&nbsp;(from French&nbsp;<em>brume</em>, "mist"), starting 22, 23, or 24 October</li>
+<li><a title="Frimaire" href="https://en.wikipedia.org/wiki/Frimaire">Frimaire</a>&nbsp;(From French&nbsp;<em>frimas</em>, "frost"), starting 21, 22, or 23 November</li>
+</ul>
+</li>
+<li>Winter:
+<ul>
+<li><a title="Niv&ocirc;se" href="https://en.wikipedia.org/wiki/Niv%C3%B4se">Niv&ocirc;se</a>&nbsp;(from Latin&nbsp;<em>nivosus</em>, "snowy"), starting 21, 22, or 23 December</li>
+<li><a title="Pluvi&ocirc;se" href="https://en.wikipedia.org/wiki/Pluvi%C3%B4se">Pluvi&ocirc;se</a>&nbsp;(from French&nbsp;<em>pluvieux</em>, derived from Latin&nbsp;<em>pluvius</em>, "rainy"), starting 20, 21, or 22 January</li>
+<li><a title="Vent&ocirc;se" href="https://en.wikipedia.org/wiki/Vent%C3%B4se">Vent&ocirc;se</a>&nbsp;(from French&nbsp;<em>venteux</em>, derived from Latin&nbsp;<em>ventosus</em>, "windy"), starting 19, 20, or 21 February</li>
+</ul>
+</li>
+<li>Spring:
+<ul>
+<li><a title="Germinal (French Republican Calendar)" href="https://en.wikipedia.org/wiki/Germinal_(French_Republican_Calendar)">Germinal</a>&nbsp;(from French&nbsp;<em>germination</em>), starting 20 or 21 March</li>
+<li><a title="Flor&eacute;al" href="https://en.wikipedia.org/wiki/Flor%C3%A9al">Flor&eacute;al</a>&nbsp;(from French&nbsp;<em>fleur</em>, derived from Latin&nbsp;<em>flos</em>, "flower"), starting 20 or 21 April</li>
+<li><a title="Prairial" href="https://en.wikipedia.org/wiki/Prairial">Prairial</a>&nbsp;(from French&nbsp;<em>prairie</em>, "meadow"), starting 20 or 21 May</li>
+</ul>
+</li>
+<li>Summer:
+<ul>
+<li><a title="Messidor" href="https://en.wikipedia.org/wiki/Messidor">Messidor</a>&nbsp;(from Latin&nbsp;<em>messis</em>, "harvest"), starting 19 or 20 June</li>
+<li><a title="Thermidor" href="https://en.wikipedia.org/wiki/Thermidor">Thermidor</a>&nbsp;(from Greek&nbsp;<em>thermon</em>, "summer heat"), starting 19 or 20 July</li>
+<li><a title="Fructidor" href="https://en.wikipedia.org/wiki/Fructidor">Fructidor</a>&nbsp;(from Latin&nbsp;<em>fructus</em>, "fruit"), starting 18 or 19 August</li>
+</ul>
+</li>
+</ul>
+<h2>Sansculottides (Complmentary Days)</h2>
+<p>Five extra days &ndash; six in&nbsp;<a title="Leap year" href="https://en.wikipedia.org/wiki/Leap_year">leap years</a>&nbsp;&ndash; were national holidays at the end of every year. These were originally known as&nbsp;<em>les sans-culottides</em>&nbsp;(after&nbsp;<em><a title="Sans-culottes" href="https://en.wikipedia.org/wiki/Sans-culottes">sans-culottes</a></em>), but after year III (1795) as&nbsp;<em>les jours compl&eacute;mentaires</em>:</p>
+<ul>
+<li>1st complementary day:&nbsp;<a title="La F&ecirc;te de la Vertu" href="https://en.wikipedia.org/wiki/La_F%C3%AAte_de_la_Vertu">La F&ecirc;te de la Vertu</a>, "Celebration of Virtue", on 17 or 18 September</li>
+<li>2nd complementary day:&nbsp;<a title="La F&ecirc;te du G&eacute;nie" href="https://en.wikipedia.org/wiki/La_F%C3%AAte_du_G%C3%A9nie">La F&ecirc;te du G&eacute;nie</a>, "Celebration of Talent", on 18 or 19 September</li>
+<li>3rd complementary day:&nbsp;<a title="La F&ecirc;te du Travail" href="https://en.wikipedia.org/wiki/La_F%C3%AAte_du_Travail">La F&ecirc;te du Travail</a>, "Celebration of Labour", on 19 or 20 September</li>
+<li>4th complementary day:&nbsp;<a title="La F&ecirc;te de l'Opinion" href="https://en.wikipedia.org/wiki/La_F%C3%AAte_de_l%27Opinion">La F&ecirc;te de l'Opinion</a>, "Celebration of Convictions", on 20 or 21 September</li>
+<li>5th complementary day:&nbsp;<a title="La F&ecirc;te des R&eacute;compenses" href="https://en.wikipedia.org/wiki/La_F%C3%AAte_des_R%C3%A9compenses">La F&ecirc;te des R&eacute;compenses</a>, "Celebration of Honors (Awards)", on 21 or 22 September</li>
+<li>6th complementary day:&nbsp;<a title="La F&ecirc;te de la R&eacute;volution" href="https://en.wikipedia.org/wiki/La_F%C3%AAte_de_la_R%C3%A9volution">La F&ecirc;te de la R&eacute;volution</a>, "Celebration of the Revolution", on 22 or 23 September (on leap years only)</li>
+</ul>
+            </td>
+        </tr>
+    </table>
+    <h1>The New Calendar</h1>
+    <p><a href = "thenewcalendar.html">The New Calendar</a> divides the year into 5 seasons. Each week is 9 days long and each seasons consists of 8 of them, with an extra day in the middle, making each season 73 days.</p>
+	</body>
+</html>
