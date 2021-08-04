@@ -7,27 +7,8 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <title>My Programs</title>
     <style>
-        body {
-        height: 100%;
-        background: rgb(254,240,1);
-        background: linear-gradient(0deg, rgba(254,240,1,1) 0%, rgba(255,206,3,1) 20%, rgba(253,154,1,1) 40%, rgba(253,97,4,1) 60%, rgba(255,44,5,1) 80%, rgba(240,5,5,1) 100%);
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-        }
 
-        th, td{
-            align:center;
-            text-align: center;
-        }
-
-        #programstable{
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-
-        img {
+    img {
             width:300px;
             
             display: block;
@@ -35,7 +16,11 @@
             margin-right: auto;
             
         }
+
     </style>
+    
+    <link rel="stylesheet" href="frontpage.css">
+
 </head>
 <body>
     <!--Navigation bar-->
@@ -51,7 +36,7 @@
     <!--end of Navigation bar-->
     <h1>My Programs</h1>
 
-    <table id = "programstable">
+    <table class = "center">
         <tr>
             <th>Calendars</th>
             <th>Clocks</th>
@@ -67,9 +52,5 @@
             <td><a href = "/text-based-generators"><img src = "images/keyboard.png"></a></td>
         </tr>
     </table>
-
-    <h2>Will figure out where these should go.</h2>
-    <a href = "/aigyptian/">Aigyptian</a>
-    <a href = "/axiom/">The Axiom</a>
 </body>
 </html>

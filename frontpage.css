@@ -1,0 +1,12 @@
+body {
+    height: 100%;
+    background-image: linear-gradient(#3f5efb, #35d6ed);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    }
+    
+    .center {
+    margin-left: auto;
+    margin-right: auto;
+    }
